@@ -152,6 +152,162 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-博客搭建-2-Mac下用Hexo搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/">博客搭建(2)--Mac下用Hexo搭建个人博客</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/" class="archive-article-date">
+  	<time datetime="2017-04-04T07:54:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在此之前，有人推荐使用jekyll，有人推荐hexo，因而上网查找资料进行简单对比：</p>
+<ul>
+<li>Jekyll基于Ruby， Hexo基于NodeJs。</li>
+<li>两者都支持Markdown。</li>
+<li>Jekyll的主题相对而言没有Hexo的美观（个人见解）</li>
+<li>对于网上所说的Jekyll没有本地服务器，需要纠正一下，其实两者都可以实现本地预览功能，再发布到容器中同步。<br>根据个人喜好进行选择，这里我选择了hexo。</li>
+</ul>
+</blockquote>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p><strong>1. 安装node.js</strong></p>
+<blockquote>
+<p>安装语句：brew install node</p>
+</blockquote>
+<p> <img src="/blogImg/20170404/mh1.jpg" alt="brew install node"></p>
+<p><strong>2. 已搭建git环境（或者github管理软件）</strong></p>
+<blockquote>
+<p>使用语句查看安装成功：<br>node -v<br>npm -v<br>git –version</p>
+</blockquote>
+<p> <img src="/blogImg/20170404/mh2.jpg" alt="node -v; npm -v; git --version"></p>
+<h2 id="初始化Github环境"><a href="#初始化Github环境" class="headerlink" title="初始化Github环境"></a>初始化Github环境</h2><p>在上一篇博客中已经建好了网站，这里直接克隆到本地便于接下来的操作。<br>选定博客搭建路径后，将仓库克隆到本地：</p>
+<blockquote>
+<p>git clone <a href="https://github.com/Killy-LIU/killy-liu.github.io.git" target="_blank" rel="external">https://github.com/Killy-LIU/killy-liu.github.io.git</a><br>cd killy-liu.github.io/<br>git init</p>
+</blockquote>
+<p><img src="/blogImg/20170404/mh3.jpg" alt=""></p>
+<h2 id="安装Hexo并搭建网站"><a href="#安装Hexo并搭建网站" class="headerlink" title="安装Hexo并搭建网站"></a>安装Hexo并搭建网站</h2><p> <strong>1. 安装执行命令：</strong></p>
+<blockquote>
+<p>sudo npm install -g hexo-cli</p>
+</blockquote>
+<p>  <img src="/blogImg/20170404/mh4.jpg" alt="sudo npm install -g hexo-cli"></p>
+<p> <strong>2. 从控制台进入克隆的文件夹目录下，进行初始化hexo：</strong></p>
+<blockquote>
+<p>hexo init</p>
+</blockquote>
+<p> <img src="/blogImg/20170404/mh5.jpg" alt="hexo init"></p>
+<p> <strong>3. 在初始化完成之后，执行本地服务化发现报错。因而重新进行安装配置。</strong></p>
+<blockquote>
+<p>npm install</p>
+</blockquote>
+<p> 文件夹目录结构</p>
+<blockquote>
+<p>source：博客资源文件夹<br>source/_drafts：草稿文件夹<br>source/_posts：文章文件夹<br>themes：存放主题的文件夹<br>themes/landscape：默认的主题<br>_config.yml：全局配置文件</p>
+</blockquote>
+<p> <strong>4. 进行本地服务测试。</strong></p>
+<blockquote>
+<p>hexo server</p>
+</blockquote>
+<p> 输入 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 即可打开默认页面：<br> <img src="/blogImg/20170404/mh6.jpg" alt="http://localhost:4000/"></p>
+<p> 跳坑： 这里曾经因为无法启动本地服务器，尝试过许多方法(如下)，均无法解决错误 Cannot find module ‘./build/Release/DTraceProviderBindings’，以下是曾经尝试过的方式：</p>
+<blockquote>
+<p>npm install hexo –no-optional<br>npm uninstall hexo + npm install hexo –no-optional<br>npm uninstall hexo-cli -g + npm install hexo-cli -g</p>
+</blockquote>
+<p> 最后查找资料得到的解决方案：</p>
+<ol>
+<li>首先我们找到全局hexo的安装目录</li>
+<li>找到文件dtrace-provider.js</li>
+<li>注释如下内容:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> var builds = [&apos;Release&apos;, &apos;default&apos;, &apos;Debug&apos;];</div><div class="line">for (var i in builds) &#123;</div><div class="line">    try &#123;</div><div class="line">        var binding = require(&apos;./build/&apos; + builds[i] + &apos;/DTraceProviderBindings&apos;);</div><div class="line">        DTraceProvider = binding.DTraceProvider;</div><div class="line">        break;</div><div class="line">    &#125; catch (e) &#123;</div><div class="line">        // if the platform looks like it _should_ have DTrace</div><div class="line">        // available, log a failure to load the bindings.</div><div class="line">        if (process.platform == &apos;darwin&apos; ||</div><div class="line">            process.platform == &apos;sunos&apos; ||</div><div class="line">            process.platform == &apos;freebsd&apos;) &#123;</div><div class="line">            console.error(e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>现在网站上的主题是默认的，既然是打造属于自己的小窝，必然要考虑换一个更好看的样式了~~在经过仔细比对之后，选择了可以适配网页端和手机端的特色主题yilia，相信自己的审美哦^_^<br>列出排名前三的主题：</p>
+<blockquote>
+<p>1.<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a>  3510个star。<br>2.<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia</a>  1703个star。<br>3.<a href="https://github.com/TryGhost/Casper" target="_blank" rel="external">https://github.com/TryGhost/Casper</a>  679个star</p>
+</blockquote>
+<p>具体操作步骤：</p>
+<p><strong>1. 克隆项目到本地(任意一个不是在博客文件夹里的地址均可)：</strong><br>这里我用github克隆的，与控制台的命令语句效果相同：</p>
+<blockquote>
+<p>git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia</p>
+</blockquote>
+<p> <img src="/blogImg/20170404/mh7.jpg" alt="克隆yilia主题"></p>
+<p> 克隆结束后，将克隆文件夹名更改为 yilia，并放于之前所建目录下的/themes/下，与landscape并列。<br> <img src="/blogImg/20170404/mh8.jpg" alt=""></p>
+<p><strong>2. 修改./_config.yml文件：</strong></p>
+<blockquote>
+<p>theme: yilia    //默认为landscape</p>
+</blockquote>
+<p><strong>3. 修改themes/yilia/_config.yml文件：</strong><br> 注：根据自己的实际情况做调整：动画效果、友情链接、博友回复等等。</p>
+<p><strong>4. 查看效果</strong><br>更改主题之后可以使用命令 hexo server 打开本地服务，再次登录 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 查看效果。<br><img src="/blogImg/20170404/mh9.jpg" alt="http://localhost:4000/"></p>
+<h2 id="Github部署"><a href="#Github部署" class="headerlink" title="Github部署"></a>Github部署</h2><p>这里连着上一篇博客，将搭建好的网站通过修改配置，完成在github上的部署。</p>
+<p><strong>1. Github设置</strong><br>修改./_config.yml文件： </p>
+<blockquote>
+<p>deploy:<br>    type: git<br>    repository:  <a href="https://github.com/Killy-LIU/killy-liu.github.io.git" target="_blank" rel="external">https://github.com/Killy-LIU/killy-liu.github.io.git</a><br>    branch: master</p>
+</blockquote>
+<p> 注：在hexo3.x版本下，type应填git，而非github；冒号后面都有一个英文的空格，不然会报错。</p>
+<p><strong>2. 部署</strong><br>部署命令为：</p>
+<blockquote>
+<p>hexo clean (清理public文件夹，不需要经常用)<br>hexo generate<br>hexo deploy</p>
+</blockquote>
+<p> 但我的上一条命令 hexo deploy 报错，因而采用下面的命令：</p>
+<blockquote>
+<p>npm install hexo-deployer-git–save<br>hexo deploy</p>
+</blockquote>
+<p>跳坑1：理论上应该部署成功，可是点击网页出现404，发现网页没有对应到我设置的网站上。<br> 百度一下，需要将CNAME，LICENSE，README.md 放在source文件夹下，部署时才会一起传到github上。<br> 重新运行</p>
+<blockquote>
+<p>hexo generate<br>hexo deploy</p>
+</blockquote>
+<p> 部署成功^_^<br> <img src="/blogImg/20170404/mh10.jpg" alt=""><br> <img src="/blogImg/20170404/mh11.jpg" alt=""></p>
+<p>跳坑2：好多博客中写先搭建hexo并选择主题，后部署与github。曾经试过用github将上一期得到的内容直接下载下来，将这里的内容拷贝到文件夹内，但启动时报错：[rejected]        master -&gt; master (non-fast-forward)。原因是两个都是master，有冲突。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术，hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-博客搭建-1-使用Github搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -532,6 +688,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术，hexo</a>
               </li>
              
               <li class="article-tag-list-item">
