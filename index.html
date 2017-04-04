@@ -181,93 +181,9 @@
 <li>对于网上所说的Jekyll没有本地服务器，需要纠正一下，其实两者都可以实现本地预览功能，再发布到容器中同步。<br>根据个人喜好进行选择，这里我选择了hexo。</li>
 </ul>
 </blockquote>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p><strong>1. 安装node.js</strong></p>
-<blockquote>
-<p>安装语句：brew install node</p>
-</blockquote>
-<p> <img src="/blogImg/20170404/mh1.jpg" alt="brew install node"></p>
-<p><strong>2. 已搭建git环境（或者github管理软件）</strong></p>
-<blockquote>
-<p>使用语句查看安装成功：<br>node -v<br>npm -v<br>git –version</p>
-</blockquote>
-<p> <img src="/blogImg/20170404/mh2.jpg" alt="node -v; npm -v; git --version"></p>
-<h2 id="初始化Github环境"><a href="#初始化Github环境" class="headerlink" title="初始化Github环境"></a>初始化Github环境</h2><p>在上一篇博客中已经建好了网站，这里直接克隆到本地便于接下来的操作。<br>选定博客搭建路径后，将仓库克隆到本地：</p>
-<blockquote>
-<p>git clone <a href="https://github.com/Killy-LIU/killy-liu.github.io.git" target="_blank" rel="external">https://github.com/Killy-LIU/killy-liu.github.io.git</a><br>cd killy-liu.github.io/<br>git init</p>
-</blockquote>
-<p><img src="/blogImg/20170404/mh3.jpg" alt=""></p>
-<h2 id="安装Hexo并搭建网站"><a href="#安装Hexo并搭建网站" class="headerlink" title="安装Hexo并搭建网站"></a>安装Hexo并搭建网站</h2><p> <strong>1. 安装执行命令：</strong></p>
-<blockquote>
-<p>sudo npm install -g hexo-cli</p>
-</blockquote>
-<p>  <img src="/blogImg/20170404/mh4.jpg" alt="sudo npm install -g hexo-cli"></p>
-<p> <strong>2. 从控制台进入克隆的文件夹目录下，进行初始化hexo：</strong></p>
-<blockquote>
-<p>hexo init</p>
-</blockquote>
-<p> <img src="/blogImg/20170404/mh5.jpg" alt="hexo init"></p>
-<p> <strong>3. 在初始化完成之后，执行本地服务化发现报错。因而重新进行安装配置。</strong></p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-<p> 文件夹目录结构</p>
-<blockquote>
-<p>source：博客资源文件夹<br>source/_drafts：草稿文件夹<br>source/_posts：文章文件夹<br>themes：存放主题的文件夹<br>themes/landscape：默认的主题<br>_config.yml：全局配置文件</p>
-</blockquote>
-<p> <strong>4. 进行本地服务测试。</strong></p>
-<blockquote>
-<p>hexo server</p>
-</blockquote>
-<p> 输入 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 即可打开默认页面：<br> <img src="/blogImg/20170404/mh6.jpg" alt="http://localhost:4000/"></p>
-<p> 跳坑： 这里曾经因为无法启动本地服务器，尝试过许多方法(如下)，均无法解决错误 Cannot find module ‘./build/Release/DTraceProviderBindings’，以下是曾经尝试过的方式：</p>
-<blockquote>
-<p>npm install hexo –no-optional<br>npm uninstall hexo + npm install hexo –no-optional<br>npm uninstall hexo-cli -g + npm install hexo-cli -g</p>
-</blockquote>
-<p> 最后查找资料得到的解决方案：</p>
-<ol>
-<li>首先我们找到全局hexo的安装目录</li>
-<li>找到文件dtrace-provider.js</li>
-<li>注释如下内容:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> var builds = [&apos;Release&apos;, &apos;default&apos;, &apos;Debug&apos;];</div><div class="line">for (var i in builds) &#123;</div><div class="line">    try &#123;</div><div class="line">        var binding = require(&apos;./build/&apos; + builds[i] + &apos;/DTraceProviderBindings&apos;);</div><div class="line">        DTraceProvider = binding.DTraceProvider;</div><div class="line">        break;</div><div class="line">    &#125; catch (e) &#123;</div><div class="line">        // if the platform looks like it _should_ have DTrace</div><div class="line">        // available, log a failure to load the bindings.</div><div class="line">        if (process.platform == &apos;darwin&apos; ||</div><div class="line">            process.platform == &apos;sunos&apos; ||</div><div class="line">            process.platform == &apos;freebsd&apos;) &#123;</div><div class="line">            console.error(e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>现在网站上的主题是默认的，既然是打造属于自己的小窝，必然要考虑换一个更好看的样式了~~在经过仔细比对之后，选择了可以适配网页端和手机端的特色主题yilia，相信自己的审美哦^_^<br>列出排名前三的主题：</p>
-<blockquote>
-<p>1.<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a>  3510个star。<br>2.<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia</a>  1703个star。<br>3.<a href="https://github.com/TryGhost/Casper" target="_blank" rel="external">https://github.com/TryGhost/Casper</a>  679个star</p>
-</blockquote>
-<p>具体操作步骤：</p>
-<p><strong>1. 克隆项目到本地(任意一个不是在博客文件夹里的地址均可)：</strong><br>这里我用github克隆的，与控制台的命令语句效果相同：</p>
-<blockquote>
-<p>git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia</p>
-</blockquote>
-<p> <img src="/blogImg/20170404/mh7.jpg" alt="克隆yilia主题"></p>
-<p> 克隆结束后，将克隆文件夹名更改为 yilia，并放于之前所建目录下的/themes/下，与landscape并列。<br> <img src="/blogImg/20170404/mh8.jpg" alt=""></p>
-<p><strong>2. 修改./_config.yml文件：</strong></p>
-<blockquote>
-<p>theme: yilia    //默认为landscape</p>
-</blockquote>
-<p><strong>3. 修改themes/yilia/_config.yml文件：</strong><br> 注：根据自己的实际情况做调整：动画效果、友情链接、博友回复等等。</p>
-<p><strong>4. 查看效果</strong><br>更改主题之后可以使用命令 hexo server 打开本地服务，再次登录 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 查看效果。<br><img src="/blogImg/20170404/mh9.jpg" alt="http://localhost:4000/"></p>
-<h2 id="Github部署"><a href="#Github部署" class="headerlink" title="Github部署"></a>Github部署</h2><p>这里连着上一篇博客，将搭建好的网站通过修改配置，完成在github上的部署。</p>
-<p><strong>1. Github设置</strong><br>修改./_config.yml文件： </p>
-<blockquote>
-<p>deploy:<br>    type: git<br>    repository:  <a href="https://github.com/Killy-LIU/killy-liu.github.io.git" target="_blank" rel="external">https://github.com/Killy-LIU/killy-liu.github.io.git</a><br>    branch: master</p>
-</blockquote>
-<p> 注：在hexo3.x版本下，type应填git，而非github；冒号后面都有一个英文的空格，不然会报错。</p>
-<p><strong>2. 部署</strong><br>部署命令为：</p>
-<blockquote>
-<p>hexo clean (清理public文件夹，不需要经常用)<br>hexo generate<br>hexo deploy</p>
-</blockquote>
-<p> 但我的上一条命令 hexo deploy 报错，因而采用下面的命令：</p>
-<blockquote>
-<p>npm install hexo-deployer-git–save<br>hexo deploy</p>
-</blockquote>
-<p>跳坑1：理论上应该部署成功，可是点击网页出现404，发现网页没有对应到我设置的网站上。<br> 百度一下，需要将CNAME，LICENSE，README.md 放在source文件夹下，部署时才会一起传到github上。<br> 重新运行</p>
-<blockquote>
-<p>hexo generate<br>hexo deploy</p>
-</blockquote>
-<p> 部署成功^_^<br> <img src="/blogImg/20170404/mh10.jpg" alt=""><br> <img src="/blogImg/20170404/mh11.jpg" alt=""></p>
-<p>跳坑2：好多博客中写先搭建hexo并选择主题，后部署与github。曾经试过用github将上一期得到的内容直接下载下来，将这里的内容拷贝到文件夹内，但启动时报错：[rejected]        master -&gt; master (non-fast-forward)。原因是两个都是master，有冲突。</p>
-
+        
+          <a class="article-more-a" href="/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/#more">more >></a>
+        
       
 
       
@@ -282,6 +198,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -290,7 +210,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/">进入全文 >></a>
         </p>
       
 
@@ -330,20 +250,12 @@
       
         <p>&ensp;ps：因为最近手误删了两次csdn博客，因而决定在个人博客上也备份一份/(ㄒoㄒ)/~~</p>
 <h2 id="基本准备"><a href="#基本准备" class="headerlink" title="基本准备"></a>基本准备</h2><ul>
-<li>github账号：可以起一个有意义的名字哦<br>&emsp;&ensp;链接地址： <a href="https://github.com" target="_blank" rel="external">https://github.com</a></li>
-<li>域名购买：可以在腾讯云或者阿里云上购买一个域名（都有针对学生的优惠）<br>&emsp;&ensp;腾讯云地址：<a href="https://www.qcloud.com/?fromSource=gwzcw.5677.5677.5677" target="_blank" rel="external">https://www.qcloud.com/?fromSource=gwzcw.5677.5677.5677</a><br>&emsp;&ensp;阿里云链接地址：<a href="https://www.aliyun.com/?utm_medium=text&amp;utm_source=bdbrand&amp;utm_campaign=bdbrand&amp;utm_content=se_32492" target="_blank" rel="external">https://www.aliyun.com/?utm_medium=text&amp;utm_source=bdbrand&amp;utm_campaign=bdbrand&amp;utm_content=se_32492</a></li>
+<li>github账号：可以起一个有意义的名字哦<br>&emsp;&ensp;链接地址： <a href="https://github.com">https://github.com</a></li>
+<li>域名购买：可以在腾讯云或者阿里云上购买一个域名（都有针对学生的优惠）<br>&emsp;&ensp;腾讯云地址：<a href="https://www.qcloud.com/?fromSource=gwzcw.5677.5677.5677">https://www.qcloud.com/?fromSource=gwzcw.5677.5677.5677</a><br>&emsp;&ensp;阿里云链接地址：<a href="https://www.aliyun.com/?utm_medium=text&amp;utm_source=bdbrand&amp;utm_campaign=bdbrand&amp;utm_content=se_32492">https://www.aliyun.com/?utm_medium=text&amp;utm_source=bdbrand&amp;utm_campaign=bdbrand&amp;utm_content=se_32492</a></li>
 </ul>
-<h2 id="创建页面仓库"><a href="#创建页面仓库" class="headerlink" title="创建页面仓库"></a>创建页面仓库</h2><p>链接地址：<a href="https://github.com/new" target="_blank" rel="external">https://github.com/new</a><br>填写相应的信息：仓库名，描述，public，可选初始化信息。<br><img src="/blogImg/20170404/bg1.jpg" alt="填写基本信息：仓库，描述，初始化"></p>
-<p>创建成功之后点击设置，可以看到具体的信息：<br><img src="/blogImg/20170404/bg2.jpg" alt="确认仓库名：仓科名前缀应该和github账号名一样"></p>
-<p>下拉并点击主题选择，可以根据自己的喜好设置*（注：这里选择的模板都是jekyll的，之后会调整到hexo）:<br><img src="/blogImg/20170404/bg3.jpg" alt="github模板默认都是jekyll"></p>
-<p>完成后点击设置可以看到网站链接，便可以访问自己的网站啦啦啦~<br><img src="/blogImg/20170404/bg4.jpg" alt="这里可以看到自己照片部署的地址"></p>
-<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>跳坑：之前的域名存在重复现象：killy-liu.github.io/killyliu.github.io，因此修改自己的repo名与自己的名字一样，这里都改为 killy-liu.github.io 则指向刚刚构建好的页面，地址变为<a href="https://killy-liu.github.io。" target="_blank" rel="external">https://killy-liu.github.io。</a></p>
-<p>现在需要在根目录下创建一个CNAME的文件，里面写自己的地址，www.killyliu.com，之后访问内容即会重定向到自己这个地址。<br><img src="/blogImg/20170404/bg5.jpg" alt="自定义网站的地址"></p>
-<p>与此同时，需要进入云服务中设置域名解析。这里我用的是腾讯云服务。在记录管理中对添加域名记录，如下图所示。<br><img src="/blogImg/20170404/bg6.jpg" alt="在购买的腾讯云中定义映射的域名"></p>
-<p>在添加完成之后用控制台输入ping命令，查看是否通顺。<br><img src="/blogImg/20170404/bg7.jpg" alt="用ping测试域名可用"></p>
-<p>试着访问地址即可看到自己的第一个博客页面^_^：<a href="http://www.killyliu.com" target="_blank" rel="external">http://www.killyliu.com</a><br><img src="/blogImg/20170404/bg8.jpg" alt=""></p>
-<p>下一步操作为设置博客样式以及完善内容，并且在思考之后将个人链接由 <a href="http://www.killyliu.com" target="_blank" rel="external">http://www.killyliu.com</a> 转为 <a href="http://blog.killyliu.com">http://blog.killyliu.com</a> 很抱歉之前不能点击链接~~</p>
-
+        
+          <a class="article-more-a" href="/2017/04/04/博客搭建-1-使用Github搭建个人博客/#more">more >></a>
+        
       
 
       
@@ -358,6 +270,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -366,7 +282,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/04/博客搭建-1-使用Github搭建个人博客/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/04/04/博客搭建-1-使用Github搭建个人博客/">进入全文 >></a>
         </p>
       
 
@@ -404,19 +320,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <iframe frameborder="no" padding-right="“820px”" border="0" marginwidth="0" marginheight="0" width="298" height="86" src="http://music.163.com/outchain/player?type=2&id=25706282&auto=0&height=66"><br></iframe>
+        <iframe frameborder="no" padding-right=“820px” border="0" marginwidth="0" marginheight="0" width=298 height=86 src="http://music.163.com/outchain/player?type=2&id=25706282&auto=0&height=66"><br></iframe>
 
 <p>&emsp;&emsp;昨天去闺蜜家玩，两人不知不觉聊到了生活方向这个问题，感触颇深，决定写篇随笔记录一下~</p>
-<p>&emsp;&emsp;洋学习影视表演专业，现在自己开起了服装网店，日子看起来即使不是特别潇洒也还算自由自在。其实周围好多人都有疑惑，看似不搭调的两个人是如何成为闺蜜的。这里顺便解释一下，我俩是小学同学，到现在已经有十余载的年岁了，虽然走的路不同，但一种似亲情的友谊是与学识经历这些关系不大的。</p>
-<p>&emsp;&emsp;回想之前她在化大当老师的时候，就总在业余时间做兼职，两人见面基本都会谈起将来道路选择问题。没有人是真正轻松的，我的付出在于这些年的努力学习，而她的辛苦则体现在各种人际社会关系的处理。轻松欢乐的表面背后，都是不为人知的付出。</p>
-<p>&emsp;&emsp;这次，聊到了将来的工作选择上，洋又一次点醒了我。大四时候曾想过自己创业，但在了解一系列流程操作之后发现前路坎坷迷茫而毅然选择了放弃，只想着安安稳稳找家国企有个户口就好。不求轰轰烈烈，只求平平淡淡。现在并不是说这个想法不好，只是缺少了一种趁着年轻勇于奋斗的拼劲。如果二十多岁就过着养老生活，岂不白白浪费青春年华？</p>
-<p>&emsp;&emsp;在北京两个非常现实的问题：一是户口，二是住房。现在想起大三时的自己还真的是任性，借着有出国留学经历就觉得即使不读研也可以在企业中风生水起。当时固执地坚持着保不了研就工作的理念，庆幸自己的成绩帮自己选了一条不至于后悔的路，离户口和住房更近了一步。而前一阵子炒饭传给我一张自己写的大二规划的照片，不禁感慨，原来大二自己的思想已经如此成熟了，而且再次体会到思考与规划的价值所在。<br><img src="/blogImg/20170330/plan.jpg" alt="有一种人生叫做按步骤做事"></p>
-<p>&emsp;&emsp;两周前和梦莹聊到她的规划，在企业里做金融方面的计算机实习或工作，空闲时间再自己搭个网站，逐步运营起来~相较而言梦莹的生活更加潇洒，寻找自己喜欢的城市呆十年八年，不用被太多的身外之物所牵绊。奈何自己做不到这么洒脱，旅游是一种放空心灵的方式，但它于我只能是一种附属而非生活。</p>
-<p>&emsp;&emsp;今天项目组开会时候调侃道我们不断思考并发task归根到底还是因为穷，如果真能有几百TB级的服务器就都不是事了。穷则思变，而善思则掌局。既然选择了在北京发展，又并非含着金汤匙出生的公主，就应该认真对待生活，仔细规划发展道路。即使没有太大的抱负要感天动地，也不能抱着得过且过的思想，毕竟能挥霍的日子并不多了。</p>
-<p>&emsp;&emsp;回到之前的现实状况：户口方面存在两个选择：（1）找国企或者央企，以应届毕业生的身份解决北京户口；（2）出国留学，用海外学位证换外企的北京户口指标。而住房方面现在只能总结一个字：穷。之前网上流行的一个段子：“最近用自己月薪3000攒下的1W，加老爸给的100W，刚刚好付了首付”，而现在更多的是“我真的还想再活五百年”。</p>
-<p>&emsp;&emsp;痛定思痛，唯有创新。昨天刘洋向我介绍了好多小型的辅助工具：或微信埋雷抢红包，或批量自动添加好友，或接活帮小公司维护网站。。。在大企业中干活终究是个螺丝钉，还或许是备用的；而自己拥有能做主的事业才是真实掌握在手中的财富。虽说条条大路通罗马，但贫富差距也随之越来越大。</p>
-<p>&emsp;&emsp;不觉间已经写了这么多，最后定几个小目标吧：<br>&emsp;&emsp;&emsp;1. 依然坚持每天背单词看阅读打卡；<br>&emsp;&emsp;&emsp;2. 从现在起每想到一个新鲜的idea立即做记录；<br>&emsp;&emsp;&emsp;3. 每周为博客添一点色彩：不论是技术文章、生活随笔、或周边风景；<br>&emsp;&emsp;&emsp;4. 每周看一篇关于人际交流或职场生活的文章；<br>&emsp;&emsp;&emsp;5. 每月涉猎一个自己不熟悉的领域知识；<br>&emsp;&emsp;&emsp;6. 找工作时，对比选择一个发展前景广并切实符合自己兴趣的公司。<br>&emsp;&emsp;ps:其实还有一个大目标：我要减肥！！！/(ㄒoㄒ)/~</p>
-
+<p>&emsp;&emsp;洋学习影视表演专业，现在自己开起了服装网店，日子看起来即使不是特别潇洒也还算自由自在。其实周围好多人都有疑惑，看似不搭调的两个人是如何成为闺蜜的。这里顺便解释一下，我俩是小学同学，到现在已经有十余载的年岁了，虽然走的路不同，但一种似亲情的友谊是与学识经历这些关系不大的。<br>
+        
+          <a class="article-more-a" href="/2017/03/30/过善于思考的人生，别总选易走的路/#more">more >></a>
+        
       
 
       
@@ -439,7 +349,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/30/过善于思考的人生，别总选易走的路/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/30/过善于思考的人生，别总选易走的路/">进入全文 >></a>
         </p>
       
 
@@ -478,10 +388,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>&emsp;&emsp;曾经幻想过自己将来的生活：或许能够成为企业中一名核心人物，运筹帷幄；亦或开一间小店平平淡淡过日子，岁月静好；也不排除辗转于世界各地，随遇而安。无论如何，我的青春我做主。</p>
-<h2 id="时光"><a href="#时光" class="headerlink" title="时光"></a>时光</h2><p>&emsp;&emsp;都说岁月无痕，只是不那么明显罢了。回想小时候，可能因为玩具脏了心情不爽就大哭一场，一切都是那么随性而为之。而当身上肩负的责任越来越多之后，正如邓紫棋歌中所唱，“你的笑只是你穿的保护色”，有时照顾他人的情绪要多于自己，越来越明白为什么人们总是怀念童年了。<br>&emsp;&emsp;而人生没有如果，穿梭时光的机器属于大雄和叮当猫，但不属于我们。有时觉得时间一分一秒都是那么漫长，有时又不禁感慨时间流逝速度之快，并非是时光的魔法，一切均由心生。。。</p>
-<h2 id="经历"><a href="#经历" class="headerlink" title="经历"></a>经历</h2><p>&emsp;&emsp;“似水流年或沧海桑田，总是一眨眼消失在转身的那瞬间；沿途流逝的画面，时光如风掠过了双眼，阡陌稻田，远山云烟”。这些年，我们走过的路、看过的风景，都逐渐化作了经历，不知不觉间影响着为人与处事风格，或成熟稳重，或举步生风。<br>&emsp;&emsp;懵懂时的好奇，悸动时的冲动，成熟时的稳重，都为成长的路上增添了许多色彩，而我也愈发喜欢这样的生活，这样的自己。经历过春夏秋冬的洗礼，体味过朝阳夕下的轮回，渐渐懂得了何时该温婉，何时该冷傲，何时该耀眼，何时该淡然。</p>
-<h2 id="梦想"><a href="#梦想" class="headerlink" title="梦想"></a>梦想</h2><p>&emsp;&emsp;如果说杰伦的《梦想启动》充满积极正能量的话，范范《最初的梦想》则道明了路途中的坎坷与荆棘。古有“长风破浪会有时，直挂云帆济苍海”，今有“既然选择了远方，便只顾风雨兼程”。虽说三千繁华，弹指刹那，但掌握在自己手中的岁月不过百年而已。既已知晓，又如何任时光蹉跎？<br>&emsp;&emsp;仰望星空与脚踏实地，永恒不变的主题，又有谁真正能问心无愧。合抱之木，生于毫末；九层之合，起于垒土；千里之行，始于足下。</p>
-
+<h2 id="时光"><a href="#时光" class="headerlink" title="时光"></a>时光</h2><p>&emsp;&emsp;都说岁月无痕，只是不那么明显罢了。回想小时候，可能因为玩具脏了心情不爽就大哭一场，一切都是那么随性而为之。而当身上肩负的责任越来越多之后，正如邓紫棋歌中所唱，“你的笑只是你穿的保护色”，有时照顾他人的情绪要多于自己，越来越明白为什么人们总是怀念童年了。<br>&emsp;&emsp;而人生没有如果，穿梭时光的机器属于大雄和叮当猫，但不属于我们。有时觉得时间一分一秒都是那么漫长，有时又不禁感慨时间流逝速度之快，并非是时光的魔法，一切均由心生。。。<br>
+        
+          <a class="article-more-a" href="/2017/03/28/走在青春的路上/#more">more >></a>
+        
       
 
       
@@ -504,7 +414,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/28/走在青春的路上/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/28/走在青春的路上/">进入全文 >></a>
         </p>
       
 
@@ -542,16 +452,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+        <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+        
+          <a class="article-more-a" href="/2017/03/27/hello-world/#more">more >></a>
+        
       
 
       
@@ -574,7 +479,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/27/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/27/hello-world/">进入全文 >></a>
         </p>
       
 
@@ -692,6 +597,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
             
             <div class="clearfix"></div>
