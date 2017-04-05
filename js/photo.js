@@ -1,5 +1,4 @@
-
-init: function () {
+define([], function () {
     return {
         page: 1,
         offset: 20,
@@ -28,7 +27,6 @@ init: function () {
             //    '<ul class="img-box-ul">' + li + '</ul>' +
             //    '</section>';
 
-
             $(".img-box-ul").append(li);
             $(".img-box-ul").lazyload();
             $("a[rel=example_group]").fancybox();
@@ -50,6 +48,4 @@ init: function () {
         }
     }
 
-}
-
-
+});
