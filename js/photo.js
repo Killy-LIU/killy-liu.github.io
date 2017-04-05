@@ -1,4 +1,4 @@
-function init() {
+define([], function () {
     return {
         page: 1,
         offset: 20,
@@ -53,4 +53,4 @@ function init() {
 
 module.exports = {
     init: init
-}
+})
