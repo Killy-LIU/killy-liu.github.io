@@ -49,8 +49,4 @@ define([], function () {
         }
     }
 
-}
-
-module.exports = {
-    init: init
 })
