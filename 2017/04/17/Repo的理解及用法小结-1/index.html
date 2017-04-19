@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>Tag: 随笔 | 煊琦的小窝</title>
+  <title>Repo的理解及用法小结(1) | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="煊琦的小窝">
-<meta property="og:url" content="http://blog.killyliu.com/tags/随笔/index.html">
+  <meta name="description" content="Repo介绍随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
+Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Repo的理解及用法小结(1)">
+<meta property="og:url" content="http://blog.killyliu.com/2017/04/17/Repo的理解及用法小结-1/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
+<meta property="og:description" content="Repo介绍随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
+Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
+<meta property="og:updated_time" content="2017-04-19T03:02:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="煊琦的小窝">
+<meta name="twitter:title" content="Repo的理解及用法小结(1)">
+<meta name="twitter:description" content="Repo介绍随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
+Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -150,174 +157,215 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Repo的理解及用法小结-1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Repo的理解及用法小结(1)
+    </h1>
+  
+
+        
+        <a href="/2017/04/17/Repo的理解及用法小结-1/" class="archive-article-date">
+  	<time datetime="2017-04-17T01:45:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-17</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Repo介绍"><a href="#Repo介绍" class="headerlink" title="Repo介绍"></a>Repo介绍</h2><p>随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。</p>
+<p>Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group 上找到相关文档资料），用于下载、管理Android项目的软件仓库。Repo主要包含Repo配置信息以及Repo锁管理的Git项目集合。<br><a id="more"></a></p>
+<h2 id="Repo用法"><a href="#Repo用法" class="headerlink" title="Repo用法"></a>Repo用法</h2><h3 id="安装Repo"><a href="#安装Repo" class="headerlink" title="安装Repo"></a>安装Repo</h3><p>注：下载Repo只针对第一次使用。<br>首先，确认主目录下存在 bin/ 目录并已包含在路径中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir ~/bin</div><div class="line">PATH=~/bin:$PATH</div></pre></td></tr></table></figure></p>
+<p>下载Repo工具并设置可执行的权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</div><div class="line">chmod a+x ~/bin/repo</div></pre></td></tr></table></figure></p>
+<p>注：在Repo设置成功后，会出现下列提示，说明可以进行初始化了。</p>
+<blockquote>
+<p>error: repo is not installed.  Use “repo init” to install it here.</p>
+</blockquote>
+<h3 id="Repo初始化-init"><a href="#Repo初始化-init" class="headerlink" title="Repo初始化 (init)"></a>Repo初始化 (init)</h3><p>首先创建目录用于存放工程文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir WORKSPACE</div><div class="line">cd WORKSPACE</div></pre></td></tr></table></figure></p>
+<p>之后，使用命令进行初始化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo init -u URL [OPTIONS]</div></pre></td></tr></table></figure></p>
+<p>具体操作有：</p>
+<blockquote>
+<p>-u：指定一个URL，其连接到一个manifest仓库。<br>-m：在manifest仓库中选择一个 NAME.xml 文件。<br>-b：选择一个manifest仓库中一个特殊的分支。<br>注：<br>· 如果不提供 -b REVISION 或者 –manifest-branch=REVISION参数，则检出 manifest Git 库的 master 分支。<br>· 如果不提供 -m NAME.xml 或者 –manifest-name=NAME.xml 参数，则使用缺省值 default.xml。</p>
+</blockquote>
+<p>在初始化完成后，输入ls命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls repo</div></pre></td></tr></table></figure></p>
+<p>可以看到相关文件：manifests/  manifests.git/  manifest.xml  repo/</p>
+<blockquote>
+<p>(1) .repo：Repo目录，可用于提取相应项目工作目录到外面的repo工作目录。<br>(2) .repo/manifests.git：Repo配置信息的Git库，不同版本包含不同配置信息。<br>(3) .repo/manifests：Repo配置信息的工作目录（将配置信息的工作目录和相应的实际Git目录分离管理，并且配置信息中的.git目录实际只是指向实际Git库的软连接），其中可能包含一个或多个xml文件描述的配置。每个xml文件是独立的一套配置，配置内容包括当前Repo工作目录包含哪些Git项目、所有Git项目所处的默认公共分支、以及远端地址等。<br>(4) .repo/manifest.xml：Repo工作目录中的内容同一时刻只能采用manifests中的一个xml文件做为其配置，该文件就是其软连接，通过init的-m选项指定采用哪个文件；另外，同一xml文件也可能处于manifests库的不同版本或者不同分支，通过init的-b选项指定使用manifests中的哪个分支，每次init命令都会从服务器更新最新的配置。<br>(5) .repo/repo：Repo脚本集的Git库，这里包含Repo命令所需的所有子命令脚本实现，由Python完成，这个目录本身又由Git来管理。</p>
+</blockquote>
+<h3 id="Repo同步-sync"><a href="#Repo同步-sync" class="headerlink" title="Repo同步 (sync)"></a>Repo同步 (sync)</h3><p>下载当前repo配置的所有项目，并生成对应的repo工作目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo sync</div></pre></td></tr></table></figure></p>
+<p>如果想生成特定项目的代码，则使用下列语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo sync [&lt;project&gt;...]</div></pre></td></tr></table></figure></p>
+<p>实现参照清单.repo/manifests.xml克隆并同步版本库，如果版本库不存在，则相当于执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone</div></pre></td></tr></table></figure></p>
+<p>如果版本库已经存在，则相当于执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#对每个remote源进行fetch操作</div><div class="line">git remote update</div><div class="line">#针对当前分支的跟踪分支进行rebase操作</div><div class="line">git rebase/origin/branch</div></pre></td></tr></table></figure></p>
+<p>同步涉及到的参数有：</p>
+<blockquote>
+<p>-j：开启多线程同步操作，会加快sync命令的执行速度。默认情况下，使用4个线程并发进行sync。<br>-c, –current-branch：只同步指定的远程分支。默认情况下，sync会同步所有的远程分支，当远程分支比较多的时候，下载的代码量就大。使用该参数，可以缩减下载时间，节省本地磁盘空间。<br>-d, –detach：脱离当前的本地分支，切换到manifest.xml中设定的分支。在实际操作中这个参数很有用，当我们第一次sync完代码后，往往会切换到dev分支进行开发。如果不带该参数使用sync， 则会触发本地的dev分支与manifest设定的远程分支进行合并，这会很可能会导致sync失败。<br>-f, –force-broken：当有git库sync失败了，不中断整个同步操作，继续同步其他的git库。<br>–no-clone-bundle：在向服务器发起请求时，为了做到尽快的响应速度，会用到内容分发网络(CDN, Content Delivery Network)。同步操作也会通过CDN与就近的服务器建立连接， 使用HTTP/HTTPS的$URL/clone.bundle来初始化本地的git库，clone.bundle实际上是远程git库的镜像，通过HTTP直接下载，这会更好的利用网络带宽，加快下载速度。</p>
+</blockquote>
+<p>同步完成后，.repo下多了projects目录，，原工作目录下也多了目录：</p>
+<blockquote>
+<p>(1) .repo/projects：Repo所管理的所有Git项目集，包含Repo当前配置所指定的所有Git项目对应的Git目录。<br>(2) .repo/../ :Repo的工作区。在Repo目录（即.repo）之外，根据Repo配置（即.repo/manifest.xml文件），从.repo/projects下提取出指定分支的各个Git项目（即.repo/projects中Git项目的子集）的工作目录，形成Repo工作目录，可供开发使用。</p>
+</blockquote>
+<p>注：以上内容参考链接</p>
+<blockquote>
+<p><a href="http://blog.chinaunix.net/uid-9525959-id-4534319.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-9525959-id-4534319.html</a><br><a href="http://www.360doc.com/content/14/0220/17/97538_354256755.shtml" target="_blank" rel="external">http://www.360doc.com/content/14/0220/17/97538_354256755.shtml</a></p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/infoImg/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/infoImg/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/《黑洞》背后的思考/" class="archive-article-date">
-  	<time datetime="2017-04-10T02:52:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/《黑洞》背后的思考/">《黑洞》背后的思考</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/05/她是七月，也是安生/" class="archive-article-date">
-  	<time datetime="2017-04-05T09:43:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/05/她是七月，也是安生/">她是七月，也是安生</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Repo</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/04/17/Repo的理解及用法小结-1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/30/过善于思考的人生，别总选易走的路/" class="archive-article-date">
-  	<time datetime="2017-03-30T12:31:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/30/过善于思考的人生，别总选易走的路/">过善于思考的人生，别总选易走的路</a>
-    </h1>
+  
+    <a href="/2017/04/10/《黑洞》背后的思考/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《黑洞》背后的思考</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Repo的理解及用法小结-1" data-title="Repo的理解及用法小结(1)" data-url="http://blog.killyliu.com/2017/04/17/Repo的理解及用法小结-1/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/走在青春的路上/" class="archive-article-date">
-  	<time datetime="2017-03-28T04:05:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/走在青春的路上/">走在青春的路上</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -346,9 +394,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
