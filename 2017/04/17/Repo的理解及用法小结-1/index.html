@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
   <title>Repo的理解及用法小结(1) | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Repo介绍随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
-Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
+  <meta name="description" content="Repo介绍&amp;emsp;&amp;emsp;随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
+&amp;emsp;&amp;emsp;Repo是Google用Python脚本写的调">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Repo的理解及用法小结(1)">
 <meta property="og:url" content="http://blog.killyliu.com/2017/04/17/Repo的理解及用法小结-1/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
-<meta property="og:description" content="Repo介绍随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
-Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
-<meta property="og:updated_time" content="2017-04-19T03:02:55.000Z">
+<meta property="og:description" content="Repo介绍&amp;emsp;&amp;emsp;随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
+&amp;emsp;&amp;emsp;Repo是Google用Python脚本写的调">
+<meta property="og:updated_time" content="2017-04-19T03:25:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Repo的理解及用法小结(1)">
-<meta name="twitter:description" content="Repo介绍随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
-Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
+<meta name="twitter:description" content="Repo介绍&amp;emsp;&amp;emsp;随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
+&amp;emsp;&amp;emsp;Repo是Google用Python脚本写的调">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -177,8 +177,8 @@ Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Repo介绍"><a href="#Repo介绍" class="headerlink" title="Repo介绍"></a>Repo介绍</h2><p>随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。</p>
-<p>Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group 上找到相关文档资料），用于下载、管理Android项目的软件仓库。Repo主要包含Repo配置信息以及Repo锁管理的Git项目集合。<br><a id="more"></a></p>
+        <h2 id="Repo介绍"><a href="#Repo介绍" class="headerlink" title="Repo介绍"></a>Repo介绍</h2><p>&emsp;&emsp;随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。</p>
+<p>&emsp;&emsp;Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group 上找到相关文档资料），用于下载、管理Android项目的软件仓库。Repo主要包含Repo配置信息以及Repo锁管理的Git项目集合。<br><a id="more"></a></p>
 <h2 id="Repo用法"><a href="#Repo用法" class="headerlink" title="Repo用法"></a>Repo用法</h2><h3 id="安装Repo"><a href="#安装Repo" class="headerlink" title="安装Repo"></a>安装Repo</h3><p>注：下载Repo只针对第一次使用。<br>首先，确认主目录下存在 bin/ 目录并已包含在路径中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir ~/bin</div><div class="line">PATH=~/bin:$PATH</div></pre></td></tr></table></figure></p>
 <p>下载Repo工具并设置可执行的权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</div><div class="line">chmod a+x ~/bin/repo</div></pre></td></tr></table></figure></p>
 <p>注：在Repo设置成功后，会出现下列提示，说明可以进行初始化了。</p>
@@ -208,10 +208,7 @@ Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
 <blockquote>
 <p>(1) .repo/projects：Repo所管理的所有Git项目集，包含Repo当前配置所指定的所有Git项目对应的Git目录。<br>(2) .repo/../ :Repo的工作区。在Repo目录（即.repo）之外，根据Repo配置（即.repo/manifest.xml文件），从.repo/projects下提取出指定分支的各个Git项目（即.repo/projects中Git项目的子集）的工作目录，形成Repo工作目录，可供开发使用。</p>
 </blockquote>
-<p>注：以上内容参考链接</p>
-<blockquote>
-<p><a href="http://blog.chinaunix.net/uid-9525959-id-4534319.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-9525959-id-4534319.html</a><br><a href="http://www.360doc.com/content/14/0220/17/97538_354256755.shtml" target="_blank" rel="external">http://www.360doc.com/content/14/0220/17/97538_354256755.shtml</a></p>
-</blockquote>
+<p>注：以上内容参考链接<br><a href="http://blog.chinaunix.net/uid-9525959-id-4534319.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-9525959-id-4534319.html</a><br><a href="http://www.360doc.com/content/14/0220/17/97538_354256755.shtml" target="_blank" rel="external">http://www.360doc.com/content/14/0220/17/97538_354256755.shtml</a></p>
 
       
 
@@ -329,6 +326,15 @@ Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/04/18/Repo的理解及用法小结-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Repo的理解及用法小结(2)
+        
+      </div>
+    </a>
   
   
     <a href="/2017/04/10/《黑洞》背后的思考/" id="article-nav-older" class="article-nav-link-wrap">
@@ -464,11 +470,7 @@ Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">Repo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -476,11 +478,15 @@ Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group">
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Repo</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
             
             <div class="clearfix"></div>
