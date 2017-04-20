@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>Tag: 随感 | 煊琦的小窝</title>
+  <title> 人脸识别(1)--Python3.6+OpenCV3.2在Mac下环境搭建 | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="煊琦的小窝">
-<meta property="og:url" content="http://blog.killyliu.com/tags/随感/index.html">
+  <meta name="description" content="&amp;emsp;&amp;emsp;现在越来越多的地方需要用到智能识别，这里先介绍一种简单的用方框实现人脸检测的环境。
+python安装从官网上下载最新版本的python，这里我选择了dmg文件，直接双击进行安装。python官网;https://www.python.org/downloads/mac-osx/">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" 人脸识别(1)--Python3.6+OpenCV3.2在Mac下环境搭建">
+<meta property="og:url" content="http://blog.killyliu.com/2017/04/20/人脸识别-1-Python3-6-OpenCV3-2在Mac下环境搭建/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;现在越来越多的地方需要用到智能识别，这里先介绍一种简单的用方框实现人脸检测的环境。
+python安装从官网上下载最新版本的python，这里我选择了dmg文件，直接双击进行安装。python官网;https://www.python.org/downloads/mac-osx/">
+<meta property="og:updated_time" content="2017-04-20T05:42:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="煊琦的小窝">
+<meta name="twitter:title" content=" 人脸识别(1)--Python3.6+OpenCV3.2在Mac下环境搭建">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;现在越来越多的地方需要用到智能识别，这里先介绍一种简单的用方框实现人脸检测的环境。
+python安装从官网上下载最新版本的python，这里我选择了dmg文件，直接双击进行安装。python官网;https://www.python.org/downloads/mac-osx/">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -150,36 +157,89 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-人脸识别-1-Python3-6-OpenCV3-2在Mac下环境搭建" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/27/hello-world/" class="archive-article-date">
-  	<time datetime="2017-03-27T13:11:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/27/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+       人脸识别(1)--Python3.6+OpenCV3.2在Mac下环境搭建
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/04/20/人脸识别-1-Python3-6-OpenCV3-2在Mac下环境搭建/" class="archive-article-date">
+  	<time datetime="2017-04-20T05:28:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;现在越来越多的地方需要用到智能识别，这里先介绍一种简单的用方框实现人脸检测的环境。</p>
+<h2 id="python安装"><a href="#python安装" class="headerlink" title="python安装"></a>python安装</h2><p>从官网上下载最新版本的python，这里我选择了dmg文件，直接双击进行安装。<br>python官网;<a href="https://www.python.org/downloads/mac-osx/" target="_blank" rel="external">https://www.python.org/downloads/mac-osx/</a><br><a id="more"></a></p>
+<p>之后需要更新一下PATH路径:<br>打开cmd，在~/.bash_profile中添加（如果不存在进行添加）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ vim ~/.bash_profile</div><div class="line">export PATH=/usr/local/bin:$PATH</div></pre></td></tr></table></figure></p>
+<p>然后重新加载~/.bash_profile，保证更新成功:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ source ~/.bash_profile</div></pre></td></tr></table></figure></p>
+<p>确认python安装成功:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ which python3</div><div class="line">/usr/local/bin/python</div><div class="line">$ python3 --version</div><div class="line">Python 3.6.1</div></pre></td></tr></table></figure></p>
+<h2 id="搭建python虚拟环境"><a href="#搭建python虚拟环境" class="headerlink" title="搭建python虚拟环境"></a>搭建python虚拟环境</h2><p>虽然虚拟环境不是必须的步骤，但是鉴于我们可能用电脑开发很多不同的项目，所以强烈建议新建一个虚拟环境用于python的opencv开发。</p>
+<p>首先，安装虚拟环境 virtualenv 和 virtualenvwrapper:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip3 install virtualenv virtualenvwrapper</div></pre></td></tr></table></figure></p>
+<p>这个虚拟环境是在python环境中都可以用的。这里我们更新~/.bash_profile 的设置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#Virtualenv/VirtualenvWrapper</div><div class="line">export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3</div><div class="line">source /usr/local/bin/virtualenvwrapper.sh</div></pre></td></tr></table></figure></p>
+<p>然后重新加载.bash_profile:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ source ~/.bash_profile</div></pre></td></tr></table></figure></p>
+<p>现在我们创建一个cv3的虚拟环境进行开发，便于安装一些这个项目需要的额外的包，并进行图片处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mkvirtualenv cv3 -p python3</div></pre></td></tr></table></figure></p>
+<p>在 mkvirtualenv 之后会自动进入cv3环境，但如果是已经存在这个环境，想再次进入环境的话，用worken:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ workon cv3</div></pre></td></tr></table></figure></p>
+<p>可以进入cv3环境。<br>在这个虚拟环境中，我们需要安装numpy（python的先决条件）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install numpy</div></pre></td></tr></table></figure></p>
+<h2 id="安装openVC的先决条件"><a href="#安装openVC的先决条件" class="headerlink" title="安装openVC的先决条件"></a>安装openVC的先决条件</h2><p>为了编译openVC，需要安装一些开发工具:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install cmake pkg-config</div></pre></td></tr></table></figure></p>
+<p>同时下载一些用于各种图片格式读取的包:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install jpeg libpng libtiff openexr</div></pre></td></tr></table></figure></p>
+<p>以及另外一些包用于优化openVC程序:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install eigen tbb</div></pre></td></tr></table></figure></p>
+<h2 id="编译openVC环境"><a href="#编译openVC环境" class="headerlink" title="编译openVC环境"></a>编译openVC环境</h2><p>从Github上下载openVC源码（可以从官网上选择最新的版本进行检出）:<br>注： Github地址：<a href="https://github.com/opencv/opencv" target="_blank" rel="external">https://github.com/opencv/opencv</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ git clone https://github.com/Itseez/opencv.git</div><div class="line">$ cd opencv</div><div class="line">$ git checkout 3.2.0</div></pre></td></tr></table></figure></p>
+<p>之后，我们需要下载opencv_contrib包，为OpenCV提供一些额外的支持，像内容检测等(这里我们选择和OpenCV相同的版本进行下载)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ git clone https://github.com/Itseez/opencv_contrib</div><div class="line">$ cd opencv_contrib</div><div class="line">$ git checkout 3.2.0</div></pre></td></tr></table></figure></p>
+<p>在下载完成后，创建build文件夹:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd ~/opencv</div><div class="line">$ mkdir build</div><div class="line">$ cd build</div></pre></td></tr></table></figure></p>
+<p>使用CMake进行build:<br>注：这里要确认OpenCV和python3模块都加载完成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ cmake -D CMAKE_BUILD_TYPE=RELEASE \</div><div class="line">        -D CMAKE_INSTALL_PREFIX=/usr/local \</div><div class="line">        -D PYTHON3_PACKAGES_PATH=~/.virtualenvs/cv3/lib/python3.4/site-packages \</div><div class="line">        -D PYTHON3_LIBRARY=/usr/local/Cellar/python3/3.4.3/Frameworks/Python.framework/Versions/3.4/lib/libpython3.4m.dylib \</div><div class="line">        -D PYTHON3_INCLUDE_DIR=/usr/local/Cellar/python3/3.4.3/Frameworks/Python.framework/Versions/3.4/include/python3.4m \</div><div class="line">        -D INSTALL_C_EXAMPLES=ON \</div><div class="line">        -D INSTALL_PYTHON_EXAMPLES=ON \</div><div class="line">        -D BUILD_EXAMPLES=ON \</div><div class="line">        -D BUILD_opencv_python3=ON \</div><div class="line">        -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules ..</div></pre></td></tr></table></figure></p>
+<p>当CMake完成并且不报错之后，开始进行编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make -j4</div><div class="line">$ make install</div></pre></td></tr></table></figure></p>
+<p>若权限不足，则使用下面语句:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make -j4</div><div class="line">$ sudo make install</div></pre></td></tr></table></figure></p>
+<h2 id="安装验证"><a href="#安装验证" class="headerlink" title="安装验证"></a>安装验证</h2><p>验证cv2.so正确:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd ~/.virtualenvs/cv3/lib/python3.4/site-packages/</div><div class="line">$ ls -l cv2.so</div><div class="line">-rwxr-xr-x  1 admin  _developer  2017027 April 14 06:11 cv2.so</div></pre></td></tr></table></figure></p>
+<p>验证python中可以使用opencv包，import不报错:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04) </div><div class="line">[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; import cv2</div></pre></td></tr></table></figure></p>
+<p>参考文档：<a href="https://www.pyimagesearch.com/2015/06/29/install-opencv-3-0-and-python-3-4-on-osx/" target="_blank" rel="external">https://www.pyimagesearch.com/2015/06/29/install-opencv-3-0-and-python-3-4-on-osx/</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/infoImg/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/infoImg/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,25 +249,121 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随感</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/04/20/人脸识别-1-Python3-6-OpenCV3-2在Mac下环境搭建/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/04/20/人脸识别-2-Python3-6-OpenCV3-2识别实例/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          人脸识别(2)--Python3.6+OpenCV3.2识别实例
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/04/18/Repo的理解及用法小结-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Repo的理解及用法小结(2)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="人脸识别-1-Python3-6-OpenCV3-2在Mac下环境搭建" data-title=" 人脸识别(1)--Python3.6+OpenCV3.2在Mac下环境搭建" data-url="http://blog.killyliu.com/2017/04/20/人脸识别-1-Python3-6-OpenCV3-2在Mac下环境搭建/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -236,9 +392,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

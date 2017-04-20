@@ -6,14 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>Tag: 随感 | 煊琦的小窝</title>
+  <title>人脸识别(2)--Python3.6+OpenCV3.2识别实例 | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="煊琦的小窝">
-<meta property="og:url" content="http://blog.killyliu.com/tags/随感/index.html">
+  <meta name="description" content="前提条件：确保python+opencv环境已经搭建成功(搭建步骤可以参考上一篇博客)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人脸识别(2)--Python3.6+OpenCV3.2识别实例">
+<meta property="og:url" content="http://blog.killyliu.com/2017/04/20/人脸识别-2-Python3-6-OpenCV3-2识别实例/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
+<meta property="og:description" content="前提条件：确保python+opencv环境已经搭建成功(搭建步骤可以参考上一篇博客)。">
+<meta property="og:image" content="http://img.blog.csdn.net/20170416174238506?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170416124604298?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170416124627294?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170416124757999?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170416124814129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-04-20T06:07:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="煊琦的小窝">
+<meta name="twitter:title" content="人脸识别(2)--Python3.6+OpenCV3.2识别实例">
+<meta name="twitter:description" content="前提条件：确保python+opencv环境已经搭建成功(搭建步骤可以参考上一篇博客)。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170416174238506?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -150,64 +160,179 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-人脸识别-2-Python3-6-OpenCV3-2识别实例" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/27/hello-world/" class="archive-article-date">
-  	<time datetime="2017-03-27T13:11:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/27/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      人脸识别(2)--Python3.6+OpenCV3.2识别实例
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随感</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2017/04/20/人脸识别-2-Python3-6-OpenCV3-2识别实例/" class="archive-article-date">
+  	<time datetime="2017-04-20T05:28:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前提条件：<br>确保python+opencv环境已经搭建成功(搭建步骤可以参考上一篇博客)。<br><a id="more"></a></p>
+<h2 id="调用摄像头获取图片进行实时检测"><a href="#调用摄像头获取图片进行实时检测" class="headerlink" title="调用摄像头获取图片进行实时检测"></a>调用摄像头获取图片进行实时检测</h2><p>调用摄像头，可以看到头像用方框框起来，并实时根据情况调整位置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">#coding=utf-8</div><div class="line"></div><div class="line">import cv2</div><div class="line">import numpy as np</div><div class="line"></div><div class="line">cv2.namedWindow(&quot;test&quot;)</div><div class="line">cap=cv2.VideoCapture(0) </div><div class="line">success, frame = cap.read()</div><div class="line">color = (0,0,0)</div><div class="line"></div><div class="line">classfier=cv2.CascadeClassifier(&quot;/Users/liuqi/opencv/data/haarcascades/haarcascade_frontalface_alt.xml&quot;)</div><div class="line">while success:</div><div class="line">    success, frame = cap.read()</div><div class="line">    size=frame.shape[:2]</div><div class="line">    image=np.zeros(size,dtype=np.float16)</div><div class="line">    image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)</div><div class="line">    cv2.equalizeHist(image, image)</div><div class="line">    divisor=8</div><div class="line">    h, w = size</div><div class="line">    minSize =(w//divisor, h//divisor)</div><div class="line">    faceRects = classfier.detectMultiScale(image, 1.2, 2, cv2.CASCADE_SCALE_IMAGE,minSize)</div><div class="line">    if len(faceRects)&gt;0:</div><div class="line">        for faceRect in faceRects: </div><div class="line">            x, y, w, h = faceRect</div><div class="line">        cv2.rectangle(frame, (x, y), (x+w, y+h), color)</div><div class="line">    cv2.imshow(&quot;test&quot;, frame)</div><div class="line">    key=cv2.waitKey(10)</div><div class="line">    c = chr(key &amp; 255)</div><div class="line">    if c in [&apos;q&apos;, &apos;Q&apos;, chr(27)]:</div><div class="line">        break</div><div class="line">cv2.destroyWindow(&quot;test&quot;)</div></pre></td></tr></table></figure></p>
+<p>识别结果实例：<br><img src="http://img.blog.csdn.net/20170416174238506?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="调用摄像头实现人脸识别"></p>
+<h2 id="本地获取图片进行人脸检测并保存图片"><a href="#本地获取图片进行人脸检测并保存图片" class="headerlink" title="本地获取图片进行人脸检测并保存图片"></a>本地获取图片进行人脸检测并保存图片</h2><p>从本地路径获取图片，识别人脸后将结果图片再保存在本地。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">#coding=utf-8</div><div class="line"></div><div class="line">import os</div><div class="line">import sys</div><div class="line">from PIL import Image, ImageDraw</div><div class="line">import numpy as np</div><div class="line">import cv2</div><div class="line">#import dlib</div><div class="line"></div><div class="line">def detect_object(infile, save_path):</div><div class="line">    image = cv2.imread(infile)</div><div class="line">    &apos;&apos;&apos;检测图片，获取人脸在图片中的坐标&apos;&apos;&apos;</div><div class="line">    size=image.shape[:2]#获得当前桢彩色图像的大小</div><div class="line"></div><div class="line">    #image_set=np.zeros(size,dtype=np.float16)#定义一个与当前桢图像大小相同的的灰度图像矩阵</div><div class="line">    image_grey = np.zeros(size, np.uint8)#创建一个空白图片</div><div class="line">    #image_grey = Image.new(mode= &quot;RGBA&quot;,size = size, color = (117,255,0))</div><div class="line">    #image_grey = cv2.imread(img_grey)</div><div class="line">    grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)#将当前桢图像转换成灰度图像</div><div class="line">    #img_binary = cv2.threshold(image,127,255,0)#将灰度图片转化为二进制图片</div><div class="line">    color = (135,206,250) #设置人脸框的颜色</div><div class="line">    #eye_cascade = cv2.CascadeClassifier(&apos;/Users/liuqi/opencv/data/haarcascades/haarcascade_eye.xml&apos;)</div><div class="line"></div><div class="line">    classfier=cv2.CascadeClassifier(&quot;/Users/liuqi/opencv/data/haarcascades/haarcascade_frontalface_alt.xml&quot;)</div><div class="line"></div><div class="line">    #人脸检测，1.2和2分别为图片缩放比例和需要检测的有效点数</div><div class="line">    faceRects = classfier.detectMultiScale(grey, scaleFactor = 1.3, minNeighbors = 4, minSize = (32, 32))</div><div class="line">    result = []</div><div class="line"></div><div class="line">    im = Image.open(infile)</div><div class="line">    if len(faceRects) &gt; 0:          #大于0则检测到人脸   </div><div class="line">        draw = ImageDraw.Draw(im)</div><div class="line">        num = 0</div><div class="line">        for faceRect in faceRects:</div><div class="line">            num += 1</div><div class="line">            #单独框出每一张人脸</div><div class="line">            x, y, w, h = faceRect</div><div class="line">            #画出矩形框</div><div class="line">            #cv2.rectangle(image_grey, (x - 10, y - 10), (x + w + 10, y + h + 10), color, 2)</div><div class="line">            cv2.rectangle(grey, (x - 10, y - 10), (x + w + 10, y + h + 10), color, 2)</div><div class="line">            a = im.crop(faceRect)</div><div class="line">            file_name = os.path.join(save_path,str(num)+&quot;.jpg&quot;)</div><div class="line">            #a.save(file_name)</div><div class="line">        &apos;&apos;&apos;保存新生成的图片&apos;&apos;&apos;</div><div class="line">        #将当前帧保存为图片</div><div class="line">        #cv2.imwrite(file_name,image_grey)</div><div class="line">        cv2.imwrite(file_name,grey)</div><div class="line"></div><div class="line">        drow_save_path = os.path.join(save_path,&quot;out.jpg&quot;)</div><div class="line">        im.save(drow_save_path, &quot;JPEG&quot;, quality=80)</div><div class="line">    else:</div><div class="line">        print (&quot;Error: cannot detect faces on %s&quot; % infile)</div><div class="line">    return 0</div><div class="line"></div><div class="line">def process(infile):</div><div class="line">    #获取图片，进行检测</div><div class="line">    #image = cv2.imread(infile)</div><div class="line">    &apos;&apos;&apos;在原图上框出头像并且截取每个头像到单独文件夹&apos;&apos;&apos;</div><div class="line">    #创建输出图片的路径</div><div class="line">    #im = Image.open(infile)</div><div class="line">    path = os.path.abspath(infile)</div><div class="line">    save_path = os.path.splitext(path)[0]+&quot;_face&quot;</div><div class="line">    try:</div><div class="line">        os.mkdir(save_path)</div><div class="line">    except:</div><div class="line">        pass</div><div class="line"></div><div class="line">    faces = detect_object(infile, save_path)</div><div class="line"></div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    process(&quot;/Users/liuqi/Desktop/2.jpg&quot;)</div></pre></td></tr></table></figure></p>
+<p>实现的效果如下：<br>选取的图片与识别后的图片：<br><img src="http://img.blog.csdn.net/20170416124604298?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这识别前的图片">  &emsp;<img src="http://img.blog.csdn.net/20170416124627294?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这识别后的图片"><br><img src="http://img.blog.csdn.net/20170416124757999?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="识别前"> <img src="http://img.blog.csdn.net/20170416124814129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="识别后"></p>
 
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/infoImg/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/infoImg/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/04/20/人脸识别-2-Python3-6-OpenCV3-2识别实例/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/04/20/人脸识别-3-Python3-6-dlib19-4在Mac下环境搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          人脸识别(3)--Python3.6+dlib19.4在Mac下环境搭建
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/04/20/人脸识别-1-Python3-6-OpenCV3-2在Mac下环境搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"> 人脸识别(1)--Python3.6+OpenCV3.2在Mac下环境搭建</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="人脸识别-2-Python3-6-OpenCV3-2识别实例" data-title="人脸识别(2)--Python3.6+OpenCV3.2识别实例" data-url="http://blog.killyliu.com/2017/04/20/人脸识别-2-Python3-6-OpenCV3-2识别实例/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -236,9 +361,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
