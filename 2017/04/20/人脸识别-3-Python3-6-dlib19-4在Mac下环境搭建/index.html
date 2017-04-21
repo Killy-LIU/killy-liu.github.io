@@ -8,13 +8,19 @@
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
   <title>人脸识别(3)--Python3.6+dlib19.4在Mac下环境搭建 | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="前面讲到用OpenCV实现简单的人脸识别，这里用dlib实现人脸的关键点检测。
+前提条件系统环境：这里是在mac系统下进行开发的，其他系统仅供参考。Python：安装python3.6环境(具体操作见之前的博客)。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="人脸识别(3)--Python3.6+dlib19.4在Mac下环境搭建">
 <meta property="og:url" content="http://blog.killyliu.com/2017/04/20/人脸识别-3-Python3-6-dlib19-4在Mac下环境搭建/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
-<meta property="og:updated_time" content="2017-04-20T05:28:38.000Z">
+<meta property="og:description" content="前面讲到用OpenCV实现简单的人脸识别，这里用dlib实现人脸的关键点检测。
+前提条件系统环境：这里是在mac系统下进行开发的，其他系统仅供参考。Python：安装python3.6环境(具体操作见之前的博客)。">
+<meta property="og:updated_time" content="2017-04-20T06:30:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="人脸识别(3)--Python3.6+dlib19.4在Mac下环境搭建">
+<meta name="twitter:description" content="前面讲到用OpenCV实现简单的人脸识别，这里用dlib实现人脸的关键点检测。
+前提条件系统环境：这里是在mac系统下进行开发的，其他系统仅供参考。Python：安装python3.6环境(具体操作见之前的博客)。">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -171,7 +177,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>前面讲到用OpenCV实现简单的人脸识别，这里用dlib实现人脸的关键点检测。</p>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>系统环境：这里是在mac系统下进行开发的，其他系统仅供参考。<br>Python：安装python3.6环境(具体操作见之前的博客)。<br><a id="more"></a></p>
+<h2 id="dlib之前的准备"><a href="#dlib之前的准备" class="headerlink" title="dlib之前的准备"></a>dlib之前的准备</h2><p>进入终端安装一系列可能用到的包：<br>安装easy-install：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install python-setuptools</div></pre></td></tr></table></figure></p>
+<p>安装python-dev：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install python-dev</div></pre></td></tr></table></figure></p>
+<p>安装numpy：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install numpy</div></pre></td></tr></table></figure></p>
+<p>安装PIL：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install Image</div></pre></td></tr></table></figure></p>
+<p>安装scipy：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python-scipy</div></pre></td></tr></table></figure></p>
+<p>安装matplotlib：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python-matplotlib</div></pre></td></tr></table></figure></p>
+<h2 id="安装dlib依赖"><a href="#安装dlib依赖" class="headerlink" title="安装dlib依赖"></a>安装dlib依赖</h2><p>dlib安装需要的依赖有openblas，opencv：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ brew install openblas</div><div class="line">$ brew install opencv</div></pre></td></tr></table></figure></p>
+<p>dlib的so库需要的依赖libboost：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install libboost-python-dev cmake</div></pre></td></tr></table></figure></p>
+<p>安装Mac的X11：<br>&emsp;&emsp;X11是执行Unix程序的图形窗口环境。Mac OS X本身的程序是Aqua界面的，但是为了能够兼容unix和Linux移植过来的程序，需要x11窗口环境。</p>
+<p>&emsp;&emsp;运行dlib需要X11，但Mac目前没有自带X11，需要重新下载安装，下载地址为：<a href="https://www.xquartz.org/，下载后直接安装，默认安装目录为/opt/X11，需要在/usr/loca/opt目录下创建软连接，创建命令如下，创建后重启Mac。" target="_blank" rel="external">https://www.xquartz.org/，下载后直接安装，默认安装目录为/opt/X11，需要在/usr/loca/opt目录下创建软连接，创建命令如下，创建后重启Mac。</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd /usr/local/opt</div><div class="line">$ ln -s /opt/X11 X11</div></pre></td></tr></table></figure></p>
+<h2 id="安装dlib"><a href="#安装dlib" class="headerlink" title="安装dlib"></a>安装dlib</h2><p>进入dlib官网下载安装包<a href="http://dlib.net/，选择合适位置解压。或者使用git下载：" target="_blank" rel="external">http://dlib.net/，选择合适位置解压。或者使用git下载：</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/davisking/dlib.git</div></pre></td></tr></table></figure></p>
+<p>下载完成后进行解压与安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cd dlib/examples</div><div class="line">$ mkdir build</div><div class="line">$ cd build</div><div class="line">$ cmake .. </div><div class="line">$ cmake --build . --config Release</div></pre></td></tr></table></figure></p>
+<p>安装dlib中的python模块：<br>在dlib-18.17及之前的版本中，之后进入python_examples下使用bat文件进行编译，编译需要先安装libboost-python-dev和cmake。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd to dlib-18.17/python_examples</div><div class="line">$ ./compile_dlib_python_module.bat</div></pre></td></tr></table></figure></p>
+<p>在18.18及之后，采用新的方式，用setup.py安装生成so依赖文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd dlib</div><div class="line">$ sudo python setup.py install</div></pre></td></tr></table></figure></p>
+<p>在得到dlib.so之后将其复制到dist-packages目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo cp dlib.so /usr/local/lib/python3.6/dist-packages/</div></pre></td></tr></table></figure></p>
+<p>设置python环境变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">\# Put the following line in .bashrc or .profile</div><div class="line">$ export PYTHONPATH=/path/to/dlib/python_examples:$PYTHONPATH</div></pre></td></tr></table></figure></p>
+<p>之后再安装一些可能会用到的依赖包：<br>安装skimage<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install python-skimage</div></pre></td></tr></table></figure></p>
+<p>安装imtools<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install imtools</div></pre></td></tr></table></figure></p>
+<h2 id="实例检测"><a href="#实例检测" class="headerlink" title="实例检测"></a>实例检测</h2><p>实例1（会出现X11窗口，打开Mac摄像头自动检测人脸并标注人脸的landmar）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cd dlib/examples/build/</div><div class="line">#下载face landmark模型</div><div class="line">$ wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2</div><div class="line"># 解压文件</div><div class="line">$ ./webcam_face_pose_ex</div></pre></td></tr></table></figure></p>
+<p>实例2（显示有人脸标记的图片）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./face_landmark_detection_ex shape_predictor_68_face_landmarks.dat ../faces/2008_002506.jpg</div></pre></td></tr></table></figure></p>
+<p>参考文档：</p>
+<ol>
+<li><a href="http://www.learnopencv.com/facial-landmark-detection/" target="_blank" rel="external">http://www.learnopencv.com/facial-landmark-detection/</a></li>
+<li><a href="http://blog.csdn.net/Quincuntial/article/details/53572415" target="_blank" rel="external">http://blog.csdn.net/Quincuntial/article/details/53572415</a></li>
+<li><a href="http://www.th7.cn/Program/Python/201511/706515.shtml" target="_blank" rel="external">http://www.th7.cn/Program/Python/201511/706515.shtml</a></li>
+</ol>
+
       
 
       
@@ -210,6 +244,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -421,11 +470,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color3">随感</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随感</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
