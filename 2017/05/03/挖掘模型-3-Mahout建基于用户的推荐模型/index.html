@@ -6,36 +6,47 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>博客搭建(1)--使用Github搭建个人博客 | 煊琦的小窝</title>
+  <title>挖掘模型(3)--Mahout建基于用户的推荐模型 | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;ensp;ps：因为最近手误删了两次csdn博客，因而决定在个人博客上也备份一份/(ㄒoㄒ)/~~
-基本准备
-github账号：可以起一个有意义的名字哦&amp;emsp;&amp;ensp;链接地址： https://github.com
-域名购买：可以在腾讯云或者阿里云上购买一个域名（都有针对学生的优惠）&amp;emsp;&amp;ensp;腾讯云地址：https://www.qcloud.com/?fromSource">
+  <meta name="description" content="这里我们用mahout建简单的基于用户的推荐。
+前提条件
+已经安装好Eclipse环境
+下载完成mahout配置包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客搭建(1)--使用Github搭建个人博客">
-<meta property="og:url" content="http://blog.killyliu.com/2017/04/04/博客搭建-1-使用Github搭建个人博客/index.html">
+<meta property="og:title" content="挖掘模型(3)--Mahout建基于用户的推荐模型">
+<meta property="og:url" content="http://blog.killyliu.com/2017/05/03/挖掘模型-3-Mahout建基于用户的推荐模型/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
-<meta property="og:description" content="&amp;ensp;ps：因为最近手误删了两次csdn博客，因而决定在个人博客上也备份一份/(ㄒoㄒ)/~~
-基本准备
-github账号：可以起一个有意义的名字哦&amp;emsp;&amp;ensp;链接地址： https://github.com
-域名购买：可以在腾讯云或者阿里云上购买一个域名（都有针对学生的优惠）&amp;emsp;&amp;ensp;腾讯云地址：https://www.qcloud.com/?fromSource">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326191613686?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326193802914?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326195800612?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326200457422?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326200732143?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326200902599?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326200801238?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326201304995?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-04-21T13:24:03.000Z">
+<meta property="og:description" content="这里我们用mahout建简单的基于用户的推荐。
+前提条件
+已经安装好Eclipse环境
+下载完成mahout配置包">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425000826552?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425001024798?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425001148759?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425001335393?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425001605483?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425001735720?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425001921816?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425002101397?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425002216602?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425002404883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425002524373?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425002642212?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425002844885?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425003159027?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425004456752?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425004807109?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425010532450?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425010754026?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170425012245834?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-05-07T15:53:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客搭建(1)--使用Github搭建个人博客">
-<meta name="twitter:description" content="&amp;ensp;ps：因为最近手误删了两次csdn博客，因而决定在个人博客上也备份一份/(ㄒoㄒ)/~~
-基本准备
-github账号：可以起一个有意义的名字哦&amp;emsp;&amp;ensp;链接地址： https://github.com
-域名购买：可以在腾讯云或者阿里云上购买一个域名（都有针对学生的优惠）&amp;emsp;&amp;ensp;腾讯云地址：https://www.qcloud.com/?fromSource">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20170326191613686?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:title" content="挖掘模型(3)--Mahout建基于用户的推荐模型">
+<meta name="twitter:description" content="这里我们用mahout建简单的基于用户的推荐。
+前提条件
+已经安装好Eclipse环境
+下载完成mahout配置包">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170425000826552?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -172,41 +183,60 @@ github账号：可以起一个有意义的名字哦&amp;emsp;&amp;ensp;链接地
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-博客搭建-1-使用Github搭建个人博客" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-挖掘模型-3-Mahout建基于用户的推荐模型" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      博客搭建(1)--使用Github搭建个人博客
+      挖掘模型(3)--Mahout建基于用户的推荐模型
     </h1>
   
 
         
-        <a href="/2017/04/04/博客搭建-1-使用Github搭建个人博客/" class="archive-article-date">
-  	<time datetime="2017-04-04T05:59:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-04</time>
+        <a href="/2017/05/03/挖掘模型-3-Mahout建基于用户的推荐模型/" class="archive-article-date">
+  	<time datetime="2017-05-03T15:52:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&ensp;ps：因为最近手误删了两次csdn博客，因而决定在个人博客上也备份一份/(ㄒoㄒ)/~~</p>
-<h2 id="基本准备"><a href="#基本准备" class="headerlink" title="基本准备"></a>基本准备</h2><ul>
-<li>github账号：可以起一个有意义的名字哦<br>&emsp;&ensp;链接地址： <a href="https://github.com" target="_blank" rel="external">https://github.com</a></li>
-<li>域名购买：可以在腾讯云或者阿里云上购买一个域名（都有针对学生的优惠）<br>&emsp;&ensp;腾讯云地址：<a href="https://www.qcloud.com/?fromSource=gwzcw.5677.5677.5677" target="_blank" rel="external">https://www.qcloud.com/?fromSource=gwzcw.5677.5677.5677</a><br>&emsp;&ensp;阿里云链接地址：<a href="https://www.aliyun.com/?utm_medium=text&amp;utm_source=bdbrand&amp;utm_campaign=bdbrand&amp;utm_content=se_32492" target="_blank" rel="external">https://www.aliyun.com/?utm_medium=text&amp;utm_source=bdbrand&amp;utm_campaign=bdbrand&amp;utm_content=se_32492</a><a id="more"></a> 
+        <p>这里我们用mahout建简单的基于用户的推荐。</p>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ol>
+<li>已经安装好Eclipse环境</li>
+<li>下载完成mahout配置包<a id="more"></a>
 </li>
-</ul>
-<h2 id="创建页面仓库"><a href="#创建页面仓库" class="headerlink" title="创建页面仓库"></a>创建页面仓库</h2><p>链接地址：<a href="https://github.com/new" target="_blank" rel="external">https://github.com/new</a><br>填写相应的信息：仓库名，描述，public，可选初始化信息。<br><img src="http://img.blog.csdn.net/20170326191613686?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="填写基本信息：仓库，描述，初始化"></p>
-<p>创建成功之后点击设置，可以看到具体的信息：<br><img src="http://img.blog.csdn.net/20170326193802914?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="确认仓库名：仓科名前缀应该和github账号名一样"></p>
-<p>下拉并点击主题选择，可以根据自己的喜好设置*（注：这里选择的模板都是jekyll的，之后会调整到hexo）：<br><img src="http://img.blog.csdn.net/20170326195800612?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="github模板默认都是jekyll"></p>
-<p>完成后点击设置可以看到网站链接，便可以访问自己的网站啦啦啦~<br><img src="http://img.blog.csdn.net/20170326200457422?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里可以看到自己照片部署的地址"></p>
-<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>跳坑：之前已经拥有了域名：<a href="https://killy-liu.github.io/killyliu.github.io/，发现重复了信息，因此修改自己的repo名与自己的名字一样，这里都改为killy-liu.github.io,地址即变为https://killy-liu.github.io/，指向刚刚构建好的页面。" target="_blank" rel="external">https://killy-liu.github.io/killyliu.github.io/，发现重复了信息，因此修改自己的repo名与自己的名字一样，这里都改为killy-liu.github.io,地址即变为https://killy-liu.github.io/，指向刚刚构建好的页面。</a></p>
-<p>现在需要在根目录下创建一个CNAME的文件，里面写自己的地址，www.killyliu.com，之后访问内容即会重定向到自己这个地址。<br><img src="http://img.blog.csdn.net/20170326200732143?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="自定义网站的地址"><br>与此同时，需要进入云服务中设置域名解析。这里我用的是腾讯云服务。在记录管理中对添加域名记录，如下图所示。<br><img src="http://img.blog.csdn.net/20170326200902599?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="在购买的腾讯云中定义映射的域名"></p>
-<p>在添加完成之后用控制台输入ping命令，查看是否通顺。<br><img src="http://img.blog.csdn.net/20170326200801238?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="用ping测试域名可用"></p>
-<p>试着访问<a href="http://www.killyliu.com/，即可看到自己的第一个博客页面^_^" target="_blank" rel="external">http://www.killyliu.com/，即可看到自己的第一个博客页面^_^</a><br><img src="http://img.blog.csdn.net/20170326201304995?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>下一步操作为设置博客样式以及完善内容，并且在思考之后将个人链接由 <a href="http://www.killyliu.com" target="_blank" rel="external">http://www.killyliu.com</a> 转为 <a href="http://blog.killyliu.com">http://blog.killyliu.com</a> 很抱歉之前不能点击链接~~</p>
+</ol>
+<h2 id="工程环境"><a href="#工程环境" class="headerlink" title="工程环境"></a>工程环境</h2><p>打开eclipse，新建一个maven项目<br><img src="http://img.blog.csdn.net/20170425000826552?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>使用默认工作环境<br><img src="http://img.blog.csdn.net/20170425001024798?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>选择快速开始<br><img src="http://img.blog.csdn.net/20170425001148759?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>设置基本信息：<br>Group ID：com.recommenderExample<br>Artifact ID：MahoutRecommender<br>默认版本：0.0.1-SNAPSHOT<br>包：com.recommenderExample.MahoutRecommender<br><img src="http://img.blog.csdn.net/20170425001335393?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>创建完成<br><img src="http://img.blog.csdn.net/20170425001605483?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>项目右键-&gt;新建-&gt;文件夹<br><img src="http://img.blog.csdn.net/20170425001735720?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>分别创建：<br>data：用于存放数据集<br>lib：用于引入其他数据库(主要为mahout数据库)<br><img src="http://img.blog.csdn.net/20170425001921816?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>将下载的mahout压缩包解压，复制jar包到Lib文件夹下<br><img src="http://img.blog.csdn.net/20170425002101397?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20170425002216602?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>右键点击项目-&gt;配置环境<br><img src="http://img.blog.csdn.net/20170425002404883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>点击添加jar包，添加刚引入的包<br><img src="http://img.blog.csdn.net/20170425002524373?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20170425002642212?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>Mahout推荐算法是希望将用户与项之间的关系作为输入进行计算，这里采用最简单的txt文本方式保存数据。<br>我们用”dataset.csv”来保存数据，分别代表userID,itemID,value。<br>数据集：</p>
+<blockquote>
+<p>1,10,1.0<br>1,11,2.0<br>1,12,5.0<br>1,13,5.0<br>1,14,5.0<br>1,15,4.0<br>1,16,5.0<br>1,17,1.0<br>1,18,5.0<br>2,10,1.0<br>2,11,2.0<br>2,15,5.0<br>2,16,4.5<br>2,17,1.0<br>2,18,5.0<br>3,11,2.5<br>3,12,4.5<br>3,13,4.0<br>3,14,3.0<br>3,15,3.5<br>3,16,4.5<br>3,17,4.0<br>3,18,5.0<br>4,10,5.0<br>4,11,5.0<br>4,12,5.0<br>4,13,0.0<br>4,14,2.0<br>4,15,3.0<br>4,16,1.0<br>4,17,4.0<br>4,18,1.0</p>
+</blockquote>
+<p>点击data文件夹(右键)-&gt;新建-&gt;文件，命名 dataset.csv<br><img src="http://img.blog.csdn.net/20170425002844885?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>将数据文件拖到面板中，复制上面的数据<br><img src="http://img.blog.csdn.net/20170425003159027?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="创建基于用户的推荐"><a href="#创建基于用户的推荐" class="headerlink" title="创建基于用户的推荐"></a>创建基于用户的推荐</h2><p>在App类中创建数据模型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DataModel model = new FileDataModel(new File(&quot;/path/to/dataset.csv&quot;));</div></pre></td></tr></table></figure></p>
+<p>我们根据其他相似品味用户的信息来推断特定用户的推荐，用相互作用关系来推断彼此之间的联系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UserSimilarity similarity = new PearsonCorrelationSimilarity(model);</div></pre></td></tr></table></figure></p>
+<p>定义相似的用户，超过0.1的可能性则认为是相似的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, model);</div></pre></td></tr></table></figure></p>
+<p>根据数据模型、相似信息、相似用户来创建推荐：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UserBasedRecommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);</div></pre></td></tr></table></figure></p>
+<p>显示推荐信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">List recommendations = recommender.recommend(2, 3);</div><div class="line">for (RecommendedItem recommendation : recommendations) &#123;</div><div class="line">    System.out.println(recommendation);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170425004456752?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>运行：<br>可以看出：用户2 中 item12的阅读值为4.8328104，item13的阅读值为4.6656213，item13的阅读值为4.331242。用户2最可能购买的是item12，13，14。<br><img src="http://img.blog.csdn.net/20170425004807109?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>对于警告：可以添加slf4j-nop-1.7.7.jar解决。</p>
+<h2 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h2><p>我们区分数据集为两种：<br>90% trainingset<br>10% testset<br>创建新类：EvaluateRecommender<br><img src="http://img.blog.csdn.net/20170425010532450?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20170425010754026?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>创建实现RecommenderBuilder接口的类MyRecommenderBuilder:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class myRecommenerBuilder implements RecommenderBuilder&#123;</div><div class="line">	public Recommender buildRecommender(DataModel dataModel) throws TasteException &#123;</div><div class="line">		UserSimilarity similarity = new PearsonCorrelationSimilarity(dataModel);</div><div class="line">		UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, dataModel);</div><div class="line">		return new GenericUserBasedRecommender(dataModel, neighborhood, similarity);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DataModel model = new FileDataModel(new File(&quot;data/dataset.csv&quot;));</div><div class="line">		RecommenderEvaluator evaluator = new AverageAbsoluteDifferenceRecommenderEvaluator();</div><div class="line">		RecommenderBuilder builder = new myRecommenderBuilder();</div><div class="line">		double result = evaluator.evaluate(builder, null, model, 0.9, 1.0);</div><div class="line">		System.out.println(result);</div></pre></td></tr></table></figure></p>
+<p>进行测试(每次运行结果不同，值越低越好)：<br><img src="http://img.blog.csdn.net/20170425012245834?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 
       
 
@@ -255,7 +285,7 @@ github账号：可以起一个有意义的名字哦&amp;emsp;&amp;ensp;链接地
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据挖掘</a>
         		</li>
       		
 		</ul>
@@ -311,7 +341,7 @@ github账号：可以起一个有意义的名字哦&amp;emsp;&amp;ensp;链接地
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/04/04/博客搭建-1-使用Github搭建个人博客/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/05/03/挖掘模型-3-Mahout建基于用户的推荐模型/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -325,18 +355,9 @@ github账号：可以起一个有意义的名字哦&amp;emsp;&amp;ensp;链接地
   
 <nav id="article-nav">
   
-    <a href="/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          博客搭建(2)--Mac下用Hexo搭建个人博客
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/30/过善于思考的人生，别总选易走的路/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">过善于思考的人生，别总选易走的路</div>
+    <a href="/2017/05/02/挖掘模型-2-Oracle建挖掘模型/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">挖掘模型(2)--Oracle建挖掘模型</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -350,7 +371,7 @@ github账号：可以起一个有意义的名字哦&amp;emsp;&amp;ensp;链接地
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="博客搭建-1-使用Github搭建个人博客" data-title="博客搭建(1)--使用Github搭建个人博客" data-url="http://blog.killyliu.com/2017/04/04/博客搭建-1-使用Github搭建个人博客/"></div>
+	<div class="ds-thread" data-thread-key="挖掘模型-3-Mahout建基于用户的推荐模型" data-title="挖掘模型(3)--Mahout建基于用户的推荐模型" data-url="http://blog.killyliu.com/2017/05/03/挖掘模型-3-Mahout建基于用户的推荐模型/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
