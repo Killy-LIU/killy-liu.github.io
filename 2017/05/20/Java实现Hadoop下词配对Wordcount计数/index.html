@@ -6,23 +6,48 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>过善于思考的人生，别总选易走的路 | 煊琦的小窝</title>
+  <title>Java实现Hadoop下词配对Wordcount计数 | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;emsp;&amp;emsp;昨天去闺蜜家玩，两人不知不觉聊到了生活方向这个问题，感触颇深，决定写篇随笔记录一下~
-&amp;emsp;&amp;emsp;洋学习影视表演专业，现在自己开起了服装网店，日子看起来即使不是特别潇洒也还算自由自在。其实周围好多人都有疑惑，看似不搭调的两个人是如何成为闺蜜的。这里顺便解释一下，我俩是小学同学，到现在已经有十余载的年岁了，虽然走的路不同，但一种似亲情的友谊是与学识经历这些关系">
+  <meta name="description" content="需求&amp;emsp;&amp;emsp;使用Hadop实现 Mapper/Reducer，对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。
+&amp;emsp;&amp;emsp;举例说明，最初的文档为：
+
+“a a, A ba b c
+
+则处理后的结果为：
+
+(a  a)   2(a  b)   2(a  c)   1(b  a)   4(b  c)   1(c  a)   1(c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="过善于思考的人生，别总选易走的路">
-<meta property="og:url" content="http://blog.killyliu.com/2017/03/30/过善于思考的人生，别总选易走的路/index.html">
+<meta property="og:title" content="Java实现Hadoop下词配对Wordcount计数">
+<meta property="og:url" content="http://blog.killyliu.com/2017/05/20/Java实现Hadoop下词配对Wordcount计数/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;昨天去闺蜜家玩，两人不知不觉聊到了生活方向这个问题，感触颇深，决定写篇随笔记录一下~
-&amp;emsp;&amp;emsp;洋学习影视表演专业，现在自己开起了服装网店，日子看起来即使不是特别潇洒也还算自由自在。其实周围好多人都有疑惑，看似不搭调的两个人是如何成为闺蜜的。这里顺便解释一下，我俩是小学同学，到现在已经有十余载的年岁了，虽然走的路不同，但一种似亲情的友谊是与学识经历这些关系">
-<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170330/plan.jpg">
-<meta property="og:updated_time" content="2017-04-04T09:07:03.000Z">
+<meta property="og:description" content="需求&amp;emsp;&amp;emsp;使用Hadop实现 Mapper/Reducer，对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。
+&amp;emsp;&amp;emsp;举例说明，最初的文档为：
+
+“a a, A ba b c
+
+则处理后的结果为：
+
+(a  a)   2(a  b)   2(a  c)   1(b  a)   4(b  c)   1(c  a)   1(c">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524162046186?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524162727496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524162955706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524163038093?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524163101910?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524163401302?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524163559725?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524163736307?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-05-24T09:34:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="过善于思考的人生，别总选易走的路">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;昨天去闺蜜家玩，两人不知不觉聊到了生活方向这个问题，感触颇深，决定写篇随笔记录一下~
-&amp;emsp;&amp;emsp;洋学习影视表演专业，现在自己开起了服装网店，日子看起来即使不是特别潇洒也还算自由自在。其实周围好多人都有疑惑，看似不搭调的两个人是如何成为闺蜜的。这里顺便解释一下，我俩是小学同学，到现在已经有十余载的年岁了，虽然走的路不同，但一种似亲情的友谊是与学识经历这些关系">
-<meta name="twitter:image" content="http://blog.killyliu.com/blogImg/20170330/plan.jpg">
+<meta name="twitter:title" content="Java实现Hadoop下词配对Wordcount计数">
+<meta name="twitter:description" content="需求&amp;emsp;&amp;emsp;使用Hadop实现 Mapper/Reducer，对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。
+&amp;emsp;&amp;emsp;举例说明，最初的文档为：
+
+“a a, A ba b c
+
+则处理后的结果为：
+
+(a  a)   2(a  b)   2(a  c)   1(b  a)   4(b  c)   1(c  a)   1(c">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170524162046186?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -159,38 +184,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-过善于思考的人生，别总选易走的路" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java实现Hadoop下词配对Wordcount计数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      过善于思考的人生，别总选易走的路
+      Java实现Hadoop下词配对Wordcount计数
     </h1>
   
 
         
-        <a href="/2017/03/30/过善于思考的人生，别总选易走的路/" class="archive-article-date">
-  	<time datetime="2017-03-30T12:31:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
+        <a href="/2017/05/20/Java实现Hadoop下词配对Wordcount计数/" class="archive-article-date">
+  	<time datetime="2017-05-20T09:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <iframe frameborder="no" padding-right="“820px”" border="0" marginwidth="0" marginheight="0" width="298" height="86" src="http://music.163.com/outchain/player?type=2&id=25706282&auto=0&height=66"><br></iframe>
-
-<p>&emsp;&emsp;昨天去闺蜜家玩，两人不知不觉聊到了生活方向这个问题，感触颇深，决定写篇随笔记录一下~</p>
-<p>&emsp;&emsp;洋学习影视表演专业，现在自己开起了服装网店，日子看起来即使不是特别潇洒也还算自由自在。其实周围好多人都有疑惑，看似不搭调的两个人是如何成为闺蜜的。这里顺便解释一下，我俩是小学同学，到现在已经有十余载的年岁了，虽然走的路不同，但一种似亲情的友谊是与学识经历这些关系不大的。<br><a id="more"></a></p>
-<p>&emsp;&emsp;回想之前她在化大当老师的时候，就总在业余时间做兼职，两人见面基本都会谈起将来道路选择问题。没有人是真正轻松的，我的付出在于这些年的努力学习，而她的辛苦则体现在各种人际社会关系的处理。轻松欢乐的表面背后，都是不为人知的付出。</p>
-<p>&emsp;&emsp;这次，聊到了将来的工作选择上，洋又一次点醒了我。大四时候曾想过自己创业，但在了解一系列流程操作之后发现前路坎坷迷茫而毅然选择了放弃，只想着安安稳稳找家国企有个户口就好。不求轰轰烈烈，只求平平淡淡。现在并不是说这个想法不好，只是缺少了一种趁着年轻勇于奋斗的拼劲。如果二十多岁就过着养老生活，岂不白白浪费青春年华？</p>
-<p>&emsp;&emsp;在北京两个非常现实的问题：一是户口，二是住房。现在想起大三时的自己还真的是任性，借着有出国留学经历就觉得即使不读研也可以在企业中风生水起。当时固执地坚持着保不了研就工作的理念，庆幸自己的成绩帮自己选了一条不至于后悔的路，离户口和住房更近了一步。而前一阵子炒饭传给我一张自己写的大二规划的照片，不禁感慨，原来大二自己的思想已经如此成熟了，而且再次体会到思考与规划的价值所在。<br><img src="/blogImg/20170330/plan.jpg" alt="有一种人生叫做按步骤做事"></p>
-<p>&emsp;&emsp;两周前和梦莹聊到她的规划，在企业里做金融方面的计算机实习或工作，空闲时间再自己搭个网站，逐步运营起来~相较而言梦莹的生活更加潇洒，寻找自己喜欢的城市呆十年八年，不用被太多的身外之物所牵绊。奈何自己做不到这么洒脱，旅游是一种放空心灵的方式，但它于我只能是一种附属而非生活。</p>
-<p>&emsp;&emsp;今天项目组开会时候调侃道我们不断思考并发task归根到底还是因为穷，如果真能有几百TB级的服务器就都不是事了。穷则思变，而善思则掌局。既然选择了在北京发展，又并非含着金汤匙出生的公主，就应该认真对待生活，仔细规划发展道路。即使没有太大的抱负要感天动地，也不能抱着得过且过的思想，毕竟能挥霍的日子并不多了。</p>
-<p>&emsp;&emsp;回到之前的现实状况：户口方面存在两个选择：（1）找国企或者央企，以应届毕业生的身份解决北京户口；（2）出国留学，用海外学位证换外企的北京户口指标。而住房方面现在只能总结一个字：穷。之前网上流行的一个段子：“最近用自己月薪3000攒下的1W，加老爸给的100W，刚刚好付了首付”，而现在更多的是“我真的还想再活五百年”。</p>
-<p>&emsp;&emsp;痛定思痛，唯有创新。昨天刘洋向我介绍了好多小型的辅助工具：或微信埋雷抢红包，或批量自动添加好友，或接活帮小公司维护网站。。。在大企业中干活终究是个螺丝钉，还或许是备用的；而自己拥有能做主的事业才是真实掌握在手中的财富。虽说条条大路通罗马，但贫富差距也随之越来越大。</p>
-<p>&emsp;&emsp;不觉间已经写了这么多，最后定几个小目标吧：<br>&emsp;&emsp;&emsp;1. 依然坚持每天背单词看阅读打卡；<br>&emsp;&emsp;&emsp;2. 从现在起每想到一个新鲜的idea立即做记录；<br>&emsp;&emsp;&emsp;3. 每周为博客添一点色彩：不论是技术文章、生活随笔、或周边风景；<br>&emsp;&emsp;&emsp;4. 每周看一篇关于人际交流或职场生活的文章；<br>&emsp;&emsp;&emsp;5. 每月涉猎一个自己不熟悉的领域知识；<br>&emsp;&emsp;&emsp;6. 找工作时，对比选择一个发展前景广并切实符合自己兴趣的公司。<br>&emsp;&emsp;ps:其实还有一个大目标：我要减肥！！！/(ㄒoㄒ)/~</p>
+        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>&emsp;&emsp;使用Hadop实现 Mapper/Reducer，对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。</p>
+<p>&emsp;&emsp;举例说明，最初的文档为：</p>
+<blockquote>
+<p>“a a, A b<br>a b c</p>
+</blockquote>
+<p>则处理后的结果为：</p>
+<blockquote>
+<p>(a  a)   2<br>(a  b)   2<br>(a  c)   1<br>(b  a)   4<br>(b  c)   1<br>(c  a)   1<br>(c  b)   1<br><a id="more"></a></p>
+</blockquote>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><h3 id="开启hadoop"><a href="#开启hadoop" class="headerlink" title="开启hadoop"></a>开启hadoop</h3><p>进入Hadoop所在的文件夹并执行启动语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sbin/start-all.sh</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524162046186?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="jar包处理"><a href="#jar包处理" class="headerlink" title="jar包处理"></a>jar包处理</h3><p>将编码程序打包成jar包进行处理<br><img src="http://img.blog.csdn.net/20170524162727496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="HDFS文件设置"><a href="#HDFS文件设置" class="headerlink" title="HDFS文件设置"></a>HDFS文件设置</h3><p>使用hdfs创建文件夹，并将input文件放在hdfs文件夹下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -mkdir -p /wordcount1/input</div><div class="line">$ bin/hdfs dfs -put /Users/liuqi/Desktop/input.txt /wordcount1/input</div><div class="line">$ bin/hdfs dfs -ls /wordcount1/input</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524162955706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="mapreduce程序"><a href="#mapreduce程序" class="headerlink" title="mapreduce程序"></a>mapreduce程序</h3><p>运行mapreduce程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hadoop jar /Users/liuqi/Desktop/wordcount.jar WordCount /wordcount1/input /wordcount1/output</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524163038093?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20170524163101910?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>注：如果中间有错，则删除对应文件重新进行操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -rm -r /wordcount1/input</div></pre></td></tr></table></figure></p>
+<h3 id="查询结果"><a href="#查询结果" class="headerlink" title="查询结果"></a>查询结果</h3><p>查看计数的结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -ls /wordcount1/output</div><div class="line">$ bin/hdfs dfs -cat /wordcount1/output/part-00000</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524163401302?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>将结果保存在本地：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -getmerge /wordcount1/output /Users/liuqi/Desktop/wordcount1/</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524163559725?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="附加代码"><a href="#附加代码" class="headerlink" title="附加代码"></a>附加代码</h2><p><img src="http://img.blog.csdn.net/20170524163736307?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>注：这里只是显示java代码，整个工程去我的CSDN博客进行下载：</p>
+<blockquote>
+<p><a href="http://download.csdn.net/detail/u012842255/9851124" target="_blank" rel="external">http://download.csdn.net/detail/u012842255/9851124</a></p>
+</blockquote>
+<p>WordCount.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div></pre></td><td class="code"><pre><div class="line">import java.io.IOException;  </div><div class="line">import java.util.Iterator;  </div><div class="line">import java.util.StringTokenizer;  </div><div class="line">import org.apache.hadoop.fs.Path;  </div><div class="line">import org.apache.hadoop.io.IntWritable;  </div><div class="line">import org.apache.hadoop.io.LongWritable;  </div><div class="line">import org.apache.hadoop.io.Text;  </div><div class="line">import org.apache.hadoop.mapred.FileInputFormat;  </div><div class="line">import org.apache.hadoop.mapred.FileOutputFormat;  </div><div class="line">import org.apache.hadoop.mapred.JobClient;  </div><div class="line">import org.apache.hadoop.mapred.JobConf;  </div><div class="line">import org.apache.hadoop.mapred.MapReduceBase;  </div><div class="line">import org.apache.hadoop.mapred.Mapper;  </div><div class="line">import org.apache.hadoop.mapred.OutputCollector;  </div><div class="line">import org.apache.hadoop.mapred.Reducer;  </div><div class="line">import org.apache.hadoop.mapred.Reporter;  </div><div class="line">import org.apache.hadoop.mapred.TextInputFormat;  </div><div class="line">import org.apache.hadoop.mapred.TextOutputFormat;  </div><div class="line">/** </div><div class="line"> *  </div><div class="line"> * WordCount </div><div class="line"> * @author 刘琦</div><div class="line"> */  </div><div class="line">public class WordCount  </div><div class="line">&#123;  </div><div class="line">    /** </div><div class="line">     * MapReduceBase类:实现了Mapper和Reducer接口的基类（其中的方法只是实现接口，而未作任何事情） </div><div class="line">     * Mapper接口： </div><div class="line">     * WritableComparable接口：实现WritableComparable的类可以相互比较。所有被用作key的类应该实现此接口。 </div><div class="line">     * Reporter 则可用于报告整个应用的运行进度，本例中未使用。  </div><div class="line">     *  </div><div class="line">     */  </div><div class="line">    public static class Map extends MapReduceBase implements  </div><div class="line">            Mapper&lt;LongWritable, Text, Text, IntWritable&gt;  </div><div class="line">    &#123;  </div><div class="line">        /** </div><div class="line">         * LongWritable, IntWritable, Text 均是 Hadoop 中实现的用于封装 Java 数据类型的类，这些类实现了WritableComparable接口， </div><div class="line">         * 都能够被串行化从而便于在分布式环境中进行数据交换，你可以将它们分别视为long,int,String 的替代品。 </div><div class="line">         */  </div><div class="line">        private final static IntWritable one = new IntWritable(1);  </div><div class="line">        private Text word = new Text(); </div><div class="line">          </div><div class="line">        /** </div><div class="line">         * Mapper接口中的map方法： </div><div class="line">         * void map(K1 key, V1 value, OutputCollector&lt;K2,V2&gt; output, Reporter reporter) </div><div class="line">         * 映射一个单个的输入k/v对到一个中间的k/v对 </div><div class="line">         * 输出对不需要和输入对是相同的类型，输入对可以映射到0个或多个输出对。 </div><div class="line">         * OutputCollector接口：收集Mapper和Reducer输出的&lt;k,v&gt;对。 </div><div class="line">         * OutputCollector接口的collect(k, v)方法:增加一个(k,v)对到output </div><div class="line">         */  </div><div class="line">        public void map(LongWritable key, Text value,  </div><div class="line">                OutputCollector&lt;Text, IntWritable&gt; output, Reporter reporter)  </div><div class="line">                throws IOException  </div><div class="line">        &#123;  </div><div class="line">        	//变成小写单词，并且去各种符号</div><div class="line">            String line = value.toString().toLowerCase().replaceAll(&quot;[\\d\\pP\\p&#123;Punct&#125;]&quot;, &quot;&quot;);</div><div class="line">            StringTokenizer tokenizer = new StringTokenizer(line);  </div><div class="line">            StringTokenizer tokenizer2 = new StringTokenizer(line);</div><div class="line">            String[][] result = new String[tokenizer.countTokens()][2];</div><div class="line">            int k = 0;</div><div class="line">            while (tokenizer.hasMoreTokens()) &#123;</div><div class="line">             result[k][0] = tokenizer.nextToken();</div><div class="line">             result[k][1] = &quot;0&quot;;</div><div class="line">             k++;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            //对每一行的单词进行处理</div><div class="line">            for(int i = 0; i &lt; tokenizer2.countTokens() ; i++)&#123;</div><div class="line">            	for(int j = 0; j &lt; tokenizer2.countTokens() ; j++)&#123;</div><div class="line">					if(i == j)&#123;</div><div class="line">						continue;</div><div class="line">					&#125;else if (result[i][1].equals(&quot;1&quot;))&#123;</div><div class="line">						//这个词之前出现过了，这里只统计它之后还有没有相同的数据,后来发现不需要这一步了，相同的只计算一次就好</div><div class="line">						if(i&lt;j &amp;&amp; result[i][0].equals(result[j][0]))&#123;</div><div class="line">							result[j][1] = &quot;1&quot;;</div><div class="line">							word.set(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);</div><div class="line">//							output.collect(word, one);</div><div class="line">						&#125;</div><div class="line">					&#125;else&#123;</div><div class="line">						//这个词之前没有出现过</div><div class="line">						if (!result[i][0].equals(result[j][0]))&#123;</div><div class="line">							//普通操作</div><div class="line">							word.set(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);  </div><div class="line">			                output.collect(word, one);</div><div class="line">						&#125;else&#123;</div><div class="line">			                //说明两个单词是一样的,并且这个单词之前没有统计过</div><div class="line">							result[j][1] = &quot;1&quot;;</div><div class="line">							word.set(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);  </div><div class="line">			                output.collect(word, one);</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    public static class Reduce extends MapReduceBase implements  </div><div class="line">            Reducer&lt;Text, IntWritable, Text, IntWritable&gt;  </div><div class="line">    &#123;  </div><div class="line">        public void reduce(Text key, Iterator&lt;IntWritable&gt; values,  </div><div class="line">                OutputCollector&lt;Text, IntWritable&gt; output, Reporter reporter)  </div><div class="line">                throws IOException  </div><div class="line">        &#123;  </div><div class="line">            int sum = 0;  </div><div class="line">            while (values.hasNext())  </div><div class="line">            &#123;  </div><div class="line">                sum += values.next().get();  </div><div class="line">            &#125;  </div><div class="line">            output.collect(key, new IntWritable(sum));  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    public static void main(String[] args) throws Exception  </div><div class="line">    &#123;  </div><div class="line">        /** </div><div class="line">         * JobConf：map/reduce的job配置类，向hadoop框架描述map-reduce执行的工作 </div><div class="line">         * 构造方法：JobConf()、JobConf(Class exampleClass)、JobConf(Configuration conf)等 </div><div class="line">         */  </div><div class="line">        JobConf conf = new JobConf(WordCount.class);  </div><div class="line">        conf.setJobName(&quot;wordcount&quot;);           //设置一个用户定义的job名称  </div><div class="line">        conf.setOutputKeyClass(Text.class);    //为job的输出数据设置Key类  </div><div class="line">        conf.setOutputValueClass(IntWritable.class);   //为job输出设置value类  </div><div class="line">        conf.setMapperClass(Map.class);         //为job设置Mapper类  </div><div class="line">        conf.setCombinerClass(Reduce.class);      //为job设置Combiner类  </div><div class="line">        conf.setReducerClass(Reduce.class);        //为job设置Reduce类  </div><div class="line">        conf.setInputFormat(TextInputFormat.class);    //为map-reduce任务设置InputFormat实现类  </div><div class="line">        conf.setOutputFormat(TextOutputFormat.class);  //为map-reduce任务设置OutputFormat实现类  </div><div class="line">        /** </div><div class="line">         * InputFormat描述map-reduce中对job的输入定义 </div><div class="line">         * setInputPaths():为map-reduce job设置路径数组作为输入列表 </div><div class="line">         * setInputPath()：为map-reduce job设置路径数组作为输出列表 </div><div class="line">         */  </div><div class="line">        FileInputFormat.setInputPaths(conf, new Path(args[0]));  </div><div class="line">        FileOutputFormat.setOutputPath(conf, new Path(args[1]));  </div><div class="line">        JobClient.runJob(conf);         //运行一个job  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
 
@@ -235,7 +275,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wordcount</a>
         		</li>
       		
 		</ul>
@@ -291,7 +339,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/03/30/过善于思考的人生，别总选易走的路/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/05/20/Java实现Hadoop下词配对Wordcount计数/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -305,18 +353,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/04/04/博客搭建-1-使用Github搭建个人博客/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          博客搭建(1)--使用Github搭建个人博客
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/28/走在青春的路上/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">走在青春的路上</div>
+    <a href="/2017/05/11/Ubuntu虚拟机实现两结点SSH免密码通信/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu虚拟机实现两结点SSH免密码通信</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -330,7 +369,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="过善于思考的人生，别总选易走的路" data-title="过善于思考的人生，别总选易走的路" data-url="http://blog.killyliu.com/2017/03/30/过善于思考的人生，别总选易走的路/"></div>
+	<div class="ds-thread" data-thread-key="Java实现Hadoop下词配对Wordcount计数" data-title="Java实现Hadoop下词配对Wordcount计数" data-url="http://blog.killyliu.com/2017/05/20/Java实现Hadoop下词配对Wordcount计数/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
