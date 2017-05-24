@@ -6,14 +6,48 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>Tag: 随笔 | 煊琦的小窝</title>
+  <title>Java实现Hadoop下词配对Wordcount计数 | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="煊琦的小窝">
-<meta property="og:url" content="http://blog.killyliu.com/tags/随笔/index.html">
+  <meta name="description" content="需求&amp;emsp;&amp;emsp;使用Hadop实现 Mapper/Reducer，对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。
+&amp;emsp;&amp;emsp;举例说明，最初的文档为：
+
+“a a, A ba b c
+
+则处理后的结果为：
+
+(a  a)   2(a  b)   2(a  c)   1(b  a)   4(b  c)   1(c  a)   1(c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java实现Hadoop下词配对Wordcount计数">
+<meta property="og:url" content="http://blog.killyliu.com/2017/05/15/Java实现Hadoop下词配对Wordcount计数/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
+<meta property="og:description" content="需求&amp;emsp;&amp;emsp;使用Hadop实现 Mapper/Reducer，对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。
+&amp;emsp;&amp;emsp;举例说明，最初的文档为：
+
+“a a, A ba b c
+
+则处理后的结果为：
+
+(a  a)   2(a  b)   2(a  c)   1(b  a)   4(b  c)   1(c  a)   1(c">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524162046186?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524162727496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524162955706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524163038093?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524163101910?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524163401302?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524163559725?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524163736307?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-05-24T09:26:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="煊琦的小窝">
+<meta name="twitter:title" content="Java实现Hadoop下词配对Wordcount计数">
+<meta name="twitter:description" content="需求&amp;emsp;&amp;emsp;使用Hadop实现 Mapper/Reducer，对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。
+&amp;emsp;&amp;emsp;举例说明，最初的文档为：
+
+“a a, A ba b c
+
+则处理后的结果为：
+
+(a  a)   2(a  b)   2(a  c)   1(b  a)   4(b  c)   1(c  a)   1(c">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170524162046186?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -150,174 +184,220 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java实现Hadoop下词配对Wordcount计数" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java实现Hadoop下词配对Wordcount计数
+    </h1>
+  
+
+        
+        <a href="/2017/05/15/Java实现Hadoop下词配对Wordcount计数/" class="archive-article-date">
+  	<time datetime="2017-05-15T09:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>&emsp;&emsp;使用Hadop实现 Mapper/Reducer，对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。</p>
+<p>&emsp;&emsp;举例说明，最初的文档为：</p>
+<blockquote>
+<p>“a a, A b<br>a b c</p>
+</blockquote>
+<p>则处理后的结果为：</p>
+<blockquote>
+<p>(a  a)   2<br>(a  b)   2<br>(a  c)   1<br>(b  a)   4<br>(b  c)   1<br>(c  a)   1<br>(c  b)   1<br><a id="more"></a></p>
+</blockquote>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><h3 id="开启hadoop"><a href="#开启hadoop" class="headerlink" title="开启hadoop"></a>开启hadoop</h3><p>进入Hadoop所在的文件夹并执行启动语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sbin/start-all.sh</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524162046186?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="jar包处理"><a href="#jar包处理" class="headerlink" title="jar包处理"></a>jar包处理</h3><p>将编码程序打包成jar包进行处理<br><img src="http://img.blog.csdn.net/20170524162727496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="HDFS文件设置"><a href="#HDFS文件设置" class="headerlink" title="HDFS文件设置"></a>HDFS文件设置</h3><p>使用hdfs创建文件夹，并将input文件放在hdfs文件夹下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -mkdir -p /wordcount1/input</div><div class="line">$ bin/hdfs dfs -put /Users/liuqi/Desktop/input.txt /wordcount1/input</div><div class="line">$ bin/hdfs dfs -ls /wordcount1/input</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524162955706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="mapreduce程序"><a href="#mapreduce程序" class="headerlink" title="mapreduce程序"></a>mapreduce程序</h3><p>运行mapreduce程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hadoop jar /Users/liuqi/Desktop/wordcount.jar WordCount /wordcount1/input /wordcount1/output</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524163038093?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20170524163101910?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>注：如果中间有错，则删除对应文件重新进行操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -rm -r /wordcount1/input</div></pre></td></tr></table></figure></p>
+<h3 id="查询结果"><a href="#查询结果" class="headerlink" title="查询结果"></a>查询结果</h3><p>查看计数的结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -ls /wordcount1/output</div><div class="line">$ bin/hdfs dfs -cat /wordcount1/output/part-00000</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524163401302?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>将结果保存在本地：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -getmerge /wordcount1/output /Users/liuqi/Desktop/wordcount1/</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524163559725?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="附加代码"><a href="#附加代码" class="headerlink" title="附加代码"></a>附加代码</h2><p><img src="http://img.blog.csdn.net/20170524163736307?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>注：这里只是显示java代码，整个工程去我的CSDN博客进行下载：</p>
+<blockquote>
+<p><a href="http://download.csdn.net/detail/u012842255/9851124" target="_blank" rel="external">http://download.csdn.net/detail/u012842255/9851124</a></p>
+</blockquote>
+<p>WordCount.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div></pre></td><td class="code"><pre><div class="line">import java.io.IOException;  </div><div class="line">import java.util.Iterator;  </div><div class="line">import java.util.StringTokenizer;  </div><div class="line">import org.apache.hadoop.fs.Path;  </div><div class="line">import org.apache.hadoop.io.IntWritable;  </div><div class="line">import org.apache.hadoop.io.LongWritable;  </div><div class="line">import org.apache.hadoop.io.Text;  </div><div class="line">import org.apache.hadoop.mapred.FileInputFormat;  </div><div class="line">import org.apache.hadoop.mapred.FileOutputFormat;  </div><div class="line">import org.apache.hadoop.mapred.JobClient;  </div><div class="line">import org.apache.hadoop.mapred.JobConf;  </div><div class="line">import org.apache.hadoop.mapred.MapReduceBase;  </div><div class="line">import org.apache.hadoop.mapred.Mapper;  </div><div class="line">import org.apache.hadoop.mapred.OutputCollector;  </div><div class="line">import org.apache.hadoop.mapred.Reducer;  </div><div class="line">import org.apache.hadoop.mapred.Reporter;  </div><div class="line">import org.apache.hadoop.mapred.TextInputFormat;  </div><div class="line">import org.apache.hadoop.mapred.TextOutputFormat;  </div><div class="line">/** </div><div class="line"> *  </div><div class="line"> * WordCount </div><div class="line"> * @author 刘琦</div><div class="line"> */  </div><div class="line">public class WordCount  </div><div class="line">&#123;  </div><div class="line">    /** </div><div class="line">     * MapReduceBase类:实现了Mapper和Reducer接口的基类（其中的方法只是实现接口，而未作任何事情） </div><div class="line">     * Mapper接口： </div><div class="line">     * WritableComparable接口：实现WritableComparable的类可以相互比较。所有被用作key的类应该实现此接口。 </div><div class="line">     * Reporter 则可用于报告整个应用的运行进度，本例中未使用。  </div><div class="line">     *  </div><div class="line">     */  </div><div class="line">    public static class Map extends MapReduceBase implements  </div><div class="line">            Mapper&lt;LongWritable, Text, Text, IntWritable&gt;  </div><div class="line">    &#123;  </div><div class="line">        /** </div><div class="line">         * LongWritable, IntWritable, Text 均是 Hadoop 中实现的用于封装 Java 数据类型的类，这些类实现了WritableComparable接口， </div><div class="line">         * 都能够被串行化从而便于在分布式环境中进行数据交换，你可以将它们分别视为long,int,String 的替代品。 </div><div class="line">         */  </div><div class="line">        private final static IntWritable one = new IntWritable(1);  </div><div class="line">        private Text word = new Text(); </div><div class="line">          </div><div class="line">        /** </div><div class="line">         * Mapper接口中的map方法： </div><div class="line">         * void map(K1 key, V1 value, OutputCollector&lt;K2,V2&gt; output, Reporter reporter) </div><div class="line">         * 映射一个单个的输入k/v对到一个中间的k/v对 </div><div class="line">         * 输出对不需要和输入对是相同的类型，输入对可以映射到0个或多个输出对。 </div><div class="line">         * OutputCollector接口：收集Mapper和Reducer输出的&lt;k,v&gt;对。 </div><div class="line">         * OutputCollector接口的collect(k, v)方法:增加一个(k,v)对到output </div><div class="line">         */  </div><div class="line">        public void map(LongWritable key, Text value,  </div><div class="line">                OutputCollector&lt;Text, IntWritable&gt; output, Reporter reporter)  </div><div class="line">                throws IOException  </div><div class="line">        &#123;  </div><div class="line">        	//变成小写单词，并且去各种符号</div><div class="line">            String line = value.toString().toLowerCase().replaceAll(&quot;[\\d\\pP\\p&#123;Punct&#125;]&quot;, &quot;&quot;);</div><div class="line">            StringTokenizer tokenizer = new StringTokenizer(line);  </div><div class="line">            StringTokenizer tokenizer2 = new StringTokenizer(line);</div><div class="line">            String[][] result = new String[tokenizer.countTokens()][2];</div><div class="line">            int k = 0;</div><div class="line">            while (tokenizer.hasMoreTokens()) &#123;</div><div class="line">             result[k][0] = tokenizer.nextToken();</div><div class="line">             result[k][1] = &quot;0&quot;;</div><div class="line">             k++;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            //对每一行的单词进行处理</div><div class="line">            for(int i = 0; i &lt; tokenizer2.countTokens() ; i++)&#123;</div><div class="line">            	for(int j = 0; j &lt; tokenizer2.countTokens() ; j++)&#123;</div><div class="line">					if(i == j)&#123;</div><div class="line">						continue;</div><div class="line">					&#125;else if (result[i][1].equals(&quot;1&quot;))&#123;</div><div class="line">						//这个词之前出现过了，这里只统计它之后还有没有相同的数据,后来发现不需要这一步了，相同的只计算一次就好</div><div class="line">						if(i&lt;j &amp;&amp; result[i][0].equals(result[j][0]))&#123;</div><div class="line">							result[j][1] = &quot;1&quot;;</div><div class="line">							word.set(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);</div><div class="line">//							output.collect(word, one);</div><div class="line">						&#125;</div><div class="line">					&#125;else&#123;</div><div class="line">						//这个词之前没有出现过</div><div class="line">						if (!result[i][0].equals(result[j][0]))&#123;</div><div class="line">							//普通操作</div><div class="line">							word.set(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);  </div><div class="line">			                output.collect(word, one);</div><div class="line">						&#125;else&#123;</div><div class="line">			                //说明两个单词是一样的,并且这个单词之前没有统计过</div><div class="line">							result[j][1] = &quot;1&quot;;</div><div class="line">							word.set(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);  </div><div class="line">			                output.collect(word, one);</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    public static class Reduce extends MapReduceBase implements  </div><div class="line">            Reducer&lt;Text, IntWritable, Text, IntWritable&gt;  </div><div class="line">    &#123;  </div><div class="line">        public void reduce(Text key, Iterator&lt;IntWritable&gt; values,  </div><div class="line">                OutputCollector&lt;Text, IntWritable&gt; output, Reporter reporter)  </div><div class="line">                throws IOException  </div><div class="line">        &#123;  </div><div class="line">            int sum = 0;  </div><div class="line">            while (values.hasNext())  </div><div class="line">            &#123;  </div><div class="line">                sum += values.next().get();  </div><div class="line">            &#125;  </div><div class="line">            output.collect(key, new IntWritable(sum));  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    public static void main(String[] args) throws Exception  </div><div class="line">    &#123;  </div><div class="line">        /** </div><div class="line">         * JobConf：map/reduce的job配置类，向hadoop框架描述map-reduce执行的工作 </div><div class="line">         * 构造方法：JobConf()、JobConf(Class exampleClass)、JobConf(Configuration conf)等 </div><div class="line">         */  </div><div class="line">        JobConf conf = new JobConf(WordCount.class);  </div><div class="line">        conf.setJobName(&quot;wordcount&quot;);           //设置一个用户定义的job名称  </div><div class="line">        conf.setOutputKeyClass(Text.class);    //为job的输出数据设置Key类  </div><div class="line">        conf.setOutputValueClass(IntWritable.class);   //为job输出设置value类  </div><div class="line">        conf.setMapperClass(Map.class);         //为job设置Mapper类  </div><div class="line">        conf.setCombinerClass(Reduce.class);      //为job设置Combiner类  </div><div class="line">        conf.setReducerClass(Reduce.class);        //为job设置Reduce类  </div><div class="line">        conf.setInputFormat(TextInputFormat.class);    //为map-reduce任务设置InputFormat实现类  </div><div class="line">        conf.setOutputFormat(TextOutputFormat.class);  //为map-reduce任务设置OutputFormat实现类  </div><div class="line">        /** </div><div class="line">         * InputFormat描述map-reduce中对job的输入定义 </div><div class="line">         * setInputPaths():为map-reduce job设置路径数组作为输入列表 </div><div class="line">         * setInputPath()：为map-reduce job设置路径数组作为输出列表 </div><div class="line">         */  </div><div class="line">        FileInputFormat.setInputPaths(conf, new Path(args[0]));  </div><div class="line">        FileOutputFormat.setOutputPath(conf, new Path(args[1]));  </div><div class="line">        JobClient.runJob(conf);         //运行一个job  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/infoImg/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/infoImg/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/《黑洞》背后的思考/" class="archive-article-date">
-  	<time datetime="2017-04-10T02:52:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/《黑洞》背后的思考/">《黑洞》背后的思考</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/05/她是七月，也是安生/" class="archive-article-date">
-  	<time datetime="2017-04-05T09:43:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/05/她是七月，也是安生/">她是七月，也是安生</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSH</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/30/过善于思考的人生，别总选易走的路/" class="archive-article-date">
-  	<time datetime="2017-03-30T12:31:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/30/过善于思考的人生，别总选易走的路/">过善于思考的人生，别总选易走的路</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Ubuntu虚拟机</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/05/15/Java实现Hadoop下词配对Wordcount计数/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/走在青春的路上/" class="archive-article-date">
-  	<time datetime="2017-03-28T04:05:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/走在青春的路上/">走在青春的路上</a>
-    </h1>
+    <a href="/2017/05/24/Ubuntu虚拟机实现两结点SSH免密码通信/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/10/阿里云Ubuntu服务器实现两结点SSH免密码通信/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">阿里云Ubuntu服务器实现两结点SSH免密码通信</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Java实现Hadoop下词配对Wordcount计数" data-title="Java实现Hadoop下词配对Wordcount计数" data-url="http://blog.killyliu.com/2017/05/15/Java实现Hadoop下词配对Wordcount计数/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -346,9 +426,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
