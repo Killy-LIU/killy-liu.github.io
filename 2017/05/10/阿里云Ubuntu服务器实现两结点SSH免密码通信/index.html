@@ -6,14 +6,43 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>Archives: 2017/4 | 煊琦的小窝</title>
+  <title>阿里云Ubuntu服务器实现两结点SSH免密码通信 | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="煊琦的小窝">
-<meta property="og:url" content="http://blog.killyliu.com/archives/2017/04/index.html">
+  <meta name="description" content="实现功能：
+阿里云上创建两个结点，更改hostname
+做结点的hostname到IP的映射
+并实现SSH通信
+在虚拟机上部署服务，查看应用效果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里云Ubuntu服务器实现两结点SSH免密码通信">
+<meta property="og:url" content="http://blog.killyliu.com/2017/05/10/阿里云Ubuntu服务器实现两结点SSH免密码通信/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
+<meta property="og:description" content="实现功能：
+阿里云上创建两个结点，更改hostname
+做结点的hostname到IP的映射
+并实现SSH通信
+在虚拟机上部署服务，查看应用效果">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524142443861?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524142455826?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524142704375?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524142809408?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524142942817?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524143447882?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524143530570?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524143708008?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524143846048?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524144454122?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524144729014?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524144943811?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-05-24T07:05:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="煊琦的小窝">
+<meta name="twitter:title" content="阿里云Ubuntu服务器实现两结点SSH免密码通信">
+<meta name="twitter:description" content="实现功能：
+阿里云上创建两个结点，更改hostname
+做结点的hostname到IP的映射
+并实现SSH通信
+在虚拟机上部署服务，查看应用效果">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170524142443861?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -150,36 +179,98 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-阿里云Ubuntu服务器实现两结点SSH免密码通信" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      阿里云Ubuntu服务器实现两结点SSH免密码通信
+    </h1>
+  
+
+        
+        <a href="/2017/05/10/阿里云Ubuntu服务器实现两结点SSH免密码通信/" class="archive-article-date">
+  	<time datetime="2017-05-10T06:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="实现功能："><a href="#实现功能：" class="headerlink" title="实现功能："></a>实现功能：</h2><ol>
+<li>阿里云上创建两个结点，更改hostname</li>
+<li>做结点的hostname到IP的映射</li>
+<li>并实现SSH通信</li>
+<li>在虚拟机上部署服务，查看应用效果<a id="more"></a> 
+</li>
+</ol>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p> &emsp;&ensp;这里在阿里云上创建了两个实例，这里我的两个服务器分别是：使用学生套餐9.9租用了一个服务器，使用按时按流量计费的方式租用了另一台服务器。<br> &emsp;&ensp;都创建为：ubuntu VM 16.04<br> &emsp;&ensp;Server1: 47.94.95.40 / 172.17.78.48<br> &emsp;&ensp;Server2: 47.52.107.97 / 172.31.162.43<br><img src="http://img.blog.csdn.net/20170524142443861?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20170524142455826?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="设置主机名hostname"><a href="#设置主机名hostname" class="headerlink" title="设置主机名hostname"></a>设置主机名hostname</h2><p> &emsp;&ensp;编辑hostname文件，设置主机名。这里为了识别方便，给两个服务器结点分别设为server1, server2。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim /etc/hostname</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524142704375?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p> &emsp;&ensp;重启虚拟机，便可以看到服务器的主机名为server1，server2。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ shutdown –r now</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524142809408?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="设置IP主机映射"><a href="#设置IP主机映射" class="headerlink" title="设置IP主机映射"></a>设置IP主机映射</h2><p> &emsp;&ensp;编辑hosts文件并设置hosts与IP的映射关系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/hosts</div></pre></td></tr></table></figure></p>
+<p>在文件中添加信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">47.94.95.40     server1</div><div class="line">47.52.107.97    server2</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524142942817?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="SSH配置"><a href="#SSH配置" class="headerlink" title="SSH配置"></a>SSH配置</h2><h3 id="设置SSH-keygen"><a href="#设置SSH-keygen" class="headerlink" title="设置SSH keygen"></a>设置SSH keygen</h3><p> &emsp;&ensp;首先，要确认服务器已开启密码权利(password authentication)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim /etc/ssh/sshd_config</div></pre></td></tr></table></figure></p>
+<p> &emsp;&ensp;确认passwordAuthentication 是yes，然后重新加载。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /etc/init.d/sshd reload</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524143447882?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p> &emsp;&ensp;然后为每个服务器设置keygen：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524143530570?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="拷贝SSH-KEY"><a href="#拷贝SSH-KEY" class="headerlink" title="拷贝SSH KEY"></a>拷贝SSH KEY</h3><p> &emsp;&ensp;将公秘钥拷贝给对方服务器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-copy-id root@server2</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524143708008?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="使用SSH登录到对方服务器"><a href="#使用SSH登录到对方服务器" class="headerlink" title="使用SSH登录到对方服务器"></a>使用SSH登录到对方服务器</h3><p> &emsp;&ensp;这里举例用server2登录到server1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh server1</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524143846048?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="Tomcat配置"><a href="#Tomcat配置" class="headerlink" title="Tomcat配置"></a>Tomcat配置</h2><h3 id="jdk配置"><a href="#jdk配置" class="headerlink" title="jdk配置"></a>jdk配置</h3><p> &emsp;&ensp;使用远程拷贝的方式将电脑本地的jdk包传到远程服务器上，并解压做相关配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp  /Users/liuqi/Downloads/jdk-8u131-linux-x64.tar root@47.94.95.40:/usr/local</div></pre></td></tr></table></figure></p>
+<p> &emsp;&ensp;编辑profile文件，做JAVA_HOME配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ vim /etc/profile</div><div class="line"></div><div class="line">JAVA_HOME=/usr/local/jdk1.8.0_131</div><div class="line">JRE_HOME=$JAVA_HOME/jre</div><div class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</div><div class="line">CLASSPATH=:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib</div><div class="line">export JAVA_HOME JRE_HOME PATH CLASSPATH</div><div class="line"></div><div class="line">$ source /etc/profile</div></pre></td></tr></table></figure></p>
+<p> &emsp;&ensp;使用java -version查看现在的jdk信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ java -version</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524144454122?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="Tomcat配置-1"><a href="#Tomcat配置-1" class="headerlink" title="Tomcat配置"></a>Tomcat配置</h3><p> &emsp;&ensp;下载并解压Tomcat:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.77/bin/apache-tomcat-7.0.77.tar.gz</div><div class="line">$ mv apache-tomcat-7.0.77.tar.gz /usr/local</div><div class="line">$ tar -xvzf /usr/local/apache-tomcat-7.0.77.tar.gz</div></pre></td></tr></table></figure></p>
+<p> &emsp;&ensp;进入Tomcat的安装地址并启动Tomcat<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/startup.sh</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524144729014?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="war包运行"><a href="#war包运行" class="headerlink" title="war包运行"></a>war包运行</h3><p> &emsp;&ensp;这里我将自己的项目打包成war包，并且放在tomcat下的webapps 文件夹下，重新运行tomcat，即可看到自己的项目：</p>
+<p><img src="http://img.blog.csdn.net/20170524144943811?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/infoImg/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/infoImg/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/20/人脸识别-4-Python3-6-dlib19-4识别实例/" class="archive-article-date">
-  	<time datetime="2017-04-20T05:29:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/20/人脸识别-4-Python3-6-dlib19-4识别实例/">人脸识别(4)--Python3.6+dlib19.4识别实例</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,395 +280,116 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/20/人脸识别-3-Python3-6-dlib19-4在Mac下环境搭建/" class="archive-article-date">
-  	<time datetime="2017-04-20T05:28:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/20/人脸识别-3-Python3-6-dlib19-4在Mac下环境搭建/">人脸识别(3)--Python3.6+dlib19.4在Mac下环境搭建</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSH</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">阿里云服务器</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/05/10/阿里云Ubuntu服务器实现两结点SSH免密码通信/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/20/人脸识别-2-Python3-6-OpenCV3-2识别实例/" class="archive-article-date">
-  	<time datetime="2017-04-20T05:28:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-20</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/20/人脸识别-2-Python3-6-OpenCV3-2识别实例/">人脸识别(2)--Python3.6+OpenCV3.2识别实例</a>
-    </h1>
+  
+    <a href="/2017/05/03/挖掘模型-3-Mahout建基于用户的推荐模型/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">挖掘模型(3)--Mahout建基于用户的推荐模型</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="阿里云Ubuntu服务器实现两结点SSH免密码通信" data-title="阿里云Ubuntu服务器实现两结点SSH免密码通信" data-url="http://blog.killyliu.com/2017/05/10/阿里云Ubuntu服务器实现两结点SSH免密码通信/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/20/人脸识别-1-Python3-6-OpenCV3-2在Mac下环境搭建/" class="archive-article-date">
-  	<time datetime="2017-04-20T05:28:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/20/人脸识别-1-Python3-6-OpenCV3-2在Mac下环境搭建/"> 人脸识别(1)--Python3.6+OpenCV3.2在Mac下环境搭建</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/18/Repo的理解及用法小结-2/" class="archive-article-date">
-  	<time datetime="2017-04-18T03:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/18/Repo的理解及用法小结-2/">Repo的理解及用法小结(2)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Repo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/17/Repo的理解及用法小结-1/" class="archive-article-date">
-  	<time datetime="2017-04-17T01:45:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/17/Repo的理解及用法小结-1/">Repo的理解及用法小结(1)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Repo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/《黑洞》背后的思考/" class="archive-article-date">
-  	<time datetime="2017-04-10T02:52:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/《黑洞》背后的思考/">《黑洞》背后的思考</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/05/她是七月，也是安生/" class="archive-article-date">
-  	<time datetime="2017-04-05T09:43:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/05/她是七月，也是安生/">她是七月，也是安生</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/" class="archive-article-date">
-  	<time datetime="2017-04-04T07:54:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/">博客搭建(2)--Mac下用Hexo搭建个人博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/04/博客搭建-1-使用Github搭建个人博客/" class="archive-article-date">
-  	<time datetime="2017-04-04T05:59:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/04/博客搭建-1-使用Github搭建个人博客/">博客搭建(1)--使用Github搭建个人博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -606,8 +418,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
