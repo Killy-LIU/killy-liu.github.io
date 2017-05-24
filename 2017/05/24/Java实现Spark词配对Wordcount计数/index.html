@@ -6,21 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>《黑洞》背后的思考 | 煊琦的小窝</title>
+  <title>Java实现Spark词配对Wordcount计数 | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;emsp;&amp;emsp;其实最初是想写关于《人民的名义》观看感想的，但思来想去，现在只播出不到一半而已，而且对于最高人民检察院影视中心的组织创作，个人还是寄予了很高的期望。&amp;emsp;&amp;emsp;因而，决定先回顾一部很多年前的反腐老剧《黑洞》，真实、黑暗，又不颓废、不做作。">
+  <meta name="description" content="需求&amp;emsp;&amp;emsp;使用Spark实现对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。&amp;emsp;&amp;emsp;注：实现效果与上一篇博客用Hadoop的操作结果相同。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《黑洞》背后的思考">
-<meta property="og:url" content="http://blog.killyliu.com/2017/04/10/《黑洞》背后的思考/index.html">
+<meta property="og:title" content="Java实现Spark词配对Wordcount计数">
+<meta property="og:url" content="http://blog.killyliu.com/2017/05/24/Java实现Spark词配对Wordcount计数/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;其实最初是想写关于《人民的名义》观看感想的，但思来想去，现在只播出不到一半而已，而且对于最高人民检察院影视中心的组织创作，个人还是寄予了很高的期望。&amp;emsp;&amp;emsp;因而，决定先回顾一部很多年前的反腐老剧《黑洞》，真实、黑暗，又不颓废、不做作。">
-<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170410/hd1.jpg">
-<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170410/hd2.jpg">
-<meta property="og:updated_time" content="2017-04-10T15:03:11.000Z">
+<meta property="og:description" content="需求&amp;emsp;&amp;emsp;使用Spark实现对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。&amp;emsp;&amp;emsp;注：实现效果与上一篇博客用Hadoop的操作结果相同。">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524174702557?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524174729526?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524175301177?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524175342616?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524175743360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524175553499?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170524175802450?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-05-24T11:10:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《黑洞》背后的思考">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;其实最初是想写关于《人民的名义》观看感想的，但思来想去，现在只播出不到一半而已，而且对于最高人民检察院影视中心的组织创作，个人还是寄予了很高的期望。&amp;emsp;&amp;emsp;因而，决定先回顾一部很多年前的反腐老剧《黑洞》，真实、黑暗，又不颓废、不做作。">
-<meta name="twitter:image" content="http://blog.killyliu.com/blogImg/20170410/hd1.jpg">
+<meta name="twitter:title" content="Java实现Spark词配对Wordcount计数">
+<meta name="twitter:description" content="需求&amp;emsp;&amp;emsp;使用Spark实现对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。&amp;emsp;&amp;emsp;注：实现效果与上一篇博客用Hadoop的操作结果相同。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170524174702557?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -157,40 +162,51 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-《黑洞》背后的思考" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java实现Spark词配对Wordcount计数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      《黑洞》背后的思考
+      Java实现Spark词配对Wordcount计数
     </h1>
   
 
         
-        <a href="/2017/04/10/《黑洞》背后的思考/" class="archive-article-date">
-  	<time datetime="2017-04-10T02:52:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
+        <a href="/2017/05/24/Java实现Spark词配对Wordcount计数/" class="archive-article-date">
+  	<time datetime="2017-05-24T10:26:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/blogImg/20170410/hd1.jpg" alt="“你这儿给我一句话，我这心里一踏实 那今天报不报这个到，在我” “你该报到报你的到，该查你的案查你的案，跟我没关系”"></p>
-<p>&emsp;&emsp;其实最初是想写关于《人民的名义》观看感想的，但思来想去，现在只播出不到一半而已，而且对于最高人民检察院影视中心的组织创作，个人还是寄予了很高的期望。<br>&emsp;&emsp;因而，决定先回顾一部很多年前的反腐老剧《黑洞》，真实、黑暗，又不颓废、不做作。<br><a id="more"></a></p>
-<h2 id="人性是物性的绽放"><a href="#人性是物性的绽放" class="headerlink" title="人性是物性的绽放"></a>人性是物性的绽放</h2><p>&emsp;&emsp;”当我们相信自己对这个世界已经相当重要的时候，其实这个世界才刚刚准备原谅我们的幼稚。”再次追剧后，对《少年凯哥》中的这句话有了更深刻的理解。我们总以为自己看懂了一些事，明白了一些物，就可以笑傲江湖。但其实百年岁月仅三千瓢中一引，殊不知天很高，地很厚，水很深。</p>
-<p>&emsp;&emsp;刘振汉：这个世界上总有那么一群人，有自己的原则，这个原则不包含任何东西，甚至自己最亲近的人，只为心中的那份执着，那份正义。这样子的人在外人看来，有些异类。但从大局上讲，这样的人是值得尊敬的。</p>
-<p>&emsp;&emsp;聂明宇：并非一个纯粹的坏人，只是选择了在处理事情上顺从内心阴暗面的处理方法，以至于走向犯罪的深渊，触犯了法律的高压线。但其实他的一系列行为借用那句“我本是活腻了的人”，只是用不恰当的行为对周边实施了报复，以填补内心的缺失。</p>
-<p>&emsp;&emsp;两位各有自己的性格，也各有自己坚守，同样也各有各的得失。这种人性的矛盾成为整个剧的粘合剂。性有如一团颜色各异缠丝，包含着众多的情感，包含着众多的人情事故，也包含着众多的道德准则和自我立场。而不同的抽丝选择，决定了不同的余留种类。</p>
-<p>&emsp;&emsp;现实不等于真实、真实不等于真相、真相不等于真理、真理不等于智慧，智慧不等于平凡，最后落在平凡，又和我们的平凡不太一样，是让所有的生命完成和解，和解不是妥协，不是谅解。</p>
-<p>&emsp;&emsp;现实社会是在正义、道德等掩饰性词语的背后正恶平衡推动的。对与错没有唯一的标准，智慧、力量、勇气、美好永远都是人们渴求的，而善良，一直是人类发展中的奢侈品。在当时的社会，不谈什么正义、公平、法制，能有自己精神的内核就已经超越了社会的大多数。</p>
-<h2 id="经济发展与社会生活的黑洞"><a href="#经济发展与社会生活的黑洞" class="headerlink" title="经济发展与社会生活的黑洞"></a>经济发展与社会生活的黑洞</h2><p>&emsp;&emsp;《黑洞》中所提到的天都市属于杜撰，这个城市究竟是哪里并不重要，真正重要的是埋在这个城市的土里的时代印记。世纪之交，很多城市看起来繁荣昌盛，发展稳定，但是地下却暗流涌动。时代的发展就像是巨大的车轮无情地碾过，人在很多时候在欲望和权利面前被推着向前走，正如那几乎一手遮天的天都市。</p>
-<p>&emsp;&emsp;社会道德和社会良知的黑洞笼罩着天都市，正义与邪恶看似一线之隔，但从黑洞一角抽丝剥茧，你会发现没有尽头，很多事情远比想象中复杂，比预计更艰难。刘振汉的纠结与果敢，聂明宇的从容与不安，龚倩的性情与执念，张峰的绝情与无奈，王明的急性与奉献，小芮的狠毒与忠心，贺清明的胆怯与良善，人性的两面，在此彰显。</p>
-<hr>
-<p><img src="/blogImg/20170410/hd2.jpg" alt="“咱们俩的误会，那都是历史造成的。父亲还是父亲，他儿子毕竟是儿子呀。我熬到现在，我” “不容易，我知道你要说这个。这辈子我听得太多了，我烦了 我知道你希望我怎么做，你希望我 顶着 扛着” 其实，我能明白你。你一直想做个清官，你做到了 你确实是个清官 清官嘛，为国家而清，为百姓而廉 你呢，是为自己清廉 我能理解你，但是你不该 你不该牺牲你的儿子，保全你自己“ “跟你说句实话吧，我从来没想过去自首，我怎么会这么蠢 去自首呢 我只想看看，你的心里还有没有我 没有，还是没有”"></p>
-<p>&emsp;&emsp;当片尾的音乐前奏响起，冗长而低沉的男声渐吟，那一幕幕黑白交替的画面就这样映射在脑海中，被悲伤与黑暗笼罩着的这个名叫天都的城市，如同深渊一般，将故事里的每一个人都搅进了这个黑洞的漩涡之中。然而，它最终还是无情地制造出了一场悲剧。</p>
-<p>&emsp;&emsp;“这些高墙还真是有点意思。一开始你恨它，然后你对它就习惯了。等相当的时间过去后，你还会依赖它。”大势所向，螳臂当车。可大势之外有大势，小小的螳螂怎么看到的天？</p>
+        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>&emsp;&emsp;使用Spark实现对一个文档中的每一行的单词进行词配对计数，要求去标点符号，将大写符号统一转化成为小写单词。<br>&emsp;&emsp;注：实现效果与上一篇博客用Hadoop的操作结果相同。<br><a id="more"></a><br>&emsp;&emsp;举例说明，最初的文档为：</p>
+<blockquote>
+<p>“a a, A b<br>a b c</p>
+</blockquote>
+<p>&emsp;&emsp;则处理后的结果为：</p>
+<blockquote>
+<p>(a  a)   2<br>(a  b)   2<br>(a  c)   1<br>(b  a)   4<br>(b  c)   1<br>(c  a)   1<br>(c  b)   1</p>
+</blockquote>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><h3 id="开启hadoop和spark"><a href="#开启hadoop和spark" class="headerlink" title="开启hadoop和spark"></a>开启hadoop和spark</h3><p>&emsp;&emsp;进入Hadoop所在的文件夹并执行启动语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sbin/start-all.sh</div></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;进入Spark所在的文件夹并执行启动语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sbin/start-all.sh</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524174702557?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="jar包处理"><a href="#jar包处理" class="headerlink" title="jar包处理"></a>jar包处理</h3><p>&emsp;&emsp;将编码程序打包成jar包进行处理<br><img src="http://img.blog.csdn.net/20170524174729526?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="HDFS文件设置"><a href="#HDFS文件设置" class="headerlink" title="HDFS文件设置"></a>HDFS文件设置</h3><p>&emsp;&emsp;使用hdfs创建文件夹，并将input文件放在hdfs文件夹下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hadoop dfs -mkdir -p /wordcount2/input</div><div class="line">$ hadoop dfs -put /Users/liuqi/Desktop/input2.txt /wordcount2/input</div><div class="line">$ bin/hdfs dfs -ls /wordcount2/input</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524175301177?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="spark-submit程序"><a href="#spark-submit程序" class="headerlink" title="spark-submit程序"></a>spark-submit程序</h3><p>&emsp;&emsp;运行mapreduce程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/spark-submit --class WordCount --num-executors 2 --executor-memory 6g --executor-cores 4 /Users/liuqi/Desktop/wordcountspark.jar /wordcount2/output</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524175342616?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>&emsp;&emsp;结果显示如下：<br><img src="http://img.blog.csdn.net/20170524175743360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>&emsp;&emsp;注：如果中间有错，则删除对应文件重新进行操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hdfs dfs -rm -r /wordcount2/input</div></pre></td></tr></table></figure></p>
+<h3 id="查询结果"><a href="#查询结果" class="headerlink" title="查询结果"></a>查询结果</h3><p>&emsp;&emsp;结果保存在本地：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hadoop dfs -getmerge /wordcount2/output /Users/liuqi/Desktop/wordcount2/</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170524175553499?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="附加代码"><a href="#附加代码" class="headerlink" title="附加代码"></a>附加代码</h2><p><img src="http://img.blog.csdn.net/20170524175802450?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>&emsp;&emsp;注：这里只是显示java代码，整个工程去我的CSDN博客进行下载。</p>
+<blockquote>
+<p><a href="http://download.csdn.net/detail/u012842255/9851234" target="_blank" rel="external">http://download.csdn.net/detail/u012842255/9851234</a></p>
+</blockquote>
+<p>WordCount.java:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div></pre></td><td class="code"><pre><div class="line">import scala.Tuple2;</div><div class="line">import org.apache.spark.SparkConf;</div><div class="line">import org.apache.spark.api.java.JavaPairRDD;</div><div class="line">import org.apache.spark.api.java.JavaRDD;</div><div class="line">import org.apache.spark.api.java.JavaSparkContext;</div><div class="line">import org.apache.spark.api.java.function.FlatMapFunction;</div><div class="line">import org.apache.spark.api.java.function.Function2;</div><div class="line">import org.apache.spark.api.java.function.PairFunction;</div><div class="line"></div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.Arrays;</div><div class="line">import java.util.Iterator;</div><div class="line">import java.util.List;</div><div class="line">import java.util.regex.Pattern;</div><div class="line">/** </div><div class="line"> *  </div><div class="line"> * WordCount </div><div class="line"> * @author 刘琦</div><div class="line"> */ </div><div class="line"></div><div class="line">public final class WordCount &#123;</div><div class="line">  private static final Pattern SPACE = Pattern.compile(&quot; &quot;);</div><div class="line">  public static void main(String[] args) throws Exception &#123;</div><div class="line">    if (args.length &lt; 1) &#123;</div><div class="line">      System.err.println(&quot;Usage: WordCount &lt;file&gt;&quot;);</div><div class="line">      System.exit(1);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    SparkConf sparkConf = new SparkConf().setAppName(&quot;WordCount&quot;);</div><div class="line">    JavaSparkContext ctx = new JavaSparkContext(sparkConf);</div><div class="line">    JavaRDD&lt;String&gt; lines = ctx.textFile(&quot;hdfs://localhost:54310/wordcount2/input&quot;);</div><div class="line">    </div><div class="line">    JavaRDD&lt;String&gt; words = lines.flatMap(new FlatMapFunction&lt;String, String&gt;() &#123;</div><div class="line"></div><div class="line">		public Iterator&lt;String&gt; call(String s) throws Exception &#123;</div><div class="line">			// TODO Auto-generated method stub</div><div class="line">			//大小写转化与去符号</div><div class="line">			String newStr = s.toLowerCase().replaceAll(&quot;[\\d\\pP\\p&#123;Punct&#125;]&quot;, &quot;&quot;);;</div><div class="line">			String[] wordResult = SPACE.split(newStr);</div><div class="line">			List&lt;String&gt; wordNewResult = new ArrayList&lt;String&gt;();</div><div class="line">			String[][] result = new String[wordResult.length][2];</div><div class="line">			for (int i = 0; i &lt; wordResult.length; i ++)&#123;</div><div class="line">				result[i][0] = wordResult[i];</div><div class="line">	             result[i][1] = &quot;0&quot;;</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			//对每一行的单词进行处理</div><div class="line">            for(int i = 0; i &lt; wordResult.length ; i++)&#123;</div><div class="line">            	for(int j = 0; j &lt; wordResult.length; j++)&#123;</div><div class="line">					if(i == j)&#123;</div><div class="line">						continue;</div><div class="line">					&#125;else if (result[i][1].equals(&quot;1&quot;))&#123;</div><div class="line">						//这个词之前出现过了，这里只统计它之后还有没有相同的数据,后来发现不需要这一步了，相同的只计算一次就好</div><div class="line">						if(i&lt;j &amp;&amp; result[i][0].equals(result[j][0]))&#123;</div><div class="line">							result[j][1] = &quot;1&quot;;</div><div class="line">							//wordNewResult.add(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);</div><div class="line">							//word.set(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);</div><div class="line">//							output.collect(word, one);</div><div class="line">						&#125;</div><div class="line">					&#125;else&#123;</div><div class="line">						//这个词之前没有出现过</div><div class="line">						if (!result[i][0].equals(result[j][0]))&#123;</div><div class="line">							//普通操作</div><div class="line">							wordNewResult.add(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);</div><div class="line">//							word.set(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);  </div><div class="line">						&#125;else&#123;</div><div class="line">			                //说明两个单词是一样的,并且这个单词之前没有统计过</div><div class="line">							result[j][1] = &quot;1&quot;;</div><div class="line">							wordNewResult.add(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);</div><div class="line">//							word.set(&quot;(&quot; + result[i][0] + &quot;  &quot; + result[j][0] + &quot;)&quot;);  </div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			return wordNewResult.iterator();</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">      &#125;);</div><div class="line"></div><div class="line">      JavaPairRDD&lt;String, Integer&gt; ones = words.mapToPair(new PairFunction&lt;String, String, Integer&gt;() &#123;</div><div class="line">        public Tuple2&lt;String, Integer&gt; call(String s) &#123;</div><div class="line">          return new Tuple2&lt;String, Integer&gt;(s, 1);</div><div class="line">        &#125;</div><div class="line">      &#125;);</div><div class="line"></div><div class="line">      JavaPairRDD&lt;String, Integer&gt; counts = ones.reduceByKey(new Function2&lt;Integer, Integer, Integer&gt;() &#123;</div><div class="line">        public Integer call(Integer i1, Integer i2) &#123;</div><div class="line">          return i1 + i2;</div><div class="line">        &#125;</div><div class="line">      &#125;);</div><div class="line"></div><div class="line">      //创建Hdfs文件，打开Hdfs输出流</div><div class="line">      HdfsOperate.openHdfsFile(&quot;hdfs://localhost:54310/wordcount2/output&quot;);</div><div class="line">      </div><div class="line">      List&lt;Tuple2&lt;String, Integer&gt;&gt; output = counts.collect();</div><div class="line">      for (Tuple2&lt;?,?&gt; tuple : output) &#123;</div><div class="line">        System.out.println(tuple._1() + &quot;: &quot; + tuple._2());</div><div class="line">        HdfsOperate.writeString(tuple._1() + &quot;: &quot; + tuple._2());</div><div class="line">      &#125;</div><div class="line">      ctx.stop();</div><div class="line">      //关闭Hdfs输出流</div><div class="line">      HdfsOperate.closeHdfsFile();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>HdfsOperate.java：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">import org.apache.hadoop.conf.Configuration;</div><div class="line">import org.apache.hadoop.fs.FileSystem;</div><div class="line">import org.apache.hadoop.fs.Path;</div><div class="line">import org.apache.hadoop.hdfs.web.resources.ExceptionHandler;</div><div class="line">import org.slf4j.Logger;</div><div class="line">import org.slf4j.LoggerFactory;</div><div class="line"></div><div class="line">import java.io.*;</div><div class="line">import java.net.URI;</div><div class="line">/**</div><div class="line"> * 使用Hadoop的FileSystem把数据写入到HDFS</div><div class="line"> */</div><div class="line">public class HdfsOperate implements Serializable&#123;</div><div class="line"></div><div class="line">    private static Logger logger = LoggerFactory.getLogger(HdfsOperate.class);</div><div class="line">    private static Configuration conf = new Configuration();</div><div class="line">    private static BufferedWriter writer = null;</div><div class="line"></div><div class="line">    //在hdfs的目标位置新建一个文件，得到一个输出流</div><div class="line">    public static void openHdfsFile(String path) throws Exception &#123;</div><div class="line">        FileSystem fs = FileSystem.get(URI.create(path),conf);</div><div class="line">        writer = new BufferedWriter(new OutputStreamWriter(fs.create(new Path(path))));</div><div class="line">        if(null!=writer)&#123;</div><div class="line">            logger.info(&quot;[HdfsOperate]&gt;&gt; initialize writer succeed!&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //往hdfs文件中写入数据</div><div class="line">    public static void writeString(String line) &#123;</div><div class="line">        try &#123;</div><div class="line">            writer.write(line + &quot;\n&quot;);</div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            logger.error(&quot;[HdfsOperate]&gt;&gt; writer a line error:&quot;  ,  e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //关闭hdfs输出流</div><div class="line">    public static void closeHdfsFile() &#123;</div><div class="line">        try &#123;</div><div class="line">            if (null != writer) &#123;</div><div class="line">                writer.close();</div><div class="line">                logger.info(&quot;[HdfsOperate]&gt;&gt; closeHdfsFile close writer succeed!&quot;);</div><div class="line">            &#125;</div><div class="line">            else&#123;</div><div class="line">                logger.error(&quot;[HdfsOperate]&gt;&gt; closeHdfsFile writer is null&quot;);</div><div class="line">            &#125;</div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            logger.error(&quot;[HdfsOperate]&gt;&gt; closeHdfsFile close hdfs error:&quot; + e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
 
@@ -235,7 +251,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wordcount</a>
         		</li>
       		
 		</ul>
@@ -291,7 +315,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/04/10/《黑洞》背后的思考/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/05/24/Java实现Spark词配对Wordcount计数/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -305,18 +329,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/04/17/Repo的理解及用法小结-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Repo的理解及用法小结(1)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/04/05/她是七月，也是安生/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">她是七月，也是安生</div>
+    <a href="/2017/05/20/Java实现Hadoop下词配对Wordcount计数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java实现Hadoop词配对Wordcount计数</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -330,7 +345,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="《黑洞》背后的思考" data-title="《黑洞》背后的思考" data-url="http://blog.killyliu.com/2017/04/10/《黑洞》背后的思考/"></div>
+	<div class="ds-thread" data-thread-key="Java实现Spark词配对Wordcount计数" data-title="Java实现Spark词配对Wordcount计数" data-url="http://blog.killyliu.com/2017/05/24/Java实现Spark词配对Wordcount计数/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
