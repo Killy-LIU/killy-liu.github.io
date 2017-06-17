@@ -6,24 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>Repo的理解及用法小结(2) | 煊琦的小窝</title>
+  <title>Archives: 2017/6 | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;emsp;&amp;emsp;之前已经讲了Repo的基本理解，这里总结一下Repo的常用命令。
-1. repo init1repo init -u manifest_git_path -m manifest_file_name -b branch_name --repo-url=repo_url --no-repo-verify
-&amp;emsp;&amp;emsp;在当前目录下安装 Repo。这会产生一个 .rep">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Repo的理解及用法小结(2)">
-<meta property="og:url" content="http://blog.killyliu.com/2017/04/18/Repo的理解及用法小结-2/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="煊琦的小窝">
+<meta property="og:url" content="http://blog.killyliu.com/archives/2017/06/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;之前已经讲了Repo的基本理解，这里总结一下Repo的常用命令。
-1. repo init1repo init -u manifest_git_path -m manifest_file_name -b branch_name --repo-url=repo_url --no-repo-verify
-&amp;emsp;&amp;emsp;在当前目录下安装 Repo。这会产生一个 .rep">
-<meta property="og:updated_time" content="2017-04-19T03:24:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Repo的理解及用法小结(2)">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;之前已经讲了Repo的基本理解，这里总结一下Repo的常用命令。
-1. repo init1repo init -u manifest_git_path -m manifest_file_name -b branch_name --repo-url=repo_url --no-repo-verify
-&amp;emsp;&amp;emsp;在当前目录下安装 Repo。这会产生一个 .rep">
+<meta name="twitter:title" content="煊琦的小窝">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -160,356 +150,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Repo的理解及用法小结-2" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Repo的理解及用法小结(2)
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/06/10/情不知所起，丝丝心动有点甜/" class="archive-article-date">
+  	<time datetime="2017-06-10T06:04:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-10</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/06/10/情不知所起，丝丝心动有点甜/">情不知所起，丝丝心动有点甜</a>
     </h1>
   
 
-        
-        <a href="/2017/04/18/Repo的理解及用法小结-2/" class="archive-article-date">
-  	<time datetime="2017-04-18T03:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;之前已经讲了Repo的基本理解，这里总结一下Repo的常用命令。</p>
-<h3 id="1-repo-init"><a href="#1-repo-init" class="headerlink" title="1. repo init"></a>1. repo init</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo init -u manifest_git_path -m manifest_file_name -b branch_name --repo-url=repo_url --no-repo-verify</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;在当前目录下安装 Repo。这会产生一个 .repo/ 目录，目录包括装 Repo 源代码和标准 Android 清单文件的 Git 仓库。.repo/ 目录还包括 manifest.xml，是一个在 .repo/manifests/ 目录选择清单的符号链接。<br>&emsp;&emsp;选项：</p>
-<blockquote>
-<p>-u:  指定Manifest库的Git访问路径。<br>-m:  指定要使用的Manifest文件。<br>-b:  指定要使用Manifest仓库中的某个特定分支。<br>–repo-url:  指定要检查repo是否有更新的远端repoGit库的访问路径。<br>–no-repo-verify:  指定不检查repo库是否需要更新。</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="2-repo-sync"><a href="#2-repo-sync" class="headerlink" title="2. repo sync"></a>2. repo sync</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo sync [project_name]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;用于参照清单文件克隆并同步版本库。可以使用repo sync project_name的形式只克隆某个项目。。<br>&emsp;&emsp;实现参照清单.repo/manifests.xml克隆并同步版本库，如果版本库不存在，则相当于执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone</div></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;如果版本库已经存在，则相当于执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#对每个remote源进行fetch操作</div><div class="line">git remote update</div><div class="line">#针对当前分支的跟踪分支进行rebase操作</div><div class="line">git rebase/origin/branch</div></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;选项：</p>
-<blockquote>
-<p>-d：切换指定项目回到清单修正。如果该项目目前是一个主题分支那就有帮助，但清单修正是暂时需要。<br>-s：同步到一个已知的构建 manifest-server 在当前清单指定的元素。<br>-f：继续同步其他项目，即使有项目同步失败。</p>
-</blockquote>
-<h3 id="3-repo-start"><a href="#3-repo-start" class="headerlink" title="3. repo start"></a>3. repo start</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo start &lt;newbranchname&gt; [--all|&lt;project&gt;...]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;创建并切换分支。刚克隆下来的代码是没有分支的，repo start实际是对git checkout -b命令的封装。<br>&emsp;&emsp;为指定的项目或所有的项目（若使用-all），以清单文件中为设定的分支，创建特定的分支。<br>&emsp;&emsp;这条指令与git checkout -b 还是有很大区别的。<br>&emsp;&emsp;· git checkout -b 是在当前所在的分支的基础上创建特性分支。<br>&emsp;&emsp;· 而repo start 是在清单文件设定的分支的基础上创建特性分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo start stable --all</div></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;假设清单文件中设定的分支是gingerbread-exdroid-stable，那么执行以上指令就是对所有项目，在gingerbread-exdroid-stable的基础上创建特性分支stable。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo start stable platform/build platform/bionic</div></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;假设清单文件中设定的分支是gingerbread-exdroid-stable，那么执行以上指令就是对platform/build、platform/bionic项目，在gingerbread-exdroid-stable的基础上创建特性分支stable。</p>
-<h3 id="4-repo-checkout"><a href="#4-repo-checkout" class="headerlink" title="4. repo checkout"></a>4. repo checkout</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;branchname&gt; [&lt;rpoject&gt;...]&#123;&#123;&#123;</div><div class="line">  repo checkout &lt;branchname&gt; [&lt;project&gt;...]</div><div class="line">&#125;&#125;&#125;</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;切换分支。 实际上是对git checkout命令的封装，但不能带-b参数，所以不能用此命令来创建特性分支。<br>&emsp;&emsp;示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">repo checkout liuq-dev</div><div class="line">repo checkout liuq-dev skipper/build platform/bionic</div></pre></td></tr></table></figure></p>
-<h3 id="5-repo-branches"><a href="#5-repo-branches" class="headerlink" title="5. repo branches"></a>5. repo branches</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo branches [&lt;project&gt;...]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;查看分支。<br>&emsp;&emsp;示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">repo branches</div><div class="line">repo branches skipper/build skipper/release</div><div class="line">#查看可切换的分支</div><div class="line">cd .repo/manifests</div><div class="line">git branch -a | cut -d / -f 3</div></pre></td></tr></table></figure></p>
-<h3 id="6-repo-diff"><a href="#6-repo-diff" class="headerlink" title="6. repo diff"></a>6. repo diff</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo diff [&lt;project&gt;...]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;查看工作区文件差异。实际是对git diff命令的封装，用于分别显示各个项目工作区下的文件差异。在 commit 和工作目录之间使用 git diff 显示明显差异的更改。<br>&emsp;&emsp;示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#查看所有项目</div><div class="line">repo diff</div><div class="line">#只查看其中的两个项目</div><div class="line">repo diff skipper/build skipper/release</div></pre></td></tr></table></figure></p>
-<h3 id="7-repo-stage"><a href="#7-repo-stage" class="headerlink" title="7. repo stage"></a>7. repo stage</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo stage -i [&lt;project&gt;...]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;把文件添加到index表中。实际上是对git add –interactive命令的封装，用于挑选各个项目中的改动以加入暂存区。<br>&emsp;&emsp;-i表示git add –interactive命令中的–interactive，给出一个界面供用户选择。</p>
-<h3 id="8-repo-prune"><a href="#8-repo-prune" class="headerlink" title="8. repo prune"></a>8. repo prune</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo prune [&lt;project&gt;...]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;删除已经合并分支。实际上是对git branch -d 命令的封装，该命令用于扫描项目的各个分支，并删除已经合并的分支。</p>
-<h3 id="9-repo-abandon"><a href="#9-repo-abandon" class="headerlink" title="9. repo abandon"></a>9. repo abandon</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo abandon &lt;branchname&gt; [&lt;rpoject&gt;...]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;删除指定分支。实际是对git brance -D命令的封装。</p>
-<h3 id="10-repo-status"><a href="#10-repo-status" class="headerlink" title="10. repo status"></a>10. repo status</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo status [&lt;project&gt;...]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;查看文件状态。<br>&emsp;&emsp;示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#输出skipper/build项目分支的修改状态</div><div class="line">repo status skipper/build</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>每个小节的首行显示项目名称，以及所在的分支的名称。<br>每个字母表示暂存区的文件修改状态。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">字母</th>
-<th style="text-align:left">含义</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">-</td>
-<td style="text-align:left">无变化</td>
-<td style="text-align:left">没有修改，在 HEAD 和在索引中是一样的</td>
-</tr>
-<tr>
-<td style="text-align:left">A</td>
-<td style="text-align:left">添加</td>
-<td style="text-align:left">不在HEAD中，在暂存区中</td>
-</tr>
-<tr>
-<td style="text-align:left">M</td>
-<td style="text-align:left">修改</td>
-<td style="text-align:left">在HEAD中， 在暂存区中，内容不同</td>
-</tr>
-<tr>
-<td style="text-align:left">D</td>
-<td style="text-align:left">删除</td>
-<td style="text-align:left">在HEAD中，不在暂存区</td>
-</tr>
-<tr>
-<td style="text-align:left">R</td>
-<td style="text-align:left">重命名</td>
-<td style="text-align:left">不在HEAD中，在暂存区中</td>
-</tr>
-<tr>
-<td style="text-align:left">C</td>
-<td style="text-align:left">拷贝</td>
-<td style="text-align:left">不在HEAD中，在暂存区，从其他文件拷贝</td>
-</tr>
-<tr>
-<td style="text-align:left">T</td>
-<td style="text-align:left">文件状态改变</td>
-<td style="text-align:left">在HEAD中，在暂存区，内容相同</td>
-</tr>
-<tr>
-<td style="text-align:left">U</td>
-<td style="text-align:left">未合并</td>
-<td style="text-align:left">需要冲突解决</td>
-</tr>
-</tbody>
-</table>
-<p>第二个字符表示工作区文件的更改状态。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">字母</th>
-<th style="text-align:left">含义</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">-</td>
-<td style="text-align:left">新/未知</td>
-<td style="text-align:left">不在暂存区，在工作区</td>
-</tr>
-<tr>
-<td style="text-align:left">m</td>
-<td style="text-align:left">修改</td>
-<td style="text-align:left">在暂存区，在工作区，被修改</td>
-</tr>
-<tr>
-<td style="text-align:left">d</td>
-<td style="text-align:left">删除</td>
-<td style="text-align:left">在暂存区，不在工作区</td>
-</tr>
-</tbody>
-</table>
-<p>两个表示状态的字母后面，显示文件名信息。如果有文件重名还会显示改变前后的文件名及文件的相似度。</p>
-</blockquote>
-<h3 id="11-repo-remote"><a href="#11-repo-remote" class="headerlink" title="11. repo remote"></a>11. repo remote</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">repo remote add &lt;remotename&gt; &lt;url&gt; [&lt;project&gt;...]</div><div class="line">repo remote rm &lt;remotename&gt; [&lt;project&gt;...]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;设置远程仓库。<br>&emsp;&emsp;示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo remote add org ssh://10.11.10.11/git_repo</div></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;这个指令根据xml文件添加的远程分支，方便于向服务器提交代码，执行之后的build目录下看到新的远程分支org。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#删除远程仓库</div><div class="line">repo remote rm org</div></pre></td></tr></table></figure></p>
-<h3 id="12-repo-push"><a href="#12-repo-push" class="headerlink" title="12. repo push"></a>12. repo push</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo push &lt;remotename&gt; [--all|&lt;project&gt;...]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;向服务器提交代码。repo会自己查询需要向服务器提交的项目并提示用户。<br>&emsp;&emsp;示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo push org</div></pre></td></tr></table></figure></p>
-<h3 id="13-repo-forall"><a href="#13-repo-forall" class="headerlink" title="13. repo forall"></a>13. repo forall</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo forall [&lt;project&gt;...] -c &lt;command&gt;</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;迭代器，可以在所有指定的项目中执行同一个shell指令。<br>&emsp;&emsp;选项：</p>
-<blockquote>
-<p>-c 后面所带的参数是shell指令，即执行命令和参数。命令是通过 /bin/sh 评估的并且后面的任何参数就如 shell 位置的参数通过。<br>-p 在shell指令输出之前列出项目名称，即在指定命令的输出前显示项目标题。这是通过绑定管道到命令的stdin，stdout，和 sterr 流，并且用管道输送所有输出量到一个连续的流，显示在一个单一的页面调度会话中。<br>-v 列出执行shell指令输出的错误信息，即显示命令写到 sterr 的信息。</p>
-</blockquote>
-<p>&emsp;&emsp;附加环境变量：</p>
-<blockquote>
-<p>REPO_PROJECT 指定项目的名称<br>REPO_PATH 指定项目在工作区的相对路径<br>REPO_REMOTE 指定项目远程仓库的名称<br>REPO_LREV 指定项目最后一次提交服务器仓库对应的哈希值<br>REPO_RREV 指定项目在克隆时的指定分支，manifest里的revision属性</p>
-</blockquote>
-<p>&emsp;&emsp;如果-c后面所带的shell指令中有上述环境变量，则需要用单引号把shell指令括起来。</p>
-<h4 id="13-1-添加环境变量"><a href="#13-1-添加环境变量" class="headerlink" title="13.1. 添加环境变量"></a>13.1. 添加环境变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">repo forall -c &apos;echo $REPO_PROJECT&apos;</div><div class="line">repo forall -c &apos;echo $REPO_PATH&apos;</div></pre></td></tr></table></figure>
-<h4 id="13-2-合并多个分支"><a href="#13-2-合并多个分支" class="headerlink" title="13.2. 合并多个分支"></a>13.2. 合并多个分支</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo forall -p -c git merge topic</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;把所有项目都切换到master分支，执行上述指令将topic分支合并到master分支。</p>
-<h4 id="13-3-打标签"><a href="#13-3-打标签" class="headerlink" title="13.3. 打标签"></a>13.3. 打标签</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo forall -c git tag crane-stable-1.6</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;在所有项目下打标签。</p>
-<h4 id="13-4-设置远程仓库"><a href="#13-4-设置远程仓库" class="headerlink" title="13.4. 设置远程仓库"></a>13.4. 设置远程仓库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo forall -c &apos;git remote add korg ssh://xiong@172.16.31/$REPO_PROJECT.git&apos;</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;引用环境变量REPO_PROJECT添加远程仓库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#删除远程仓库。</div><div class="line">repo forall -c git remote rm korg</div></pre></td></tr></table></figure></p>
-<h4 id="13-5-创建特性分支"><a href="#13-5-创建特性分支" class="headerlink" title="13.5. 创建特性分支"></a>13.5. 创建特性分支</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">repo forall -c git branch crane-dev</div><div class="line">repo forall -c git checkout -b crane-dev</div></pre></td></tr></table></figure>
-<h3 id="14-repo-grep"><a href="#14-repo-grep" class="headerlink" title="14. repo grep"></a>14. repo grep</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo grep &#123;pattern | -e pattern&#125; [&lt;project&gt;...]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;打印出符合某个模式的行。相当于对 git grep 的封装，用于在项目文件中进行内容查找。<br>&emsp;&emsp;示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#要找一行, 里面有#define, 并且有&apos;MAX_PATH&apos; 或者 &apos;PATH_MAX&apos;:</div><div class="line">repo grep -e &apos;#define&apos; --and -\( -e MAX_PATH -e PATH_MAX \)</div><div class="line">#查找一行, 里面有 &apos;NODE&apos;或&apos;Unexpected&apos;, 并且在一个文件中这两个都有的.</div><div class="line">repo grep --all-match -e NODE -e Unexpected</div></pre></td></tr></table></figure></p>
-<h3 id="15-repo-manifest"><a href="#15-repo-manifest" class="headerlink" title="15. repo manifest"></a>15. repo manifest</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo manifest [-o &#123;-|NAME.xml&#125; [-r]]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;manifest检验工具，用于显示manifest文件内容。<br>&emsp;&emsp;选项:</p>
-<blockquote>
-<p>-h, –help        显示这个帮助信息后退出<br>-r, –revision-as-HEAD    把某版次存为当前的HEAD<br>-o -|NAME.xml, –output-file=-|NAME.xml    把manifest存为NAME.xml</p>
-</blockquote>
-<h3 id="16-repo-version"><a href="#16-repo-version" class="headerlink" title="16. repo version"></a>16. repo version</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo version</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;显示repo的版本号。<br>&emsp;&emsp;选项:</p>
-<blockquote>
-<p>-h, –help        显示这个帮助信息后退出.</p>
-</blockquote>
-<h3 id="17-repo-upload"><a href="#17-repo-upload" class="headerlink" title="17. repo upload"></a>17. repo upload</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo upload [--re --cc] &#123;[&lt;project&gt;]...|--replace &lt;project&gt;&#125;</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;repo upload 相当于git push，但是又有很大的不同。它不是将版本库改动推送到代码审核服务器（Gerrit软件架设）的特殊引用上，使用SSH协议。代码审核服务器会对推送的提交进行特殊处理，将新的提交显示为一个待审核的修改集，并进入代码审核流程，只有当审核通过后，才会合并到官方正式的版本库中。<br>&emsp;&emsp;选项：</p>
-<blockquote>
-<p>-h, –help 显示帮助信息<br>-t 发送本地分支名称到Gerrit代码审核服务器<br>–replace 发送此分支的更新补丁集<br>–re=REVIEWERS 要求指定的人员进行审核<br>–cc=CC 同时发送通知到如下邮件地址</p>
-</blockquote>
-<h3 id="18-repo-download"><a href="#18-repo-download" class="headerlink" title="18. repo download"></a>18. repo download</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo download &#123;project change[/patchset]&#125;...</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;repo download命令主要用于代码审核者下载和评估贡献者提交的修订。<br>&emsp;&emsp;贡献者的修订在Git版本库中refs/changes/<changeid>/<patchset>引用方式命名（缺省的patchset为1），和其他Git引用一样，用git fetch获取，该引用所指向的最新的提交就是贡献者待审核的修订。<br>&emsp;&emsp;使用repo download命令实际上就是用git fetch获取到对应项目的refs/changes/<changeid>/patchset&gt;引用，并自动切换到对应的引用上。</changeid></patchset></changeid></p>
-<h3 id="19-repo-selfupdate"><a href="#19-repo-selfupdate" class="headerlink" title="19. repo selfupdate"></a>19. repo selfupdate</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo selfupdate</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;用于 repo 自身的更新。如果有新版本的repo存在, 这个命令会升级repo到最新版本。通常这个动作在repo sync时会自动去做, 所以不需要最终用户手动去执行。<br>&emsp;&emsp;选项:</p>
-<blockquote>
-<p>-h, –help        显示这个帮助信息后退出.<br>–no-repo-verify       不要验证repo源码.</p>
-</blockquote>
-<h3 id="20-repo-help"><a href="#20-repo-help" class="headerlink" title="20. repo help"></a>20. repo help</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo help [--all|command]</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;显示命令的详细帮助。<br>&emsp;&emsp;选项:</p>
-<blockquote>
-<p>-h, –help                显示这个帮助信息后退出<br>-a, –all                    显示完整的命令列表</p>
-</blockquote>
-<p>参考文档：<br><a href="http://blog.sina.com.cn/s/blog_89f592f50100vpau.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_89f592f50100vpau.html</a><br><a href="https://github.com/Trawn/repo-help-zh-cn/blob/master/repo%20help%20zhcn.txt" target="_blank" rel="external">https://github.com/Trawn/repo-help-zh-cn/blob/master/repo%20help%20zhcn.txt</a></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/infoImg/alipay.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/infoImg/wechat.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Repo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/04/18/Repo的理解及用法小结-2/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/04/20/人脸识别-1-Python3-6-OpenCV3-2在Mac下环境搭建/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-           人脸识别(1)--Python3.6+OpenCV3.2在Mac下环境搭建
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/04/17/Repo的理解及用法小结-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Repo的理解及用法小结(1)</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Repo的理解及用法小结-2" data-title="Repo的理解及用法小结(2)" data-url="http://blog.killyliu.com/2017/04/18/Repo的理解及用法小结-2/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
+    </div></section>
   
 
-
+    
 
 
           </div>
@@ -538,8 +232,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
