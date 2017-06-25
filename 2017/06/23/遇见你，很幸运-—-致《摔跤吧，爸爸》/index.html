@@ -6,45 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>博客搭建(2)--Mac下用Hexo搭建个人博客 | 煊琦的小窝</title>
+  <title>和梦想的近身肉搏 -- 记忆中的技术，眼中的情怀 | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在此之前，有人推荐使用jekyll，有人推荐hexo，因而上网查找资料进行简单对比：
-
-Jekyll基于Ruby， Hexo基于NodeJs。
-两者都支持Markdown。
-Jekyll的主题相对而言没有Hexo的美观（个人见解）
-对于网上所说的Jekyll没有本地服务器，需要纠正一下，其实两者都可以实现本地预览功能，再发布到容器中同步。根据个人喜好进行选择，这里我选择了hexo。">
+  <meta name="description" content="&amp;emsp;&amp;emsp;自上映起，《摔跤吧，爸爸》就陆陆续续俘获了不少男女老少影迷，这次已经是三刷，依旧没出息的哭了。我们得意于打败了巨人，却不知巨人已老。影片虽然满是套路却又那么真诚，乖张情节中的父爱荣光更加闪亮耀眼，遇见你，很幸运。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客搭建(2)--Mac下用Hexo搭建个人博客">
-<meta property="og:url" content="http://blog.killyliu.com/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/index.html">
+<meta property="og:title" content="和梦想的近身肉搏 -- 记忆中的技术，眼中的情怀">
+<meta property="og:url" content="http://blog.killyliu.com/2017/06/23/遇见你，很幸运-—-致《摔跤吧，爸爸》/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
-<meta property="og:description" content="在此之前，有人推荐使用jekyll，有人推荐hexo，因而上网查找资料进行简单对比：
-
-Jekyll基于Ruby， Hexo基于NodeJs。
-两者都支持Markdown。
-Jekyll的主题相对而言没有Hexo的美观（个人见解）
-对于网上所说的Jekyll没有本地服务器，需要纠正一下，其实两者都可以实现本地预览功能，再发布到容器中同步。根据个人喜好进行选择，这里我选择了hexo。">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326225413510?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326225434003?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170327215200508?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170326230723751?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170327222042360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170327002235997?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170327011421804?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170327012218769?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170327013940126?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170328005148384?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170328093039073?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-04-21T13:31:32.000Z">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;自上映起，《摔跤吧，爸爸》就陆陆续续俘获了不少男女老少影迷，这次已经是三刷，依旧没出息的哭了。我们得意于打败了巨人，却不知巨人已老。影片虽然满是套路却又那么真诚，乖张情节中的父爱荣光更加闪亮耀眼，遇见你，很幸运。">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170623/sjbbb1.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170623/sjbbb2.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170623/sjbbb3.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170623/sjbbb4.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170623/sjbbb5.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170623/sjbbb6.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170623/sjbbb7.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170623/sjbbb8.jpg">
+<meta property="og:updated_time" content="2017-06-25T13:37:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客搭建(2)--Mac下用Hexo搭建个人博客">
-<meta name="twitter:description" content="在此之前，有人推荐使用jekyll，有人推荐hexo，因而上网查找资料进行简单对比：
-
-Jekyll基于Ruby， Hexo基于NodeJs。
-两者都支持Markdown。
-Jekyll的主题相对而言没有Hexo的美观（个人见解）
-对于网上所说的Jekyll没有本地服务器，需要纠正一下，其实两者都可以实现本地预览功能，再发布到容器中同步。根据个人喜好进行选择，这里我选择了hexo。">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20170326225413510?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:title" content="和梦想的近身肉搏 -- 记忆中的技术，眼中的情怀">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;自上映起，《摔跤吧，爸爸》就陆陆续续俘获了不少男女老少影迷，这次已经是三刷，依旧没出息的哭了。我们得意于打败了巨人，却不知巨人已老。影片虽然满是套路却又那么真诚，乖张情节中的父爱荣光更加闪亮耀眼，遇见你，很幸运。">
+<meta name="twitter:image" content="http://blog.killyliu.com/blogImg/20170623/sjbbb1.jpg">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -181,122 +163,58 @@ Jekyll的主题相对而言没有Hexo的美观（个人见解）
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-博客搭建-2-Mac下用Hexo搭建个人博客" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-遇见你，很幸运-—-致《摔跤吧，爸爸》" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      博客搭建(2)--Mac下用Hexo搭建个人博客
+      和梦想的近身肉搏 -- 记忆中的技术，眼中的情怀
     </h1>
   
 
         
-        <a href="/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/" class="archive-article-date">
-  	<time datetime="2017-04-04T07:54:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-04</time>
+        <a href="/2017/06/23/遇见你，很幸运-—-致《摔跤吧，爸爸》/" class="archive-article-date">
+  	<time datetime="2017-06-23T07:02:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>在此之前，有人推荐使用jekyll，有人推荐hexo，因而上网查找资料进行简单对比：</p>
-<ul>
-<li>Jekyll基于Ruby， Hexo基于NodeJs。</li>
-<li>两者都支持Markdown。</li>
-<li>Jekyll的主题相对而言没有Hexo的美观（个人见解）</li>
-<li>对于网上所说的Jekyll没有本地服务器，需要纠正一下，其实两者都可以实现本地预览功能，再发布到容器中同步。<br>根据个人喜好进行选择，这里我选择了hexo。</li>
-</ul>
-</blockquote>
-<a id="more"></a>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p><strong>1. 安装node.js</strong></p>
-<blockquote>
-<p>安装语句：brew install node</p>
-</blockquote>
-<p> <img src="http://img.blog.csdn.net/20170326225413510?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="brew install node"></p>
-<p><strong>2. 已搭建git环境（或者github管理软件）</strong></p>
-<blockquote>
-<p>使用语句查看安装成功：<br>node -v<br>npm -v<br>git –version</p>
-</blockquote>
-<p> <img src="http://img.blog.csdn.net/20170326225434003?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="node -v; npm -v; git --version"></p>
-<h2 id="初始化Github环境"><a href="#初始化Github环境" class="headerlink" title="初始化Github环境"></a>初始化Github环境</h2><p>在上一篇博客中已经建好了网站，这里直接克隆到本地便于接下来的操作。<br>选定博客搭建路径后，将仓库克隆到本地：</p>
-<blockquote>
-<p>git clone <a href="https://github.com/Killy-LIU/killy-liu.github.io.git" target="_blank" rel="external">https://github.com/Killy-LIU/killy-liu.github.io.git</a><br>cd killy-liu.github.io/<br>git init</p>
-</blockquote>
-<p><img src="http://img.blog.csdn.net/20170327215200508?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<h2 id="安装Hexo并搭建网站"><a href="#安装Hexo并搭建网站" class="headerlink" title="安装Hexo并搭建网站"></a>安装Hexo并搭建网站</h2><p> <strong>1. 安装执行命令：</strong></p>
-<blockquote>
-<p>sudo npm install -g hexo-cli</p>
-</blockquote>
-<p><img src="http://img.blog.csdn.net/20170326230723751?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="sudo npm install -g hexo-cli"></p>
-<p> <strong>2. 从控制台进入克隆的文件夹目录下，进行初始化hexo：</strong></p>
-<blockquote>
-<p>hexo init</p>
-</blockquote>
-<p> <img src="http://img.blog.csdn.net/20170327222042360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="hexo init"></p>
-<p> <strong>3. 在初始化完成之后，执行本地服务化发现报错。因而重新进行安装配置。</strong></p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-<p> 文件夹目录结构</p>
-<blockquote>
-<p>source：博客资源文件夹<br>source/_drafts：草稿文件夹<br>source/_posts：文章文件夹<br>themes：存放主题的文件夹<br>themes/landscape：默认的主题<br>_config.yml：全局配置文件</p>
-</blockquote>
-<p> <strong>4. 进行本地服务测试。</strong></p>
-<blockquote>
-<p>hexo server</p>
-</blockquote>
-<p> 输入 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 即可打开默认页面：<br> <img src="http://img.blog.csdn.net/20170327002235997?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="http://localhost:4000/"></p>
-<p> 跳坑： 这里曾经因为无法启动本地服务器，尝试过许多方法(如下)，均无法解决错误 Cannot find module ‘./build/Release/DTraceProviderBindings’，以下是曾经尝试过的方式：</p>
-<blockquote>
-<p>npm install hexo –no-optional<br>npm uninstall hexo + npm install hexo –no-optional<br>npm uninstall hexo-cli -g + npm install hexo-cli -g</p>
-</blockquote>
-<p> 最后查找资料得到的解决方案：</p>
-<ol>
-<li>首先我们找到全局hexo的安装目录</li>
-<li>找到文件dtrace-provider.js</li>
-<li>注释如下内容:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> var builds = [&apos;Release&apos;, &apos;default&apos;, &apos;Debug&apos;];</div><div class="line">for (var i in builds) &#123;</div><div class="line">    try &#123;</div><div class="line">        var binding = require(&apos;./build/&apos; + builds[i] + &apos;/DTraceProviderBindings&apos;);</div><div class="line">        DTraceProvider = binding.DTraceProvider;</div><div class="line">        break;</div><div class="line">    &#125; catch (e) &#123;</div><div class="line">        // if the platform looks like it _should_ have DTrace</div><div class="line">        // available, log a failure to load the bindings.</div><div class="line">        if (process.platform == &apos;darwin&apos; ||</div><div class="line">            process.platform == &apos;sunos&apos; ||</div><div class="line">            process.platform == &apos;freebsd&apos;) &#123;</div><div class="line">            console.error(e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>现在网站上的主题是默认的，既然是打造属于自己的小窝，必然要考虑换一个更好看的样式了~~在经过仔细比对之后，选择了可以适配网页端和手机端的特色主题yilia，相信自己的审美哦^_^<br>列出排名前三的主题：</p>
-<blockquote>
-<p>1.<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a>  3510个star。<br>2.<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia</a>  1703个star。<br>3.<a href="https://github.com/TryGhost/Casper" target="_blank" rel="external">https://github.com/TryGhost/Casper</a>  679个star</p>
-</blockquote>
-<p>具体操作步骤：</p>
-<p><strong>1. 克隆项目到本地(任意一个不是在博客文件夹里的地址均可)：</strong><br>这里我用github克隆的，与控制台的命令语句效果相同：</p>
-<blockquote>
-<p>git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia</p>
-</blockquote>
-<p> <img src="http://img.blog.csdn.net/20170327011421804?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="克隆yilia主题"></p>
-<p> 克隆结束后，将克隆文件夹名更改为 yilia，并放于之前所建目录下的/themes/下，与landscape并列。<br> <img src="http://img.blog.csdn.net/20170327012218769?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p><strong>2. 修改./_config.yml文件：</strong></p>
-<blockquote>
-<p>theme: yilia    //默认为landscape</p>
-</blockquote>
-<p><strong>3. 修改themes/yilia/_config.yml文件：</strong><br> 注：根据自己的实际情况做调整：动画效果、友情链接、博友回复等等。</p>
-<p><strong>4. 查看效果</strong><br>更改主题之后可以使用命令 hexo server 打开本地服务，再次登录 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 查看效果。<br><img src="http://img.blog.csdn.net/20170327013940126?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="http://localhost:4000/"></p>
-<h2 id="Github部署"><a href="#Github部署" class="headerlink" title="Github部署"></a>Github部署</h2><p>这里连着上一篇博客，将搭建好的网站通过修改配置，完成在github上的部署。</p>
-<p><strong>1. Github设置</strong><br>修改./_config.yml文件： </p>
-<blockquote>
-<p>deploy:<br>    type: git<br>    repository:  <a href="https://github.com/Killy-LIU/killy-liu.github.io.git" target="_blank" rel="external">https://github.com/Killy-LIU/killy-liu.github.io.git</a><br>    branch: master</p>
-</blockquote>
-<p> 注：在hexo3.x版本下，type应填git，而非github；冒号后面都有一个英文的空格，不然会报错。</p>
-<p><strong>2. 部署</strong><br>部署命令为：</p>
-<blockquote>
-<p>hexo clean (清理public文件夹，不需要经常用)<br>hexo generate<br>hexo deploy</p>
-</blockquote>
-<p> 但我的上一条命令 hexo deploy 报错，因而采用下面的命令：</p>
-<blockquote>
-<p>npm install hexo-deployer-git–save<br>hexo deploy</p>
-</blockquote>
-<p>跳坑1：理论上应该部署成功，可是点击网页出现404，发现网页没有对应到我设置的网站上。<br> 百度一下，需要将CNAME，LICENSE，README.md 放在source文件夹下，部署时才会一起传到github上。<br> 重新运行</p>
-<blockquote>
-<p>hexo generate<br>hexo deploy</p>
-</blockquote>
-<p> 部署成功^_^<br> <img src="http://img.blog.csdn.net/20170328005148384?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br> <img src="http://img.blog.csdn.net/20170328093039073?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjg0MjI1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>跳坑2：好多博客中写先搭建hexo并选择主题，后部署与github。曾经试过用github将上一期得到的内容直接下载下来，将这里的内容拷贝到文件夹内，但启动时报错：[rejected]        master -&gt; master (non-fast-forward)。原因是两个都是master，有冲突。</p>
+        <p><img src="/blogImg/20170623/sjbbb1.jpg" alt="《摔跤吧，爸爸》"></p>
+<p>&emsp;&emsp;自上映起，《摔跤吧，爸爸》就陆陆续续俘获了不少男女老少影迷，这次已经是三刷，依旧没出息的哭了。我们得意于打败了巨人，却不知巨人已老。影片虽然满是套路却又那么真诚，乖张情节中的父爱荣光更加闪亮耀眼，遇见你，很幸运。<br><a id="more"></a></p>
+<h2 id="无数望女成凤的剪影"><a href="#无数望女成凤的剪影" class="headerlink" title="无数望女成凤的剪影"></a>无数望女成凤的剪影</h2><p><img src="/blogImg/20170623/sjbbb2.jpg" alt="“我倒是希望能有这样的父亲，能为我的未来着想。以女儿身降生的那一刻起，我就注定与锅碗瓢盆为伍，终日操持家务。当我到了14岁，他们会将我嫁给一次我从未见过的男人，从里离开家里，减轻家里的负担。而你们的父亲，至少把你们当成女儿。他为你们挡风遮雨，与全世界对抗，就是为了能让你们拥有自己的人生。”"></p>
+<p>妻子说：她们受伤了怎么版？<br>爸爸说：那就治好她们。</p>
+<p>妻子说：如果村子里的人说闲话怎么办？<br>爸爸说：不用在意他们。</p>
+<p>妻子说：以后谁会娶我们的女儿呢？<br>爸爸说：我把她们培养出色，她们就有权选择自己的丈夫。</p>
+<p><img src="/blogImg/20170623/sjbbb3.jpg" alt="“我想都归功于我的父亲”"></p>
+<p>教练说：不要输的太难看。<br>爸爸说：你不会输！</p>
+<p>教练说：至少要拿块奖牌。<br>爸爸说：你注定是冠军！</p>
+<p>教练说：你已经领先了，注意防守。<br>爸爸说：忘掉领先，保持进攻！</p>
+<p>教练说：有些人，注定不是打国际比赛的料。<br>爸爸说：你输掉的，是本该你赢的比赛。</p>
+<p>教练说：现在你至少可以有一块银牌了。<br>爸爸说：赢下金牌，你将成为印度的榜样，永载史册！</p>
+<p>教练培养的姐姐，说：这里是娱乐室，可以看电视。<br>爸爸培养的妹妹，问：训练场在哪？</p>
+<p>爸爸培养的吉塔，第一次参加比赛，挑选最强的对手；输了以后，彻夜难眠，问爸爸，我什么时候能再打？<br>教练培养的吉塔，输了第一次国际比赛，脸上却没有丝毫沮丧，一心涂着漂亮的指甲油。</p>
+<p>一个只追求拿到奖牌的教练，追求的是完成任务，享受自己是国家队教练的满足感；<br>一个对吉塔抱有最大信心的爸爸，知道她注定是冠军，他要帮她赢，不顾一切。</p>
+<h2 id="偏见上的反偏见狂欢"><a href="#偏见上的反偏见狂欢" class="headerlink" title="偏见上的反偏见狂欢"></a>偏见上的反偏见狂欢</h2><p>&emsp;&emsp;“我演电影时，在不同的角色中，体验过不同的人生。还有另一种人生，就是我自己的人生：卸去演员的身份，作为一个人，以我的方式存在。生活中，思绪如风般吹拂着我的脑海。我读报纸、看新闻、与朋友闲聊、和陌生人交谈，总有一些事触动我的心弦。”</p>
+<p>&emsp;&emsp;“一方面，印度在崛起，蒸蒸日上，作为一个印度人，我感到高兴和自豪。但是，在社会中还有很多令人心酸的事实，我们却对此熟视无睹。这些苦难，却让我深感不安，感到哀伤。有时我会想，干嘛要去思考这些与我无关的事情呢？我的生活幸福美满，别人的苦难与我何干呢？但是它确有干系。因为我也是这个社会中的一份子。一连串的事情把你我和社会的每一个人都联系在一起，一呼一吸中，体会心中的共鸣。”</p>
+<p>&emsp;&emsp;“我想讨论一些关系印度民生的话题，不责难任何人，不中伤任何人，也不制约任何人。人人都说，伤害我们的人近在咫尺，或许我们都有责任。现在，与我一起踏上这段旅程吧。一起去寻找、去发现、去学习、去分享，一起去揭开这些难题的谜底。”</p>
+<p>&emsp;&emsp;“我无心激化矛盾，只为能改变这个时代。无论是谁的心中，只要有星星之火，必将成燎原之势。”</p>
+<p>&emsp;&emsp;“拍电影不是用来迎合谁的。其实当你拍摄了一部对自己国家有一定批判意义的电影时，这对国家就有着至关重要的意义。批判自己和自己的国家是我们进步的第一步。没必要为自己的祖国被放在聚光灯下而羞耻，应该羞耻的是我们的国家在那一方面还有欠缺。”</p>
+<p><img src="/blogImg/20170623/sjbbb4.jpg" alt="“明天的战略是赢。如果你只拿了银牌，很快就会被忘记，但是金牌却会被记住，成为榜样。你看那边的女孩，你不是为了你，你是为了像她们一样的女孩子。为了那些一出生就必须与锅碗瓢盆过一辈子的女人，告诉那些认为女人不及男人，你们可以赢。 如果你明天赢了，并非自己独享胜利，有几百万个像她们一样的女孩跟你一起得胜，所有被认为不如男孩的女孩们、那些被迫做繁琐家务的女孩们、那些被嫁出去生儿育女的女孩们，明天你不仅跟澳洲选手比赛，还是跟这些轻视女子的人比赛!”"></p>
+<p>&emsp;&emsp;我们手中选择的权利，因太轻易而不被珍惜，却是其他人梦寐以求的希望。我想不到用什么情绪，去唤醒那些不以为然的懒散。阻止前行的可能不只是自己，但若失掉一颗想赢的心，未免太过让人失望。</p>
+<h2 id="阿米尔·汗-——-天道酬勤，厚积薄发"><a href="#阿米尔·汗-——-天道酬勤，厚积薄发" class="headerlink" title="阿米尔·汗 —— 天道酬勤，厚积薄发"></a>阿米尔·汗 —— 天道酬勤，厚积薄发</h2><p>&emsp;&emsp;作为一个演员，阿米尔·汗完美演绎了一个怀抱理想的摔跤手的三个年龄段：拍完青年戏，增肥56斤；拍老年戏之后，5个月瘦掉50斤，将体脂率从37%下降到9.6%；拍壮年戏时，已然是近于健美的身材。</p>
+<p>&emsp;&emsp;身材之外，更加关注的是米叔的眼神变化。</p>
+<p><img src="/blogImg/20170623/sjbbb5.jpg" alt="青年时期"></p>
+<p>&emsp;&emsp;青年时期，那眼神里跳跃着的是对喜爱的摔跤运动的志在必得和对这个世界的狂热，明亮、清澈。</p>
+<p><img src="/blogImg/20170623/sjbbb6.jpg" alt="中年时期"></p>
+<p>&emsp;&emsp;中年时期，开始沉淀，挣扎，但仍然执着，眼神充满着坚毅.</p>
+<p><img src="/blogImg/20170623/sjbbb7.jpg" alt="暮年时期"></p>
+<p>&emsp;&emsp;暮年时期，仍有愤怒但却无奈，一直为之努力奋斗的理想并不会给自己带来平和的人生，但他开始接受这个世界的不公平，只是即便是接受，也不愿意放弃，因而眼神开始沧桑，但仍然有力量。</p>
+<p><img src="/blogImg/20170623/sjbbb8.jpg" alt="“我为你骄傲”"></p>
+<p>&emsp;&emsp;米叔的人生不是什么开挂，他只是比别的人都明白，选择和努力的重要性。</p>
 
       
 
@@ -341,11 +259,7 @@ Jekyll的主题相对而言没有Hexo的美观（个人见解）
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随感</a>
         		</li>
       		
 		</ul>
@@ -401,7 +315,7 @@ Jekyll的主题相对而言没有Hexo的美观（个人见解）
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/06/23/遇见你，很幸运-—-致《摔跤吧，爸爸》/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -415,18 +329,9 @@ Jekyll的主题相对而言没有Hexo的美观（个人见解）
   
 <nav id="article-nav">
   
-    <a href="/2017/04/05/她是七月，也是安生/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          她是七月，也是安生
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/04/04/博客搭建-1-使用Github搭建个人博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">博客搭建(1)--使用Github搭建个人博客</div>
+    <a href="/2017/06/17/四六级·神吐槽/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">四六级·神吐槽</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -440,7 +345,7 @@ Jekyll的主题相对而言没有Hexo的美观（个人见解）
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="博客搭建-2-Mac下用Hexo搭建个人博客" data-title="博客搭建(2)--Mac下用Hexo搭建个人博客" data-url="http://blog.killyliu.com/2017/04/04/博客搭建-2-Mac下用Hexo搭建个人博客/"></div>
+	<div class="ds-thread" data-thread-key="遇见你，很幸运-—-致《摔跤吧，爸爸》" data-title="和梦想的近身肉搏 -- 记忆中的技术，眼中的情怀" data-url="http://blog.killyliu.com/2017/06/23/遇见你，很幸运-—-致《摔跤吧，爸爸》/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
