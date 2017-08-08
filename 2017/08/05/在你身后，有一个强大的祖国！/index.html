@@ -6,21 +6,34 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.killyliu.com">
-  <title>Repo的理解及用法小结(1) | 煊琦的小窝</title>
+  <title>在你身后，有一个强大的祖国！ | 煊琦的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Repo介绍&amp;emsp;&amp;emsp;随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
-&amp;emsp;&amp;emsp;Repo是Google用Python脚本写的调">
+  <meta name="description" content="“一朝是战狼，终身是战狼”，上映短短8天，票房已经超过了25亿。
+影片的最后，当屏幕上打出：“中华人民共和国公民：当你在海外遭遇危险，不要放弃！请记住，你的身后，有一个强大的祖国！”
+看到这些字幕打出时，多少人心里压抑不住骄傲，压抑不住感动，就如见闻君的一位朋友所言，“世界那么大，你想去那哪就去哪，根本不用怕！”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Repo的理解及用法小结(1)">
-<meta property="og:url" content="http://blog.killyliu.com/2017/04/17/Repo的理解及用法小结-1/index.html">
+<meta property="og:title" content="在你身后，有一个强大的祖国！">
+<meta property="og:url" content="http://blog.killyliu.com/2017/08/05/在你身后，有一个强大的祖国！/index.html">
 <meta property="og:site_name" content="煊琦的小窝">
-<meta property="og:description" content="Repo介绍&amp;emsp;&amp;emsp;随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
-&amp;emsp;&amp;emsp;Repo是Google用Python脚本写的调">
-<meta property="og:updated_time" content="2017-04-19T03:25:11.000Z">
+<meta property="og:description" content="“一朝是战狼，终身是战狼”，上映短短8天，票房已经超过了25亿。
+影片的最后，当屏幕上打出：“中华人民共和国公民：当你在海外遭遇危险，不要放弃！请记住，你的身后，有一个强大的祖国！”
+看到这些字幕打出时，多少人心里压抑不住骄傲，压抑不住感动，就如见闻君的一位朋友所言，“世界那么大，你想去那哪就去哪，根本不用怕！”">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170805/zl0.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170805/zl1.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170805/zl2.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170805/zl3.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170805/zl4.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170805/zl5.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170805/zl6.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170805/zl7.jpg">
+<meta property="og:image" content="http://blog.killyliu.com/blogImg/20170805/zl8.jpg">
+<meta property="og:updated_time" content="2017-08-08T08:18:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Repo的理解及用法小结(1)">
-<meta name="twitter:description" content="Repo介绍&amp;emsp;&amp;emsp;随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。
-&amp;emsp;&amp;emsp;Repo是Google用Python脚本写的调">
+<meta name="twitter:title" content="在你身后，有一个强大的祖国！">
+<meta name="twitter:description" content="“一朝是战狼，终身是战狼”，上映短短8天，票房已经超过了25亿。
+影片的最后，当屏幕上打出：“中华人民共和国公民：当你在海外遭遇危险，不要放弃！请记住，你的身后，有一个强大的祖国！”
+看到这些字幕打出时，多少人心里压抑不住骄傲，压抑不住感动，就如见闻君的一位朋友所言，“世界那么大，你想去那哪就去哪，根本不用怕！”">
+<meta name="twitter:image" content="http://blog.killyliu.com/blogImg/20170805/zl0.jpg">
   
   
     <link rel="icon" href="/infoImg/logo.png">
@@ -157,58 +170,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Repo的理解及用法小结-1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-在你身后，有一个强大的祖国！" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Repo的理解及用法小结(1)
+      在你身后，有一个强大的祖国！
     </h1>
   
 
         
-        <a href="/2017/04/17/Repo的理解及用法小结-1/" class="archive-article-date">
-  	<time datetime="2017-04-17T01:45:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-17</time>
+        <a href="/2017/08/05/在你身后，有一个强大的祖国！/" class="archive-article-date">
+  	<time datetime="2017-08-05T08:31:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Repo介绍"><a href="#Repo介绍" class="headerlink" title="Repo介绍"></a>Repo介绍</h2><p>&emsp;&emsp;随之移动终端设备的普及，各企业越来越重视Android市场，而研究Android系统的底层驱动开发，首先需要做的便是建立一套Android版本库管理机制。Android使用Git进行代码管理，而Repo命令行工具对Git命令进行了封装，可以管理多个git项目，从而更好地对代码进行集中式管理。</p>
-<p>&emsp;&emsp;Repo是Google用Python脚本写的调用Git的脚本（可以在Google Group 上找到相关文档资料），用于下载、管理Android项目的软件仓库。Repo主要包含Repo配置信息以及Repo锁管理的Git项目集合。<br><a id="more"></a></p>
-<h2 id="Repo用法"><a href="#Repo用法" class="headerlink" title="Repo用法"></a>Repo用法</h2><h3 id="安装Repo"><a href="#安装Repo" class="headerlink" title="安装Repo"></a>安装Repo</h3><p>注：下载Repo只针对第一次使用。<br>首先，确认主目录下存在 bin/ 目录并已包含在路径中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir ~/bin</div><div class="line">PATH=~/bin:$PATH</div></pre></td></tr></table></figure></p>
-<p>下载Repo工具并设置可执行的权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</div><div class="line">chmod a+x ~/bin/repo</div></pre></td></tr></table></figure></p>
-<p>注：在Repo设置成功后，会出现下列提示，说明可以进行初始化了。</p>
-<blockquote>
-<p>error: repo is not installed.  Use “repo init” to install it here.</p>
-</blockquote>
-<h3 id="Repo初始化-init"><a href="#Repo初始化-init" class="headerlink" title="Repo初始化 (init)"></a>Repo初始化 (init)</h3><p>首先创建目录用于存放工程文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir WORKSPACE</div><div class="line">cd WORKSPACE</div></pre></td></tr></table></figure></p>
-<p>之后，使用命令进行初始化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo init -u URL [OPTIONS]</div></pre></td></tr></table></figure></p>
-<p>具体操作有：</p>
-<blockquote>
-<p>-u：指定一个URL，其连接到一个manifest仓库。<br>-m：在manifest仓库中选择一个 NAME.xml 文件。<br>-b：选择一个manifest仓库中一个特殊的分支。<br>注：<br>· 如果不提供 -b REVISION 或者 –manifest-branch=REVISION参数，则检出 manifest Git 库的 master 分支。<br>· 如果不提供 -m NAME.xml 或者 –manifest-name=NAME.xml 参数，则使用缺省值 default.xml。</p>
-</blockquote>
-<p>在初始化完成后，输入ls命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls repo</div></pre></td></tr></table></figure></p>
-<p>可以看到相关文件：manifests/  manifests.git/  manifest.xml  repo/</p>
-<blockquote>
-<p>(1) .repo：Repo目录，可用于提取相应项目工作目录到外面的repo工作目录。<br>(2) .repo/manifests.git：Repo配置信息的Git库，不同版本包含不同配置信息。<br>(3) .repo/manifests：Repo配置信息的工作目录（将配置信息的工作目录和相应的实际Git目录分离管理，并且配置信息中的.git目录实际只是指向实际Git库的软连接），其中可能包含一个或多个xml文件描述的配置。每个xml文件是独立的一套配置，配置内容包括当前Repo工作目录包含哪些Git项目、所有Git项目所处的默认公共分支、以及远端地址等。<br>(4) .repo/manifest.xml：Repo工作目录中的内容同一时刻只能采用manifests中的一个xml文件做为其配置，该文件就是其软连接，通过init的-m选项指定采用哪个文件；另外，同一xml文件也可能处于manifests库的不同版本或者不同分支，通过init的-b选项指定使用manifests中的哪个分支，每次init命令都会从服务器更新最新的配置。<br>(5) .repo/repo：Repo脚本集的Git库，这里包含Repo命令所需的所有子命令脚本实现，由Python完成，这个目录本身又由Git来管理。</p>
-</blockquote>
-<h3 id="Repo同步-sync"><a href="#Repo同步-sync" class="headerlink" title="Repo同步 (sync)"></a>Repo同步 (sync)</h3><p>下载当前repo配置的所有项目，并生成对应的repo工作目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo sync</div></pre></td></tr></table></figure></p>
-<p>如果想生成特定项目的代码，则使用下列语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo sync [&lt;project&gt;...]</div></pre></td></tr></table></figure></p>
-<p>实现参照清单.repo/manifests.xml克隆并同步版本库，如果版本库不存在，则相当于执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone</div></pre></td></tr></table></figure></p>
-<p>如果版本库已经存在，则相当于执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#对每个remote源进行fetch操作</div><div class="line">git remote update</div><div class="line">#针对当前分支的跟踪分支进行rebase操作</div><div class="line">git rebase/origin/branch</div></pre></td></tr></table></figure></p>
-<p>同步涉及到的参数有：</p>
-<blockquote>
-<p>-j：开启多线程同步操作，会加快sync命令的执行速度。默认情况下，使用4个线程并发进行sync。<br>-c, –current-branch：只同步指定的远程分支。默认情况下，sync会同步所有的远程分支，当远程分支比较多的时候，下载的代码量就大。使用该参数，可以缩减下载时间，节省本地磁盘空间。<br>-d, –detach：脱离当前的本地分支，切换到manifest.xml中设定的分支。在实际操作中这个参数很有用，当我们第一次sync完代码后，往往会切换到dev分支进行开发。如果不带该参数使用sync， 则会触发本地的dev分支与manifest设定的远程分支进行合并，这会很可能会导致sync失败。<br>-f, –force-broken：当有git库sync失败了，不中断整个同步操作，继续同步其他的git库。<br>–no-clone-bundle：在向服务器发起请求时，为了做到尽快的响应速度，会用到内容分发网络(CDN, Content Delivery Network)。同步操作也会通过CDN与就近的服务器建立连接， 使用HTTP/HTTPS的$URL/clone.bundle来初始化本地的git库，clone.bundle实际上是远程git库的镜像，通过HTTP直接下载，这会更好的利用网络带宽，加快下载速度。</p>
-</blockquote>
-<p>同步完成后，.repo下多了projects目录，，原工作目录下也多了目录：</p>
-<blockquote>
-<p>(1) .repo/projects：Repo所管理的所有Git项目集，包含Repo当前配置所指定的所有Git项目对应的Git目录。<br>(2) .repo/../ :Repo的工作区。在Repo目录（即.repo）之外，根据Repo配置（即.repo/manifest.xml文件），从.repo/projects下提取出指定分支的各个Git项目（即.repo/projects中Git项目的子集）的工作目录，形成Repo工作目录，可供开发使用。</p>
-</blockquote>
-<p>注：以上内容参考链接<br><a href="http://blog.chinaunix.net/uid-9525959-id-4534319.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-9525959-id-4534319.html</a><br><a href="http://www.360doc.com/content/14/0220/17/97538_354256755.shtml" target="_blank" rel="external">http://www.360doc.com/content/14/0220/17/97538_354256755.shtml</a></p>
+        <p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=491295324&auto=1&height=66"></iframe><br><img src="/blogImg/20170805/zl0.jpg" alt="战狼2"></p>
+<p>“一朝是战狼，终身是战狼”，上映短短8天，票房已经超过了25亿。</p>
+<p>影片的最后，当屏幕上打出：“中华人民共和国公民：当你在海外遭遇危险，不要放弃！请记住，你的身后，有一个强大的祖国！”</p>
+<p>看到这些字幕打出时，多少人心里压抑不住骄傲，压抑不住感动，就如见闻君的一位朋友所言，“世界那么大，你想去那哪就去哪，根本不用怕！”<br><a id="more"></a><br>中国护照的含金量不在于它能免签多少国家，而在于危急时刻能带你回家！<br><img src="/blogImg/20170805/zl1.jpg" alt="战狼2"></p>
+<h2 id="有一种速度，叫中国救援"><a href="#有一种速度，叫中国救援" class="headerlink" title="有一种速度，叫中国救援"></a>有一种速度，叫中国救援</h2><p>节选自 旅行攻略 <a href="https://mp.weixin.qq.com/s/CLmdsIKJXqp1m-wRefUW_g" target="_blank" rel="external">看了《战狼2》才知道，有中国护照才是最骄傲的事！</a></p>
+<p>也许，现在的中国护照还不能带你去世界上任何一个地方。但是，当战争和灾难来临时，它能从任何一个地方接你回家！</p>
+<h3 id="新西兰地震，满天都是中国救援飞机"><a href="#新西兰地震，满天都是中国救援飞机" class="headerlink" title="新西兰地震，满天都是中国救援飞机"></a>新西兰地震，满天都是中国救援飞机</h3><p>2016年，新西兰南岛发生地震，距离震中较近的海滨小镇凯伊库瞬间成为“孤城”。</p>
+<p>一时间，来自世界各国1000多名游客被困，其中就有125名中国游客。</p>
+<p>得到消息后，中国领事馆第一时间启动了撤离计划，租下了所有可用的直升机，把中国游客一个一个安全撤离，安置到了其他安全城市。</p>
+<p>那一天，新西兰满天都是中国救援的飞机。</p>
+<p>手持中国护照的中国游客，在全世界人民羡慕和无奈的眼神下，第一时间离开了那座“孤城”。</p>
+<h3 id="以色列大火，中国留学生第一时间被安全转移"><a href="#以色列大火，中国留学生第一时间被安全转移" class="headerlink" title="以色列大火，中国留学生第一时间被安全转移"></a>以色列大火，中国留学生第一时间被安全转移</h3><p>16年底，以色列发生特大火灾，第三大城市海法也受灾严重，火势失控，全城进入警戒模式。</p>
+<p>而重灾区的海法大学里，有数百名中国留学生。</p>
+<p>面对火情，中国驻以色列大使馆第一时间出动，当晚即组织大巴将中国留学生连夜安全撤出。</p>
+<p>第二天一早，不少欧美留学生还在想法投亲靠友，中国留学生已经在另一座安全城市的酒店里，悠然地晒起了早餐。</p>
+<p><img src="/blogImg/20170805/zl2.jpg" alt="战狼2"></p>
+<p>每一个在异国的危难时刻，第一想到你的，永远是祖国。</p>
+<p>而我们的祖国，也在全世界的注视下，做到了永远第一时间赶到救援现场，给远在他国的我们以庇护。</p>
+<p>这时候才发现，身在国外，一本中国护照，就是我们最强大的护身符。</p>
+<h2 id="有一种感动，叫祖国带我回家"><a href="#有一种感动，叫祖国带我回家" class="headerlink" title="有一种感动，叫祖国带我回家"></a>有一种感动，叫祖国带我回家</h2><p>最动人的一句话不是我爱你，而是无论你在哪里，只要你有危险我一定会倾尽所有，赶到你身边接你回家！这是我的祖国，中国！</p>
+<p>中国护照不一定能够把你带到世界上任何一个地方，但是中国的护照能把你从任何一个地方接回来！</p>
+<h3 id="从战乱的利比亚安全接回中国公民35860人"><a href="#从战乱的利比亚安全接回中国公民35860人" class="headerlink" title="从战乱的利比亚安全接回中国公民35860人"></a>从战乱的利比亚安全接回中国公民35860人</h3><p>2011年，利比亚局势动荡，战争一触即发。</p>
+<p>为保护在外侨胞，中国调动了182架次中国民航包机、5艘货轮，动用了4架军机，租用20余艘次外籍邮轮，把35860名中国公民从利比亚安全接回了家。</p>
+<p>这次撤侨，堪称中国政府最大规模的国家行动，仅仅是数字就足以惊人。</p>
+<p>被安全接回家的同胞们，前一秒还在死神的眼皮底下挣扎，下一秒就在强大祖国的庇护下安全到家。</p>
+<p><img src="/blogImg/20170805/zl3.jpg" alt="战狼2"></p>
+<p>当回到祖国怀抱的那一刻，也许才知道，对这土地爱得有多深沉。</p>
+<h3 id="从局势动荡的也门武装撤离中国公民613人。"><a href="#从局势动荡的也门武装撤离中国公民613人。" class="headerlink" title="从局势动荡的也门武装撤离中国公民613人。"></a>从局势动荡的也门武装撤离中国公民613人。</h3><p>15年年初，也门内战爆发，也门国内安全形势急剧恶化。</p>
+<p>当时，美英法德国等10多个国家关闭使馆，要求本国公民自行撤离也门。</p>
+<p>但中国，选择派出中国海军护卫舰，动用武装力量，准备把中国公民从炮火纷飞的也门，安全接回家。</p>
+<p>面对随时有可能轰炸而来的空袭，一句“中国人到这边来”，一艘飘扬着五星红旗的中国军舰，让许多中国公民留下了激动的眼泪。</p>
+<p>少几个免签国家又如何呢？我知道无论我在世界的哪个角落，只要有困难了，祖国随时会接我回家。</p>
+<p>中国撤侨圆满结束后，美国公开承认，无法帮助在也门的美国公民离境，希望他们从海上乘坐外国船只离境。</p>
+<p>那一刻，许多曾更改国籍的人后悔不已，才明白中国护照最大的含金量，是远在他国时祖国给的安全感。</p>
+<h3 id="从发生特大地震的尼泊尔接回5685名中国公民"><a href="#从发生特大地震的尼泊尔接回5685名中国公民" class="headerlink" title="从发生特大地震的尼泊尔接回5685名中国公民"></a>从发生特大地震的尼泊尔接回5685名中国公民</h3><p>也门撤侨刚过去，同年4月，尼泊尔又发生了特大地震。</p>
+<p>一时间，中国游客，常驻尼泊尔的华企、机构人员，数千名中国公民被困在了尼泊尔的加德满都国际机场。</p>
+<p>这一次，中国又是第一时间调派数十架飞机，把滞留在机场的中国公民安全带回了家。</p>
+<p>在世界各国的人都还在无法离开的惶恐之中，最先撤离的又是中国。</p>
+<p>“地震发生后，中国飞机第一个到尼泊尔接回中国游客。只有中国的飞机到了，而且是国航、南航、东航的飞机都到了。”</p>
+<p>“落地通关，看到‘欢迎回家’四个字的时候，激动哭了……”</p>
+<h2 id="几次海外撤侨，看中国的逐渐强大历程"><a href="#几次海外撤侨，看中国的逐渐强大历程" class="headerlink" title="几次海外撤侨，看中国的逐渐强大历程"></a>几次海外撤侨，看中国的逐渐强大历程</h2><p>插图选自中国青年报 <a href="https://mp.weixin.qq.com/s/sPNF3p9Q6qW3m7SBdf-0Tw" target="_blank" rel="external">比《战狼2》更燃！亲历者：会唱中国国歌、拿着中国国旗护照真的能保命！</a><br><img src="/blogImg/20170805/zl4.jpg" alt="战狼2"><br><img src="/blogImg/20170805/zl5.jpg" alt="战狼2"><br><img src="/blogImg/20170805/zl6.jpg" alt="战狼2"><br><img src="/blogImg/20170805/zl7.jpg" alt="战狼2"><br><img src="/blogImg/20170805/zl8.jpg" alt="战狼2"></p>
+<h2 id="一朝一夕，拼的是态度"><a href="#一朝一夕，拼的是态度" class="headerlink" title="一朝一夕，拼的是态度"></a>一朝一夕，拼的是态度</h2><p>节选自题库英语四六级考试 <a href="https://mp.weixin.qq.com/s/0V9LRm1W6Va-hUHGaBKMgg" target="_blank" rel="external">从《战狼2》中学习燃到爆的英文台词！</a><br>好戏才刚刚开始。<br>The show has just begun.</p>
+<p>犯我中华者，虽远必诛。<br>If you dare to offend China，we will find you and kill you.</p>
+<p>血债血偿！<br>Blood for blood.</p>
+<p>你已经不是军人了，你在为谁而战？<br>一朝是战狼，终生是战狼！<br>You are not a soldier anymore. What are you fighting for?<br>Once a wolf, always a wolf!</p>
+<p>求救！<br>Mayday, Mayday!</p>
+<p>当兵后悔两年，不当兵后悔一辈子!<br>Join the army, regret for two years;<br>Don’t join the army, regret for a lifetime!</p>
+<p>有些伟大的民族，你永远不能低估！<br>You can never underestimate some great nations!</p>
+<p>开火！<br>Fire!</p>
+<p>那他妈的是过去。<br>That’s the fucking history.</p>
+<p>你的双手是用来救人的，不是杀人的。<br>Your hands are for saving lives, not taking lives.</p>
 
       
 
@@ -253,11 +285,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Repo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
@@ -313,7 +341,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/04/17/Repo的理解及用法小结-1/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.killyliu.com/2017/08/05/在你身后，有一个强大的祖国！/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,18 +355,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/04/18/Repo的理解及用法小结-2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Repo的理解及用法小结(2)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/04/10/《黑洞》背后的思考/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">《黑洞》背后的思考</div>
+    <a href="/2017/07/23/优雅数学解密‘洗牌必洗8次’梗/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">运用数学优雅解密“打牌必洗8次”梗</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -352,7 +371,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Repo的理解及用法小结-1" data-title="Repo的理解及用法小结(1)" data-url="http://blog.killyliu.com/2017/04/17/Repo的理解及用法小结-1/"></div>
+	<div class="ds-thread" data-thread-key="在你身后，有一个强大的祖国！" data-title="在你身后，有一个强大的祖国！" data-url="http://blog.killyliu.com/2017/08/05/在你身后，有一个强大的祖国！/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
